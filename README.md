@@ -63,7 +63,7 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
 <table>
   <tr>
     <td align="center">
-      <a href="#" title="defina o título do link">
+      <a href="#" title="Alisson Diogo">
         <img src="https://avatars.githubusercontent.com/u/38612359?v=4" width="100px;" alt="Foto de Alisson Diogo no GitHub"/><br>
         <sub>
           <b>Alisson Diogo</b>
@@ -71,7 +71,7 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
       </a>
     </td>
     <td align="center">
-      <a href="#" title="defina o título do link">
+      <a href="#" title="Davi Kelmer">
         <img src="https://avatars.githubusercontent.com/u/143103839?v=4" width="100px;" alt="Foto de Davi Kelmer no Github"/><br>
         <sub>
           <b>Davi Kelmer</b>
@@ -79,7 +79,7 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
       </a>
     </td>
     <td align="center">
-      <a href="#" title="defina o título do link">
+      <a href="#" title="José Eduardo Monteiro">
         <img src="https://avatars.githubusercontent.com/u/51955049?v=4" width="100px;" alt="Foto de José Eduardo Monteiro no Github"/><br>
         <sub>
           <b>José Eduardo Monteiro</b>
@@ -87,7 +87,7 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
       </a>
     </td>
     <td align="center">
-      <a href="#" title="defina o título do link">
+      <a href="#" title="Anny K Fernandes">
         <img src="https://avatars.githubusercontent.com/u/78033190?v=4" width="100px;" alt="Foto de Anny K Fernandes no Github"/><br>
         <sub>
           <b>Anny K Fernandes</b>
