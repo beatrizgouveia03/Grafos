@@ -34,15 +34,15 @@ ou
 ```
 git clone git@github.com:beatrizgouveia03/Grafos.git
 ```
-## ☕ Usando Grafos
+## ☕ Organização Grafos
 
-Para usar Grafos, siga estas etapas:
+Este repositório está atualmente organizado em três pastas principais: Implementações, Slides-Aulas e Exercícios.
+Para fins de adição de novos materiais, seguimos a seguinte divisão:
+- Implementações: qualquer implementação de pseudocódigo apresentado nos slides ou relacionados.
+- Slides-Aulas: slides disponibilizados pela turma virtual do SIGAA referentes a turma de Grafos - DIM0549.
+- Exercícios: exercícios passados nos slides das aulas que seram utilizados para fins avaliativos.
 
-```
-<exemplo_de_uso>
-```
-
-Adicione comandos de execução e exemplos que você acha que os usuários acharão úteis. Forneça uma referência de opções para pontos de bônus!
+> Fique atento a organização interna da pasta, caso haja, antes de adicionar mais matérial a ela!
 
 ## 📫 Contribuindo para Grafos
 
