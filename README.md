@@ -19,7 +19,7 @@ O repositório ainda está em desenvolvimento, bem como esse README, e as próxi
     - [x] (1)  Representação do Grafo a partir da Lista de Adjacências (PENDENTE TRATAMENTOS)
     - [x] (2)  Representação do Grafo a partir da Matriz de Adjacências (PENDENTE TRATAMENTOS)
     - [x] (3)  Representação do Grafo a partir da Matriz de Incidência (PENDENTE TRATAMENTOS)
-    - [ ] (4)  Conversão de matriz de adjacência para lista de Adjacências e vice-versa.
+    - [x] (4)  Conversão de matriz de adjacência para lista de Adjacências e vice-versa. (PENDENTE TRATAMENTOS) (APENAS IDA)
     - [ ] (5)  Função que calcula o grau de cada vértice.
     - [ ] (6)  Função que determina se dois vértices são adjacentes.
     - [ ] (7)  Função que determina o número total de vértices
