@@ -15,34 +15,34 @@ O repositório ainda está em desenvolvimento, bem como esse README, e as próxi
 
 - [ ] Modelos de implementações de grafos  
 - [ ] Lista de exercícios da 1ª Unidade :
-    - [ ] A. Para GRAFOS (as opcionais possuem a sigla OPC ao final da função)
-    (1) [ ] Representação do Grafo a partir da Lista de Adjacências
-    (2) [ ] Representação do Grafo a partir da Matriz de Adjacências
-    (3) [ ] Representação do Grafo a partir da Matriz de Incidência
-    (4) [ ] Conversão de matriz de adjacência para lista de Adjacências e vice-versa.
-    (5) [ ] Função que calcula o grau de cada vértice.
-    (6) [ ] Função que determina se dois vértices são adjacentes.
-    (7) [ ] Função que determina o número total de vértices
-    (8) [ ] Função que determina o número total de arestas
-    (9) [ ] Inclusão de um novo vértice
-    (10) [ ] Exclusão de um vértice existente
-    (11) [ ] Função que determina se um grafo é conexo ou não
-    (12) [ ] Determinar se um grafo é bipartido (OPC = 1,0 ponto)
-    (13) [ ] Dada uma representação de uma árvore por matriz de adjacência, faça um algoritmo que
+    - A. Para GRAFOS (as opcionais possuem a sigla OPC ao final da função)
+    - [ ] (1)  Representação do Grafo a partir da Lista de Adjacências
+    - [ ] (2)  Representação do Grafo a partir da Matriz de Adjacências
+    - [ ] (3)  Representação do Grafo a partir da Matriz de Incidência
+    - [ ] (4)  Conversão de matriz de adjacência para lista de Adjacências e vice-versa.
+    - [ ] (5)  Função que calcula o grau de cada vértice.
+    - [ ] (6)  Função que determina se dois vértices são adjacentes.
+    - [ ] (7)  Função que determina o número total de vértices
+    - [ ] (8)  Função que determina o número total de arestas
+    - [ ] (9)  Inclusão de um novo vértice
+    - [ ] (10) Exclusão de um vértice existente
+    - [ ] (11) Função que determina se um grafo é conexo ou não
+    - [ ] (12) Determinar se um grafo é bipartido (OPC = 1,0 ponto)
+    - [ ] (13) Dada uma representação de uma árvore por matriz de adjacência, faça um algoritmo que
     produza o código de Prüffer e vice versa. (OPC= 1,0 ponto)
-    (14) [ ] Busca em Largura, a partir de um vértice específico
-    (15) [ ] Busca em Profundidade, a partir de um vértice em específico.
-    (16) [ ] Determinação de articulações e blocos (biconectividade), utilizando obrigatoriamente a
+    - [ ] (14) Busca em Largura, a partir de um vértice específico
+    - [ ] (15) Busca em Profundidade, a partir de um vértice em específico.
+    - [ ] (16) Determinação de articulações e blocos (biconectividade), utilizando obrigatoriamente a
 função lowpt.
     - B. Para DIGRAFOS (as opcionais possuem a sigla OPC ao final da função)
-    - (17) [x] Representação do Digrafo a partir da Matriz de Adjacências
-    - (18) [ ] Representação do Digrafo a partir da Matriz de Incidência
-    - (19) [ ] Determinação do Grafo subjacente (OPC= 0,5 ponto)
-    - (20) [ ] Conversão de matriz de incidência para estrela direta e vice versa(OPC= 0,5 ponto).
-    - (21) [ ] Conversão de matriz de adjacência para estrela reversa e vice-versa (OPC= 0,5 ponto).
-    - (22) [ ] Busca em profundidade, com determinação de profundidade de entrada e de saída de cada
+    - [x] (17)  Representação do Digrafo a partir da Matriz de Adjacências
+    - [ ] (18)  Representação do Digrafo a partir da Matriz de Incidência
+    - [ ] (19)  Determinação do Grafo subjacente (OPC= 0,5 ponto)
+    - [ ] (20)  Conversão de matriz de incidência para estrela direta e vice versa(OPC= 0,5 ponto).
+    - [ ] (21)  Conversão de matriz de adjacência para estrela reversa e vice-versa (OPC= 0,5 ponto).
+    - [ ] (22)  Busca em profundidade, com determinação de profundidade de entrada e de saída de cada
     - vértice.
-    - (23) [ ] Pesquisar e implementar uma aplicação, usando busca em profundidade (OPC= 1,0 ponto). 
+    - [ ] (23) Pesquisar e implementar uma aplicação, usando busca em profundidade (OPC= 1,0 ponto). 
 
 ## 💻 Pré-requisitos
 
