@@ -35,7 +35,7 @@ O repositório ainda está em desenvolvimento, bem como esse README, e as próxi
     - [ ] (16) Determinação de articulações e blocos (biconectividade), utilizando obrigatoriamente a
 função lowpt.
     - B. Para DIGRAFOS (as opcionais possuem a sigla OPC ao final da função)
-    - [x] (17)  Representação do Digrafo a partir da Matriz de Adjacências
+    - [ ] (17)  Representação do Digrafo a partir da Matriz de Adjacências
     - [ ] (18)  Representação do Digrafo a partir da Matriz de Incidência
     - [ ] (19)  Determinação do Grafo subjacente (OPC= 0,5 ponto)
     - [ ] (20)  Conversão de matriz de incidência para estrela direta e vice versa(OPC= 0,5 ponto).
