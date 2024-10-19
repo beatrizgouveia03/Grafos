@@ -16,7 +16,7 @@ O repositório ainda está em desenvolvimento, bem como esse README, e as próxi
 - [ ] Modelos de implementações de grafos  
 - [ ] Lista de exercícios da 1ª Unidade :
     - A. Para GRAFOS (as opcionais possuem a sigla OPC ao final da função)
-    - [ ] (1)  Representação do Grafo a partir da Lista de Adjacências
+    - [x] (1)  Representação do Grafo a partir da Lista de Adjacências (PENDENTE TRATAMENTOS)
     - [x] (2)  Representação do Grafo a partir da Matriz de Adjacências (PENDENTE TRATAMENTOS)
     - [x] (3)  Representação do Grafo a partir da Matriz de Incidência (PENDENTE TRATAMENTOS)
     - [ ] (4)  Conversão de matriz de adjacência para lista de Adjacências e vice-versa.
