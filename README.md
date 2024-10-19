@@ -15,7 +15,7 @@ O repositório ainda está em desenvolvimento, bem como esse README, e as próxi
 
 - [ ] Modelos de implementações de grafos  
 - [ ] Lista de exercícios da 1ª Unidade :
-    - A. Para GRAFOS (as opcionais possuem a sigla OPC ao final da função)
+    - [ ] A. Para GRAFOS (as opcionais possuem a sigla OPC ao final da função)
     (1) [ ] Representação do Grafo a partir da Lista de Adjacências
     (2) [ ] Representação do Grafo a partir da Matriz de Adjacências
     (3) [ ] Representação do Grafo a partir da Matriz de Incidência
@@ -35,7 +35,7 @@ O repositório ainda está em desenvolvimento, bem como esse README, e as próxi
     (16) [ ] Determinação de articulações e blocos (biconectividade), utilizando obrigatoriamente a
 função lowpt.
     - B. Para DIGRAFOS (as opcionais possuem a sigla OPC ao final da função)
-    - (17) [ ] Representação do Digrafo a partir da Matriz de Adjacências
+    - (17) [x] Representação do Digrafo a partir da Matriz de Adjacências
     - (18) [ ] Representação do Digrafo a partir da Matriz de Incidência
     - (19) [ ] Determinação do Grafo subjacente (OPC= 0,5 ponto)
     - (20) [ ] Conversão de matriz de incidência para estrela direta e vice versa(OPC= 0,5 ponto).
