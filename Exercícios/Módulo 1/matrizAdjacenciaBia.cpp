@@ -5,39 +5,55 @@ using namespace std;
 #define vi vector<int>
 
 //Leitura da entrada do grafo e atualização da matriz
-void lerMatriz(vector<vi>& matrix){
-    int qnt, x, y;
-    cout << "Informe a quantidade de conexões que o grafo possui: " << endl;
+bool lerMatriz(vector<vi>& matrizAdj){
+    int vertices, conexoes, x, y;
+    
+    cout << "Leitura de vértices e conexões..." << endl;
 
-    cin >> qnt;
+    //Quantidade de vértices e conexoes da matriz
+    cin >> vertices >> conexoes;
 
-    cout << "Informe as conexões existentes entre os vértices, uma por linha:" << endl;
-    cout << "Siga o exemplo: \"4 5\" indica que os vértices 4 e 5 são conectados" << endl;
+    cout << "Leitura concluída: Vértices - " << vertices << ", Conexões - " << conexoes << endl;
 
-    while(qnt > 0){
+    matrizAdj = vector<vi>(vertices, vi(vertices, 0));
+
+    cout << "Lendo conexões..." << endl;
+
+    while(conexoes > 0){
         cin >> x >> y;
 
-        matrix[--x][--y] = 1;
-        matrix[y][x] = 1;
+        cout << "Conexão lida: " << x << " " << y << endl;
 
-         qnt--;
+        if(x<1||x>vertices||y<1||y>vertices){
+            cout << "Erro: Vértice fora do intervalo." << endl;
+            return false;
+        }
+
+        matrizAdj[--x][--y] = 1;
+        matrizAdj[y][x] = 1;
+
+        cout << "Conexão lida com sucesso." << endl;
+
+        --conexoes;
     }
 
+    return true;
 }
 
 //Impressão da matriz de adjacência resultante
-void imprimirMatriz(vector<vi> matrix){
+void imprimirMatriz(vector<vi> matrizAdj){
+    cout << endl;
     cout << "Matriz de Adjacência resultante: " << endl; 
     cout << "---------------------------------" << endl;
     cout << " ";
 
-    for(auto i{0u}; i<matrix.size(); ++i) cout << " "<< i+1;
+    for(auto i{0u}; i<matrizAdj.size(); ++i) cout << " " << i+1;
     cout << endl;
 
-    for(auto i{0u}; i<matrix.size(); ++i){
+    for(auto i{0u}; i<matrizAdj.size(); ++i){
         cout <<i+1;
-        for(auto j{0u}; j<matrix.size(); ++j){
-            cout << " " << matrix[i][j];
+        for(auto j{0u}; j<matrizAdj.size(); ++j){
+            cout << " " << matrizAdj[i][j];
         }
 
         cout << endl;
@@ -46,18 +62,10 @@ void imprimirMatriz(vector<vi> matrix){
 }
 
 int main(){
-    int x;
-    
-    cout << "Informe a quantidade de vértices da matriz: " << endl;
-    cin >> x;
-
     //Inicialização da matriz de adjacência do grafo
-    vector<vi> matrix (x, vi(x, 0));
-
-
-    lerMatriz(matrix);
-
-    imprimirMatriz(matrix);
+    vector<vi> matrizAdj;
+    
+    if(lerMatriz(matrizAdj)) imprimirMatriz(matrizAdj);
 
     return 0;
 }
