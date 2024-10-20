@@ -42,7 +42,7 @@ bool lerGrafo(map<int, vi>& listaAdj){
 }
 
 //Impressão da lista de adjacência resultante
-void imprimirGrafo(map<int, vi> listaAdj){
+void imprimirListaAdj(map<int, vi> listaAdj){
     cout << endl;
     cout << "Lista de Adjacência resultante: " << endl; 
     cout << "---------------------------------" << endl;
@@ -64,7 +64,7 @@ int main(){
     //Inicialização da lista de adjacência do grafo
     map<int, vi> listaAdjacencia;
     
-    if(lerGrafo(listaAdjacencia)) imprimirGrafo(listaAdjacencia);
+    if(lerGrafo(listaAdjacencia)) imprimirListaAdj(listaAdjacencia);
 
     return 0;
 }
