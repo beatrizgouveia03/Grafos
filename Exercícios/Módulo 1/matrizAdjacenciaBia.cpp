@@ -1,25 +1,39 @@
+/*!
+ * Algorithm that represents a graph as an adjacency matrix
+ * @author Beatriz Gouveia
+ * @date Oct 20st, 2024
+ * @file matrizAdjacenciaBia.cpp
+ */
+
 #include <bits/stdc++.h>
 
 using namespace std;
 
 #define vi vector<int>
 
-//Leitura da entrada do grafo e atualização da matriz
-bool lerMatriz(vector<vi>& matrizAdj){
-    int vertices, conexoes, x, y;
+/*!
+ * This function reads the file input and based on the reading 
+ * fills the adjacency matrix.
+ *
+ * @param adjMatrix Address of the vector that represents the adjacency matrix
+ * @return A boolean indicating whether the read was successful 
+ * (there were no out-of-bounds connections)
+ */
+bool readGraph(vector<vi>& adjMatrix){
+    int vertices, connections, x, y;
     
     cout << "Leitura de vértices e conexões..." << endl;
 
-    //Quantidade de vértices e conexoes da matriz
-    cin >> vertices >> conexoes;
+    //Amount of vertices and connections of the matrix
+    cin >> vertices >> connections;
 
-    cout << "Leitura concluída: Vértices - " << vertices << ", Conexões - " << conexoes << endl;
+    cout << "Leitura concluída: Vértices - " << vertices << ", Conexões - " << connections << endl;
 
-    matrizAdj = vector<vi>(vertices, vi(vertices, 0));
+    adjMatrix = vector<vi>(vertices, vi(vertices, 0));
 
     cout << "Lendo conexões..." << endl;
 
-    while(conexoes > 0){
+    while(connections > 0){
         cin >> x >> y;
 
         cout << "Conexão lida: " << x << " " << y << endl;
@@ -29,31 +43,35 @@ bool lerMatriz(vector<vi>& matrizAdj){
             return false;
         }
 
-        matrizAdj[--x][--y] = 1;
-        matrizAdj[y][x] = 1;
+        adjMatrix[--x][--y] = 1;
+        adjMatrix[y][x] = 1;
 
         cout << "Conexão lida com sucesso." << endl;
 
-        --conexoes;
+        --connections;
     }
 
     return true;
 }
 
-//Impressão da matriz de adjacência resultante
-void imprimirMatriz(vector<vi> matrizAdj){
+/*!
+ * This function prints the resultant adjacency matrix on the terminal.
+ *
+ * @param adjMatrix The map that represents the adjacency matrix
+ */
+void printAdjMatrix(vector<vi> adjMatrix){
     cout << endl;
     cout << "Matriz de Adjacência resultante: " << endl; 
     cout << "---------------------------------" << endl;
     cout << " ";
 
-    for(auto i{0u}; i<matrizAdj.size(); ++i) cout << " " << i+1;
+    for(auto i{0u}; i<adjMatrix.size(); ++i) cout << " " << i+1;
     cout << endl;
 
-    for(auto i{0u}; i<matrizAdj.size(); ++i){
+    for(auto i{0u}; i<adjMatrix.size(); ++i){
         cout <<i+1;
-        for(auto j{0u}; j<matrizAdj.size(); ++j){
-            cout << " " << matrizAdj[i][j];
+        for(auto j{0u}; j<adjMatrix.size(); ++j){
+            cout << " " << adjMatrix[i][j];
         }
 
         cout << endl;
@@ -61,11 +79,14 @@ void imprimirMatriz(vector<vi> matrizAdj){
     cout << "---------------------------------" << endl;
 }
 
+/*!
+ * Main function
+ */
 int main(){
-    //Inicialização da matriz de adjacência do grafo
-    vector<vi> matrizAdj;
+    //Initialization of the vector that represents the adjacency matrix
+    vector<vi> adjMatrix;
     
-    if(lerMatriz(matrizAdj)) imprimirMatriz(matrizAdj);
+    if(readGraph(adjMatrix)) printAdjMatrix(adjMatrix);
 
     return 0;
 }

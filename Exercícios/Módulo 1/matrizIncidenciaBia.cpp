@@ -1,27 +1,41 @@
+/*!
+ * Algorithm that represents a graph as an incidence matrix
+ * @author Beatriz Gouveia
+ * @date Oct 20st, 2024
+ * @file matrizIncidenciaBia.cpp
+ */
+
 #include <bits/stdc++.h>
 
 using namespace std;
 
 #define vi vector<int>
 
-//Leitura da entrada do grafo e atualização da matriz
-bool lerMatriz(vector<vi>& matrizInc){
-    int vertices, conexoes, x, y;
+/*!
+ * This function reads the file input and based on the reading 
+ * fills the incidence matrix.
+ *
+ * @param incMatrix Address of the vector that represents the incidence matrix
+ * @return A boolean indicating whether the read was successful 
+ * (there were no out-of-bounds connections)
+ */
+bool readGraph(vector<vi>& incMatrix){
+    int vertices, connections, x, y;
     
     cout << "Leitura de vértices e conexões..." << endl;
 
-    //Quantidade de vértices e conexoes da matriz
-    cin >> vertices >> conexoes;
+    //Amount of vertices and connections of the matrix
+    cin >> vertices >> connections;
 
-    cout << "Leitura concluída: Vértices - " << vertices << ", Conexões - " << conexoes << endl;
+    cout << "Leitura concluída: Vértices - " << vertices << ", Conexões - " << connections << endl;
 
-    matrizInc = vector<vi>(conexoes, vi(vertices, 0));
+    incMatrix = vector<vi>(connections, vi(vertices, 0));
 
     cout << "Lendo conexões..." << endl;
 
     int cnt = 0;
 
-    while(conexoes > 0){
+    while(connections > 0){
         cin >> x >> y;
 
         cout << "Conexão lida: " << x << " " << y << endl;
@@ -31,29 +45,33 @@ bool lerMatriz(vector<vi>& matrizInc){
             return false;
         }
 
-        matrizInc[cnt][--x] = 1;
-        matrizInc[cnt][--y] = 1;
+        incMatrix[cnt][--x] = 1;
+        incMatrix[cnt][--y] = 1;
 
-        cnt++; conexoes--;
+        cnt++; connections--;
     }
 
     return true;
 }
 
-//Impressão da matriz de incidênncia resultante
-void imprimirMatriz(vector<vi> matrizInc){
+/*!
+ * This function prints the resultant incidence matrix on the terminal.
+ *
+ * @param adjMatrix The map that represents the incidence matrix
+ */
+void printIncMatrix(vector<vi> incMatrix){
     cout << endl;
     cout << "Matriz de Incidência resultante: " << endl; 
     cout << "---------------------------------" << endl;
     cout << " ";
     
-    for(auto i{0u}; i<matrizInc[0].size(); ++i) cout << " "<< i+1;
+    for(auto i{0u}; i<incMatrix[0].size(); ++i) cout << " "<< i+1;
     cout << endl;
 
-    for(auto i{0u}; i<matrizInc.size(); ++i){
+    for(auto i{0u}; i<incMatrix.size(); ++i){
         cout <<i+1;
-        for(auto j{0u}; j<matrizInc[i].size(); ++j){
-            cout << " " << matrizInc[i][j];
+        for(auto j{0u}; j<incMatrix[i].size(); ++j){
+            cout << " " << incMatrix[i][j];
         }
 
         cout << endl;
@@ -61,12 +79,14 @@ void imprimirMatriz(vector<vi> matrizInc){
     cout << "---------------------------------" << endl;
 }
 
+/*!
+ * Main function
+ */
 int main(){
+    //Initialization of the vector that represents the incidence matrix
+    vector<vi> incMatrix;
 
-    //Inicialização da matriz de incidência do grafo
-    vector<vi> matrizInc;
-
-    if(lerMatriz(matrizInc)) imprimirMatriz(matrizInc);
+    if(readGraph(incMatrix)) printIncMatrix(incMatrix);
 
     return 0;
 }

@@ -2,7 +2,7 @@
  * Algorithm that represents a graph as an adjacency list
  * @author Beatriz Gouveia
  * @date Oct 20st, 2024
- * @file listaAdjacencia.cpp
+ * @file listaAdjacenciaBia.cpp
  */
 
 #include <bits/stdc++.h>
@@ -24,7 +24,7 @@ bool readGraph(map<int, vi>& adjList){
 
     cout << "Leitura de vértices e conexões..." << endl;
     
-    //Amount of vertices and connections of the matriz
+    //Amount of vertices and connections of the matrix
     cin >> vertices >> connections;
 
     cout << "Leitura concluída: Vértices - " << vertices << ", Conexões - " << connections << endl;
@@ -60,7 +60,7 @@ bool readGraph(map<int, vi>& adjList){
  *
  * @param adjList The map that represents the adjacency list
  */
-void imprimirListaAdj(map<int, vi> listaAdj){
+void printAdjList(map<int, vi> listaAdj){
     cout << endl;
     cout << "Lista de Adjacência resultante: " << endl; 
     cout << "---------------------------------" << endl;
@@ -85,7 +85,7 @@ int main(){
     //Initialization of the map that represents the adjacency list
     map<int, vi> AdjList;
     
-    if(readGraph(AdjList)) imprimirListaAdj(AdjList);
+    if(readGraph(AdjList)) printAdjList(AdjList);
 
     return 0;
 }

@@ -1,21 +1,36 @@
+/*!
+ * Algorithm that transforms a adjacency matrix 
+ * to an adjacency list
+ * @author Beatriz Gouveia
+ * @date Oct 20st, 2024
+ * @file listaAdjacenciaBia.cpp
+ */
+
 #include <bits/stdc++.h>
 
 using namespace std;
 
 #define vi vector<int>
 
-//Leitura da entrada do grafo e atualização da lista
-bool lerMatriz(map<int, vi>& listaAdj){
+/*!
+ * This function reads an adjancency matrix of the file input and based 
+ * on the reading fills the adjacency list.
+ *
+ * @param adjList Address of the map that represents the adjacency list
+ * @return A boolean indicating whether the read was successful 
+ * (there were no unexpected values)
+ */
+bool readMatrix(map<int, vi>& adjList){
     int x, vertices;
 
     cout << "Leitura de vértices..." << endl;
     
-    //Quantidade de vértices da matriz
+    //mount of vertices of the matrix
     cin >> vertices;
 
     cout << "Leitura concluída: Vértices - " << vertices << endl;
 
-    for(auto i{1u}; i<=vertices; ++i) listaAdj[i];
+    for(auto i{1u}; i<=vertices; ++i) adjList[i];
 
     cout << "Lendo matriz..." << endl;
 
@@ -33,10 +48,10 @@ bool lerMatriz(map<int, vi>& listaAdj){
 
             if(x && j >= i){
                 if(i == j) {
-                    listaAdj[i+1].push_back(j+1);
+                    adjList[i+1].push_back(j+1);
                 } else {                
-                    listaAdj[i+1].push_back(j+1);
-                    listaAdj[j+1].push_back(i+1);
+                    adjList[i+1].push_back(j+1);
+                    adjList[j+1].push_back(i+1);
                 }
             }
         }
@@ -46,15 +61,19 @@ bool lerMatriz(map<int, vi>& listaAdj){
     return true;
 }
 
-//Impressão da lista de adjacência resultante
-void imprimirListaAdj(map<int, vi> listaAdj){
+/*!
+ * This function prints the resultant adjacency list on the terminal.
+ *
+ * @param adjList The map that represents the adjacency list
+ */
+void printAdjList(map<int, vi> adjList){
     cout << endl;
     cout << "Lista de Adjacência resultante: " << endl; 
     cout << "---------------------------------" << endl;
 
-    for(auto i{1u}; i<=listaAdj.size(); ++i){
+    for(auto i{1u}; i<=adjList.size(); ++i){
         cout << i << " ->";
-        for(auto j{listaAdj[i].begin()}; j != listaAdj[i].end(); ++j){
+        for(auto j{adjList[i].begin()}; j != adjList[i].end(); ++j){
             cout << " " <<  *j;
         }
         cout << endl;
@@ -62,12 +81,15 @@ void imprimirListaAdj(map<int, vi> listaAdj){
     cout << "---------------------------------" << endl;
 }
 
+/*!
+ * Main function
+ */
 int main(){
-    //Inicialização da lista de adjacência do grafo
-    map<int, vi> listaAdj;
+    //Initialization of the map that represents the adjacency list
+    map<int, vi> adjList;
 
 
-    if(lerMatriz(listaAdj)) imprimirListaAdj(listaAdj);
+    if(readMatrix(adjList)) printAdjList(adjList);
 
     return 0;
 }
