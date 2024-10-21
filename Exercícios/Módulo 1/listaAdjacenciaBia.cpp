@@ -1,26 +1,40 @@
+/*!
+ * Algorithm that represents a graph as an adjacency list
+ * @author Beatriz Gouveia
+ * @date Oct 20st, 2024
+ * @file listaAdjacencia.cpp
+ */
+
 #include <bits/stdc++.h>
 
 using namespace std;
 
 #define vi vector<int>
 
-//Leitura da entrada do grafo e atualização da lista
-bool lerGrafo(map<int, vi>& listaAdj){
-    int vertices, conexoes, x, y;
+/*!
+ * This function reads the file input and based on the reading 
+ * fills the adjacency list.
+ *
+ * @param adjList Address of the map that represents the adjacency list
+ * @return A boolean indicating whether the read was successful 
+ * (there were no out-of-bounds connections)
+ */
+bool readGraph(map<int, vi>& adjList){
+    int vertices, connections,  x, y;
 
     cout << "Leitura de vértices e conexões..." << endl;
     
-    //Quantidade de vértices e conexoes da matriz
-    cin >> vertices >> conexoes;
+    //Amount of vertices and connections of the matriz
+    cin >> vertices >> connections;
 
-    cout << "Leitura concluída: Vértices - " << vertices << ", Conexões - " << conexoes << endl;
+    cout << "Leitura concluída: Vértices - " << vertices << ", Conexões - " << connections << endl;
 
-    for(auto i{1u}; i<=vertices; ++i) listaAdj[i];
+    for(auto i{1u}; i<=vertices; ++i) adjList[i];
 
     cout << "Lendo conexões..." << endl;
 
 
-    while(conexoes > 0){
+    while(connections > 0){
         cin >> x >> y;
 
         cout << "Conexão lida: " << x << " " << y << endl;
@@ -30,18 +44,22 @@ bool lerGrafo(map<int, vi>& listaAdj){
             return false;
         }
 
-        listaAdj[x].push_back(y);
-        listaAdj[y].push_back(x);
+        adjList[x].push_back(y);
+        adjList[y].push_back(x);
 
         cout << "Conexão lida com sucesso." << endl;
 
-        conexoes--;
+        connections--;
     }
     
     return true;
 }
 
-//Impressão da lista de adjacência resultante
+/*!
+ * This function prints the resultant adjacency list on the terminal.
+ *
+ * @param adjList The map that represents the adjacency list
+ */
 void imprimirListaAdj(map<int, vi> listaAdj){
     cout << endl;
     cout << "Lista de Adjacência resultante: " << endl; 
@@ -60,11 +78,14 @@ void imprimirListaAdj(map<int, vi> listaAdj){
     cout << "---------------------------------" << endl;
 }
 
+/*!
+ * Main function
+ */
 int main(){
-    //Inicialização da lista de adjacência do grafo
-    map<int, vi> listaAdjacencia;
+    //Initialization of the map that represents the adjacency list
+    map<int, vi> AdjList;
     
-    if(lerGrafo(listaAdjacencia)) imprimirListaAdj(listaAdjacencia);
+    if(readGraph(AdjList)) imprimirListaAdj(AdjList);
 
     return 0;
 }
