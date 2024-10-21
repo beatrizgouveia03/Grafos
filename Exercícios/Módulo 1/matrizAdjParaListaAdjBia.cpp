@@ -23,7 +23,7 @@ bool lerMatriz(map<int, vi>& listaAdj){
         for (auto j(0u); j<vertices;++j){
             cin >> x;
 
-            cout << "Conexão " << i+1 << " " << j+1 << " lida como: " << x << endl;
+            cout << x << " ";
 
             if(x!=0 && x != 1){
                 cout << "Erro: Valor inválido." << endl;
@@ -40,6 +40,7 @@ bool lerMatriz(map<int, vi>& listaAdj){
                 }
             }
         }
+        cout << endl;
     }
 
     return true;
