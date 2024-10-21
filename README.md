@@ -24,13 +24,13 @@ O repositório ainda está em desenvolvimento, bem como esse README, e as próxi
     - [ ] (6)  Função que determina se dois vértices são adjacentes.[ANNY]
     - [ ] (7)  Função que determina o número total de vértices[ANNY]
     - [ ] (8)  Função que determina o número total de arestas[ANNY]
-    - [ ] (9)  Inclusão de um novo vértice
-    - [ ] (10) Exclusão de um vértice existente
-    - [ ] (11) Função que determina se um grafo é conexo ou não
+    - [ ] (9)  Inclusão de um novo vértice[Davi]
+    - [ ] (10) Exclusão de um vértice existente[Davi]
+    - [ ] (11) Função que determina se um grafo é conexo ou não[Davi]
     - [ ] (12) Determinar se um grafo é bipartido (OPC = 1,0 ponto)
     - [ ] (13) Dada uma representação de uma árvore por matriz de adjacência, faça um algoritmo que
     produza o código de Prüffer e vice versa. (OPC= 1,0 ponto)
-    - [ ] (14) Busca em Largura, a partir de um vértice específico
+    - [ ] (14) Busca em Largura, a partir de um vértice específico[Davi]
     - [ ] (15) Busca em Profundidade, a partir de um vértice em específico.
     - [ ] (16) Determinação de articulações e blocos (biconectividade), utilizando obrigatoriamente a
 função lowpt.
