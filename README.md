@@ -27,13 +27,13 @@ O repositório ainda está em desenvolvimento, bem como esse README, e as próxi
     - [ ] (9)  Inclusão de um novo vértice[Davi]
     - [ ] (10) Exclusão de um vértice existente[Davi]
     - [ ] (11) Função que determina se um grafo é conexo ou não[Davi]
-    - [ ] (12) Determinar se um grafo é bipartido (OPC = 1,0 ponto)
+    - [ ] (12) Determinar se um grafo é bipartido (OPC = 1,0 ponto)[Alisson]
     - [ ] (13) Dada uma representação de uma árvore por matriz de adjacência, faça um algoritmo que
     produza o código de Prüffer e vice versa. (OPC= 1,0 ponto)[Alisson]
     - [ ] (14) Busca em Largura, a partir de um vértice específico[Davi]
     - [ ] (15) Busca em Profundidade, a partir de um vértice em específico. [José]
     - [ ] (16) Determinação de articulações e blocos (biconectividade), utilizando obrigatoriamente a
-função lowpt.
+função lowpt[Alisson]
     - B. Para DIGRAFOS (as opcionais possuem a sigla OPC ao final da função)
     - [ ] (17)  Representação do Digrafo a partir da Matriz de Adjacências [José]
     - [ ] (18)  Representação do Digrafo a partir da Matriz de Incidência [José]
