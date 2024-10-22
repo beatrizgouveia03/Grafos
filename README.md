@@ -29,7 +29,7 @@ O repositório ainda está em desenvolvimento, bem como esse README, e as próxi
     - [ ] (11) Função que determina se um grafo é conexo ou não[Davi]
     - [ ] (12) Determinar se um grafo é bipartido (OPC = 1,0 ponto)
     - [ ] (13) Dada uma representação de uma árvore por matriz de adjacência, faça um algoritmo que
-    produza o código de Prüffer e vice versa. (OPC= 1,0 ponto)
+    produza o código de Prüffer e vice versa. (OPC= 1,0 ponto)[Alisson]
     - [ ] (14) Busca em Largura, a partir de um vértice específico[Davi]
     - [ ] (15) Busca em Profundidade, a partir de um vértice em específico. [José]
     - [ ] (16) Determinação de articulações e blocos (biconectividade), utilizando obrigatoriamente a
