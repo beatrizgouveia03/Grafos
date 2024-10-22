@@ -31,18 +31,18 @@ O repositório ainda está em desenvolvimento, bem como esse README, e as próxi
     - [ ] (13) Dada uma representação de uma árvore por matriz de adjacência, faça um algoritmo que
     produza o código de Prüffer e vice versa. (OPC= 1,0 ponto)
     - [ ] (14) Busca em Largura, a partir de um vértice específico[Davi]
-    - [ ] (15) Busca em Profundidade, a partir de um vértice em específico.
+    - [ ] (15) Busca em Profundidade, a partir de um vértice em específico. [José]
     - [ ] (16) Determinação de articulações e blocos (biconectividade), utilizando obrigatoriamente a
 função lowpt.
     - B. Para DIGRAFOS (as opcionais possuem a sigla OPC ao final da função)
-    - [ ] (17)  Representação do Digrafo a partir da Matriz de Adjacências
-    - [ ] (18)  Representação do Digrafo a partir da Matriz de Incidência
+    - [ ] (17)  Representação do Digrafo a partir da Matriz de Adjacências [José]
+    - [ ] (18)  Representação do Digrafo a partir da Matriz de Incidência [José]
     - [ ] (19)  Determinação do Grafo subjacente (OPC= 0,5 ponto)
     - [ ] (20)  Conversão de matriz de incidência para estrela direta e vice versa(OPC= 0,5 ponto).
     - [ ] (21)  Conversão de matriz de adjacência para estrela reversa e vice-versa (OPC= 0,5 ponto).
-    - [ ] (22)  Busca em profundidade, com determinação de profundidade de entrada e de saída de cada
+    - [ ] (22)  Busca em profundidade, com determinação de profundidade de entrada e de saída de cada [José]
     - vértice.
-    - [ ] (23) Pesquisar e implementar uma aplicação, usando busca em profundidade (OPC= 1,0 ponto). 
+    - [ ] (23) Pesquisar e implementar uma aplicação, usando busca em profundidade (OPC= 1,0 ponto). [José]
 
 ## 💻 Pré-requisitos
 
