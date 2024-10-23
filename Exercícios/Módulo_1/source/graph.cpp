@@ -179,3 +179,38 @@ void Graph::updateAdjMatrix(vector<vector<int>> adjMatrix){
 void Graph::updateIncMatrix(vector<vector<int>> incMatrix){
     this->incMatrix = incMatrix;
 }
+
+/**!
+ * This function adds a new vertex to the graph along with its edges.
+*/
+void Graph::addVertex(){
+    /*TO-DO*/
+}
+
+/**!
+ * This function adds a new edge to the graph.
+ * @param u The first vertex of the edge
+ *  @param v The second vertex of the edge
+*/
+void Graph::addEdge(int u, int v){
+    /*TO-DO*/
+}
+
+/**!
+ * This function removes a vertex to the graph along with its edges.
+ *
+ *  @param incMatrix The new version of the incidence matrix to be
+ * updated
+*/
+void Graph::removeVertex(int vertex){
+    /*TO-DO*/
+}
+
+/**!
+ * This function removes an edge to the graph.
+ * @param u The first vertex of the edge
+ *  @param v The second vertex of the edge
+*/
+void Graph::removeEdge(int u, int v){
+    /*TO-DO*/
+}

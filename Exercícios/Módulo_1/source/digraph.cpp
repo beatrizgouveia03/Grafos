@@ -178,3 +178,38 @@ void Digraph::updateAdjMatrix(vector<vector<int>> adjMatrix){
 void Digraph::updateIncMatrix(vector<vector<int>> incMatrix){
     this->incMatrix = incMatrix;
 }
+
+/**!
+ * This function adds a new vertex to the digraph along with its edges.
+*/
+void Digraph::addVertex(){
+    /*TO-DO*/
+}
+
+/**!
+ * This function adds a new edge to the digraph.
+ * @param u The first vertex of the edge
+ *  @param v The second vertex of the edge
+*/
+void Digraph::addEdge(int u, int v){
+    /*TO-DO*/
+}
+
+/**!
+ * This function removes a vertex to the digraph along with its edges.
+ *
+ *  @param incMatrix The new version of the incidence matrix to be
+ * updated
+*/
+void Digraph::removeVertex(int vertex){
+    /*TO-DO*/
+}
+
+/**!
+ * This function removes an edge to the digraph.
+ * @param u The first vertex of the edge
+ *  @param v The second vertex of the edge
+*/
+void Digraph::removeEdge(int u, int v){
+    /*TO-DO*/
+}

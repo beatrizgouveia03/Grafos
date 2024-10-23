@@ -30,15 +30,30 @@ namespace sml {
         Graph();
         Graph(int numNodes);
 
+        //Printing functions
         void printGraphAsAdjList();
         void printGraphAsAdjMatrix();
         void printGraphAsIncMatrix();
+
+        //Get methods
         map<int,vector<int>> getAdjList();
         vector<vector<int>> getAdjMatrix();
         vector<vector<int>> getIncMatrix();
+
+        //Update(set) methods
         void updateAdjList(map<int, vector<int>> adjList);
         void updateAdjMatrix(vector<vector<int>> adjMatrix);
         void updateIncMatrix(vector<vector<int>> incMatrix);
+
+        //Modification functions
+        void addVertex();
+        void addEdge(int u, int v);
+
+        void removeVertex(int u);
+        void removeEdge(int u, int v);
+
+        //Other functios
+        /* ADD HERE THE REST OF THE GRAPH FUNCTIONS*/
     };    
 }
 
