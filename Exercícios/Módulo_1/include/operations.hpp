@@ -25,17 +25,17 @@ namespace sml {
     {
     public:
         //THE MATH AND SEARCH OPERATIONS FROM GRAPHS
-        void adjListToAdjMatrix(map<int, vector<int>> adjList);
+        vector<vector<int>> adjListToAdjMatrix(map<int, vector<int>> adjList, int numNodes);
 
-        void adjMatrixToAdjList(vector<vector<int>> adjMatrix);
+        map<int, vector<int>> adjMatrixToAdjList(vector<vector<int>> adjMatrix, int numNodes);
 
         void calculateDegrees(Graph g);
 
         void adjacentsVertex(Graph g, int u, int v);
 
-        void countVertices(Graph g);
+        int countVertices(Graph g);
 
-        void countEdges(Graph g);
+        int countEdges(Graph g);
 
         void connected(Graph g);
 
@@ -50,13 +50,13 @@ namespace sml {
         //THE MATH AND SEARCH OPERATIONS FROM DIGRAPHS
         void subjacenteGraph(Digraph d);
 
-        void incMatrixToDirectStar(vector<vector<int>> digraphIncMatrix);
+        void incMatrixToDirectStar(vector<vector<int>> incMatrix, int numNodes);
 
-        void directStarToIncMatrix(/*Dont know*/);
+        vector<vector<int>> directStarToIncMatrix(/*Dont know*/);
 
-        void adjMatrixToIndirectStar(vector<vector<int>> digraphAdjMatrix);
+        void adjMatrixToIndirectStar(vector<vector<int>> adjMatrix, int numNodes);
 
-        void indirectStarToAdjMatrix(/*Dont know*/);
+        vector<vector<int>> indirectStarToAdjMatrix(/*Dont know*/);
 
         void dfs(Digraph d);
 
