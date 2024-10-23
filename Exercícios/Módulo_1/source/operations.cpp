@@ -26,11 +26,11 @@ int Operations::countEdges(Graph g){
     /*TO-DO*/
 }
 
-void Operations::connected(Graph g){
+bool Operations::connected(Graph g){
     /*TO-DO*/
 }
 
-void Operations::bipartite(Graph g){
+bool Operations::bipartite(Graph g){
     /*TO-DO*/
 }
 

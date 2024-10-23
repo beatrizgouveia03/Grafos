@@ -37,9 +37,9 @@ namespace sml {
 
         int countEdges(Graph g);
 
-        void connected(Graph g);
+        bool connected(Graph g);
 
-        void bipartite(Graph g);
+        bool bipartite(Graph g);
 
         void dfs(Graph g, int v);
 
