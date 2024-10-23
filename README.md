@@ -16,14 +16,14 @@ O repositório ainda está em desenvolvimento, bem como esse README, e as próxi
 - [ ] Modelos de implementações de grafos  
 - [ ] Lista de exercícios da 1ª Unidade :
     - A. Para GRAFOS (as opcionais possuem a sigla OPC ao final da função)
-    - [x] (1)  Representação do Grafo a partir da Lista de Adjacências (PENDENTE TRATAMENTOS)
-    - [x] (2)  Representação do Grafo a partir da Matriz de Adjacências (PENDENTE TRATAMENTOS)
-    - [x] (3)  Representação do Grafo a partir da Matriz de Incidência (PENDENTE TRATAMENTOS)
-    - [x] (4)  Conversão de matriz de adjacência para lista de Adjacências e vice-versa. (PENDENTE TRATAMENTOS) (APENAS IDA)
-    - [ ] (5)  Função que calcula o grau de cada vértice.[ANNY]
-    - [ ] (6)  Função que determina se dois vértices são adjacentes.[ANNY]
-    - [ ] (7)  Função que determina o número total de vértices[ANNY]
-    - [ ] (8)  Função que determina o número total de arestas[ANNY]
+    - [x] (1)  Representação do Grafo a partir da Lista de Adjacências.[Beatriz]
+    - [x] (2)  Representação do Grafo a partir da Matriz de Adjacências.[Beatriz]
+    - [x] (3)  Representação do Grafo a partir da Matriz de Incidência.[Beatriz]
+    - [ ] (4)  Conversão de matriz de adjacência para lista de Adjacências e vice-versa.[Beatriz]
+    - [ ] (5)  Função que calcula o grau de cada vértice.[Anny]
+    - [ ] (6)  Função que determina se dois vértices são adjacentes.[Anny]
+    - [ ] (7)  Função que determina o número total de vértices[Anny]
+    - [ ] (8)  Função que determina o número total de arestas[Anny]
     - [ ] (9)  Inclusão de um novo vértice[Davi]
     - [ ] (10) Exclusão de um vértice existente[Davi]
     - [ ] (11) Função que determina se um grafo é conexo ou não[Davi]
@@ -47,21 +47,9 @@ função lowpt[Alisson]
 ## 💻 Pré-requisitos
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
-
+- Você instalou a versão mais recente do CMake; ou
 - Você instalou a versão mais recente de algum compilador de C++(sugestão GCC).
 
-## 🚀 Instalando Grafos
-
-Para instalar o Grafos, siga estas etapas:
-
-```
-git clone https://github.com/beatrizgouveia03/Grafos.git
-```
-ou 
-
-```
-git clone git@github.com:beatrizgouveia03/Grafos.git
-```
 ## ☕ Organização Grafos
 
 Este repositório está atualmente organizado em três pastas principais: Implementações, Slides-Aulas e Exercícios.

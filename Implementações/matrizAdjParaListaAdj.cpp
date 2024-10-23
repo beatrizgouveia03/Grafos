@@ -1,9 +1,9 @@
 /*!
- * Algorithm that transforms a adjacency matrix 
+ * Algorithm that transforms an adjacency matrix 
  * to an adjacency list
  * @author Beatriz Gouveia
  * @date Oct 20st, 2024
- * @file listaAdjacenciaBia.cpp
+ * @file matrizAdjParaListaAdjBia.cpp
  */
 
 #include <bits/stdc++.h>
