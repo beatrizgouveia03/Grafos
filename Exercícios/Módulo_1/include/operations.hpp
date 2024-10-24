@@ -13,6 +13,9 @@ using std::map;
 #include <vector>
 using std::vector;
 
+#include <stack>
+using std::stack;
+
 #include <iostream>
 using std::cout;
 using std::endl;

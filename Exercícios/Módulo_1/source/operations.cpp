@@ -35,7 +35,28 @@ bool Operations::bipartite(Graph g){
 }
 
 void Operations::dfs(Graph g, int v){
-    /*TO-DO*/
+    auto numNodes = g.getNumNodes();
+
+    auto adjList = g.getAdjList();
+
+    vector<bool> visited = vector(numNodes, false);
+    vector<int> pred = vector(numNodes);
+    stack s;
+
+    visited[v] = true;
+    s.push(v);
+
+    while(!s.empty()){
+        curr = s.top();
+        s.pop();
+
+        for(auto edge : adjList[v]){
+            if(!visited[edge]){
+                visited[edge] = true;
+                pred[edge] = v;
+                s.push(edge);
+        }
+    }
 }
 
 void Operations::bfs(Graph g, int v){
