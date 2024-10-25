@@ -14,6 +14,23 @@ map<int, vector<int>> Operations::adjMatrixToAdjList(vector<vector<int>> adjMatr
 
 void Operations::calculateDegrees(Graph g)
 {
+    map<int, vector<int>> adjList = g.getAdjList(); // acessa a lista de adjacência que representa o grafo
+
+    map<int, vector<int>>::iterator it;
+
+    for (it = adjList.begin(); it != adjList.end(); ++it)
+    {
+        cout << "vertex " << it->first << " has ";
+
+        int current_vertex_degree = 0;
+
+        for (const int &edge : it->second)
+        {
+            current_vertex_degree++;
+        }
+
+        cout << current_vertex_degree << "degrees" << endl;
+    }
 }
 
 void Operations::adjacentsVertex(Graph g, int u, int v)
@@ -70,6 +87,7 @@ void Operations::dfs(Graph g, int v)
         }
     }
 }
+
 void Operations::bfs(Graph g, int v)
 {
     /*TO-DO*/
