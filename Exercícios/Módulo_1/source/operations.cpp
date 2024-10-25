@@ -14,7 +14,8 @@ map<int, vector<int>> Operations::adjMatrixToAdjList(vector<vector<int>> adjMatr
 
 void Operations::calculateDegrees(Graph g)
 {
-    map<int, vector<int>> adjList = g.getAdjList(); // acessa a lista de adjacência que representa o grafo
+    // acessa a lista de adjacência que representa o grafo
+    auto adjList = g.getAdjList();
 
     map<int, vector<int>>::iterator it;
 
@@ -35,7 +36,19 @@ void Operations::calculateDegrees(Graph g)
 
 void Operations::adjacentsVertex(Graph g, int u, int v)
 {
-    /*TO-DO*/
+    // acessa a lista de adjacência que representa o grafo
+    const auto &adjList = g.getAdjList();
+
+    // localizando os vértices u e v dados na lista de adjacência
+    auto uAdj = adjList.find(u);
+    auto vAdj = adjList.find(v);
+
+    // verificando se os vértices "u" e "v" existem na lista de adjacência e, existindo, se possuem o outro no seu VETOR adjacentes
+    if ((uAdj != adjList.end() && find(uAdj->second.begin(), uAdj->second.end(), v) != uAdj->second.end()) ||
+        (vAdj != adjList.end() && find(vAdj->second.begin(), vAdj->second.end(), u) != vAdj->second.end()))
+    {
+        cout << v << " e " << u << " são adjacentes." << endl;
+    }
 }
 
 int Operations::countVertices(Graph g)

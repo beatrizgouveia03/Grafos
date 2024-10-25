@@ -5,7 +5,9 @@
  * @file operations.hpp
  * @author Beatriz Gouveia
  * @date Oct 22nd, 2024
-*/
+ */
+
+#include <algorithm>
 
 #include <map>
 using std::map;
@@ -23,11 +25,12 @@ using std::endl;
 #include "graph.hpp"
 #include "digraph.hpp"
 
-namespace sml {
+namespace sml
+{
     class Operations
     {
     public:
-        //THE MATH AND SEARCH OPERATIONS FROM GRAPHS
+        // THE MATH AND SEARCH OPERATIONS FROM GRAPHS
         vector<vector<int>> adjListToAdjMatrix(map<int, vector<int>> adjList, int numNodes);
 
         map<int, vector<int>> adjMatrixToAdjList(vector<vector<int>> adjMatrix, int numNodes);
@@ -50,7 +53,7 @@ namespace sml {
 
         void articulationsAndBlocks(Graph g);
 
-        //THE MATH AND SEARCH OPERATIONS FROM DIGRAPHS
+        // THE MATH AND SEARCH OPERATIONS FROM DIGRAPHS
         void subjacenteGraph(Digraph d);
 
         void incMatrixToDirectStar(vector<vector<int>> incMatrix, int numNodes);
@@ -64,8 +67,7 @@ namespace sml {
         void dfs(Digraph d);
 
         void application();
-
-    };    
+    };
 }
 
-#endif //OPERATIONS_H
+#endif // OPERATIONS_H
