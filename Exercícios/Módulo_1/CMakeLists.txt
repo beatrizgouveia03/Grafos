@@ -8,5 +8,6 @@ add_executable( graph
                 source/main.cpp
                 source/graph.cpp
                 source/digraph.cpp
+                source/operations.cpp
                 source/simulation.cpp)
 set_property(TARGET graph PROPERTY CXX_STANDARD 20)
