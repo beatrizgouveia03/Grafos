@@ -195,10 +195,55 @@ void Graph::updateIncMatrix(vector<vector<int>> incMatrix){
  * This function waits for any entry from the terminal to end.
  */
 void Graph::pause() {
-  cout << "Para retornar ao menu, pressione Enter...";
+  cout << "To return to the main menu, press Enter...";
   cin.get(); // Espera o Enter
   cout << endl;
 }
+
+/**!
+ * This function collects the index of the vertex that is 
+ * wanted to be removed/inserted and returns it to the
+ * caller.
+ * @return An integer indication the index of the vertex
+ */
+int manageVertex(){
+    int x;
+
+    cout << "Insert the index of the vertex: " << endl;
+    cin >> x;
+
+    if( x<=0 ) {
+        cout << "Insert a valid index." << endl;
+        return manageVertex();
+    }
+    else {
+        return x;
+    }
+}
+
+/**!
+ * This function collects the index of the vertices of the edge
+ * that is wanted to be removed/inserted and returns it to the
+ * caller.
+ * @return A pair of integers indication the indexes of the edge
+ */
+pair<int,int> manageEdge(){
+    int x, y;
+
+    cout << "Insert the index of the first vertex: " << endl;
+    cin >> x;
+    cout << "Insert the index of the second vertex: " << endl;
+    cin >> y;
+
+    if( x<=0 || y<=0 ) {
+        cout << "Insert a valid index." << endl;
+        return manageEdge();
+    }
+    else {
+        return make_pair(x, y);
+    }
+}
+
 
 /**!
  * This function loops around the graph menu calling the

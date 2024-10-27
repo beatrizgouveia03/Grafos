@@ -24,6 +24,7 @@ using std::string;
 
 #include <utility>
 using std::pair;
+using std::make_pair;
 namespace sml {
     class Graph
     {
@@ -50,7 +51,6 @@ namespace sml {
 
         //Menu
         void pause();
-        void manageMenu();
         void displayMenu();
 
     public:
@@ -68,6 +68,9 @@ namespace sml {
         void updateAdjList(map<int, vector<int>> adjList);
         void updateAdjMatrix(vector<vector<int>> adjMatrix);
         void updateIncMatrix(vector<vector<int>> incMatrix);
+        
+        //Menu
+        void manageMenu();
     };    
 }
 
