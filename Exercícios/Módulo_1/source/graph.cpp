@@ -250,7 +250,7 @@ pair<int,int> manageEdge(){
  * functions related to them, until the user chooses to return
  * to the main menu.
  */
-void Graph::manageMenu() {
+void Graph::runMenu() {
   int opt = -1;
   string str;
   int nodeNum;

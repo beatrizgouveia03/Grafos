@@ -70,7 +70,7 @@ namespace sml {
         void updateIncMatrix(vector<vector<int>> incMatrix);
         
         //Menu
-        void manageMenu();
+        void runMenu();
     };    
 }
 
