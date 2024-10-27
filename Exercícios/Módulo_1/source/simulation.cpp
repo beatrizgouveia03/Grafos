@@ -109,7 +109,7 @@ void Simulation::run() {
 
     switch (opt) {
     case 1:
-      manageGraph();
+      graph.manageMenu();
       break;
     case 2:
       manageDigraph();
