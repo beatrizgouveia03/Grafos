@@ -14,42 +14,6 @@ Simulation::Simulation() {
 }
 
 /**!
- * This function loops around the digraph menu calling the
- * functions related to them, until the user chooses to return
- * to the main menu.
- */
-void Simulation::manageDigraph() {
-  int opt = 0;
-  string str;
-
-  while (opt != 4) {
-    displayDigraphMenu();
-
-    cout << "Enter your option: " << endl;
-    getline(cin, str);
-    opt = stoi(str);
-
-    switch (opt) {
-    case 1:
-      digraph.printDigraphAsAdjList();
-      pause();
-      break;
-    case 2:
-      digraph.printDigraphAsAdjMatrix();
-      pause();
-      break;
-    case 3:
-      digraph.printDigraphAsIncMatrix();
-      pause();
-      break;
-    default:
-      cout << "Selecione uma opção válida" << endl;
-      break;
-    }
-  }
-}
-
-/**!
  * This function displays the main menu of the
  * simulation.
  */
@@ -61,21 +25,6 @@ void Simulation::displayMainMenu() {
   cout << "2. Digraph options" << endl;
   cout << "3. Operations options" << endl;
   cout << "4. Exit" << endl;
-  cout << "============================================" << endl;
-}
-
-/**!
- * This function displays the digraph menu of the
- * simulation.
- */
-void Simulation::displayDigraphMenu() {
-  cout << "============================================" << endl;
-  cout << "               DIGRAPH MENU                 " << endl;
-  cout << "============================================" << endl;
-  cout << "1. Display as adjacency list" << endl;
-  cout << "2. Display as adjacency matrix" << endl;
-  cout << "3. Display as incidence matrix" << endl;
-  cout << "4. Exit to the main menu" << endl;
   cout << "============================================" << endl;
 }
 
@@ -109,10 +58,10 @@ void Simulation::run() {
 
     switch (opt) {
     case 1:
-      graph.manageMenu();
+      graph.runMenu();
       break;
     case 2:
-      manageDigraph();
+      digraph.runMenu();
       break;
     case 3:
       manageOperations();

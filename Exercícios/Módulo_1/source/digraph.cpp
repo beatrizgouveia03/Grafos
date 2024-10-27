@@ -37,7 +37,7 @@ Digraph::Digraph(int numNodes){
 /**!
  *  This function printsthe adjacency list.
 */   
-void Digraph::printDigraphAsAdjList(){
+void Digraph::printAdjList(){
     cout << endl;
     cout << "============================================" << endl;
     cout << "               ADJACENCY LIST               " << endl;
@@ -58,7 +58,7 @@ void Digraph::printDigraphAsAdjList(){
 /**!
  *  This function printsthe adjacency matrix.
 */  
-void Digraph::printDigraphAsAdjMatrix(){
+void Digraph::printAdjMatrix(){
     cout << endl;
     cout << "============================================" << endl;
     cout << "              ADJACENCY MATRIX              " << endl;
@@ -90,7 +90,7 @@ void Digraph::printDigraphAsAdjMatrix(){
 /**!
  *  This function prints the incidence matrix.
 */        
-void Digraph::printDigraphAsIncMatrix(){
+void Digraph::printIncMatrix(){
     cout << endl;
     cout << "============================================" << endl;
     cout << "              INCIDENCE MATRIX              " << endl;
@@ -180,9 +180,128 @@ void Digraph::updateIncMatrix(vector<vector<int>> incMatrix){
 }
 
 /**!
+ * This function waits for any entry from the terminal to end.
+ */
+void Digraph::pause() {
+  cout << "To return to the main menu, press Enter...";
+  cin.get(); // Espera o Enter
+  cout << endl;
+}
+
+/**!
+ * This function collects the index of the vertex that is 
+ * wanted to be removed/inserted and returns it to the
+ * caller.
+ * @return An integer indication the index of the vertex
+ */
+int Digraph::manageVertex(){
+    int x;
+
+    cout << "Insert the index of the vertex: " << endl;
+    cin >> x;
+
+    if( x<=0 ) {
+        cout << "Insert a valid index." << endl;
+        return manageVertex();
+    }
+    else {
+        return x;
+    }
+}
+
+/**!
+ * This function collects the index of the vertices of the edge
+ * that is wanted to be removed/inserted and returns it to the
+ * caller.
+ * @return A pair of integers indication the indexes of the edge
+ */
+pair<int,int> Digraph::manageEdge(){
+    int x, y;
+
+    cout << "Insert the index of the first vertex: " << endl;
+    cin >> x;
+    cout << "Insert the index of the second vertex: " << endl;
+    cin >> y;
+
+    if( x<=0 || y<=0 ) {
+        cout << "Insert a valid index." << endl;
+        return manageEdge();
+    }
+    else {
+        return make_pair(x, y);
+    }
+}
+
+
+/**!
+ * This function loops around the graph menu calling the
+ * functions related to them, until the user chooses to return
+ * to the main menu.
+ */
+void Digraph::runMenu() {
+  int opt = -1;
+  string str;
+  int nodeNum;
+
+  while (opt != 0) {
+    displayMenu();
+    cout << "Enter your option: " << endl;
+    getline(cin, str);
+    opt = stoi(str);
+    switch (opt) {
+    case 1:
+      printAdjList();
+      pause();
+      break;
+    case 2:
+      printAdjMatrix();
+      pause();
+      break;
+    case 3:
+      printIncMatrix();
+      pause();
+      break;
+    case 4:
+        addVertex(manageVertex());
+        break;
+    case 5:
+        removeVertex(manageVertex());
+    case 6:
+        addEdge(manageEdge());
+        break;
+    case 7:
+        removeEdge(manageEdge());
+        break;
+    default:
+      cout << "Selecione uma opção válida" << endl;
+      break;
+    }
+  }  
+}
+
+/**!
+ * This function displays the digraph menu of the
+ * simulation.
+ */
+void Digraph::displayMenu() {
+  cout << "============================================" << endl;
+  cout << "               DIGRAPH MENU                 " << endl;
+  cout << "============================================" << endl;
+  cout << "1. Display as adjacency list" << endl;
+  cout << "2. Display as adjacency matrix" << endl;
+  cout << "3. Display as incidence matrix" << endl;
+  cout << "4. Add vertex" << endl;
+  cout << "5. Remove vertex." << endl;
+  cout << "6. Add edge." << endl;
+  cout << "7. Remove edge." << endl;
+  cout << "0. Exit to the main menu" << endl;
+  cout << "============================================" << endl;
+}
+
+/**!
  * This function adds a new vertex to the digraph along with its edges.
 */
-void Digraph::addVertex(){
+void Digraph::addVertex(int x){
     /*TO-DO*/
 }
 
@@ -191,7 +310,7 @@ void Digraph::addVertex(){
  * @param u The first vertex of the edge
  *  @param v The second vertex of the edge
 */
-void Digraph::addEdge(int u, int v){
+void Digraph::addEdge(pair<int,int> x){
     /*TO-DO*/
 }
 
@@ -201,7 +320,7 @@ void Digraph::addEdge(int u, int v){
  *  @param incMatrix The new version of the incidence matrix to be
  * updated
 */
-void Digraph::removeVertex(int vertex){
+void Digraph::removeVertex(int x){
     /*TO-DO*/
 }
 
@@ -210,6 +329,6 @@ void Digraph::removeVertex(int vertex){
  * @param u The first vertex of the edge
  *  @param v The second vertex of the edge
 */
-void Digraph::removeEdge(int u, int v){
+void Digraph::removeEdge(pair<int,int> x){
     /*TO-DO*/
 }
