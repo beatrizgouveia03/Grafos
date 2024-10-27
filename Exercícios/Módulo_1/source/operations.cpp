@@ -113,7 +113,7 @@ void Operations::pause() {
  * This function displays the digraph menu of the
  * simulation.
  */
-void Digraph::displayMenu() {
+void Operations::displayMenu() {
   cout << "============================================" << endl;
   cout << "               OPERATIONS MENU              " << endl;
   cout << "============================================" << endl;
@@ -141,10 +141,14 @@ void Digraph::displayMenu() {
 
 vector<vector<int>> Operations::adjListToAdjMatrix(map<int, vector<int>> adjList, int numNodes) {
   /*TO-DO*/
+
+  return vector<vector<int>>();
 }
 
 map<int, vector<int>> Operations::adjMatrixToAdjList(vector<vector<int>> adjMatrix, int numNodes) {
   /*TO-DO*/
+
+  return map<int, vector<int>>();
 }
 
 void Operations::calculateDegrees(Graph g) {
@@ -182,13 +186,29 @@ void Operations::adjacentsVertex(Graph g, int u, int v) {
   }
 }
 
-int Operations::countVertices(Graph g) { /*TO-DO*/ }
+int Operations::countVertices(Graph g) { 
+  /*TO-DO*/
 
-int Operations::countEdges(Graph g) { /*TO-DO*/ }
+  return 0;  
+ }
 
-bool Operations::connected(Graph g) { /*TO-DO*/ }
+int Operations::countEdges(Graph g) { 
+  /*TO-DO*/
 
-bool Operations::bipartite(Graph g) { /*TO-DO*/ }
+  return 0;
+}
+
+bool Operations::connected(Graph g) { 
+  /*TO-DO*/
+
+  return false;
+}
+
+bool Operations::bipartite(Graph g) {
+  /*TO-DO*/
+
+  return false;
+}
 
 SearchResult Operations::dfs(Graph g, int v) {
   auto numNodes = g.getNumNodes();
@@ -233,6 +253,8 @@ void Operations::incMatrixToDirectStar(vector<vector<int>> incMatrix, int numNod
 
 vector<vector<int>> Operations::directStarToIncMatrix(/*Dont know*/) {
   /*TO-DO*/
+
+  return vector<vector<int>>();
 }
 
 void Operations::adjMatrixToIndirectStar(vector<vector<int>> adjMatrix, int numNodes) {
@@ -241,8 +263,9 @@ void Operations::adjMatrixToIndirectStar(vector<vector<int>> adjMatrix, int numN
 
 vector<vector<int>> Operations::indirectStarToAdjMatrix(/*Dont know*/) {
   /*TO-DO*/
+  return vector<vector<int>>();
 }
 
-void Operations::dfs(Digraph d) { /*TO-DO*/ }
+void Operations::dfs(Digraph d, int v) { /*TO-DO*/ }
 
 void Operations::application() { /*TO-DO*/ }

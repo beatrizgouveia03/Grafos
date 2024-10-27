@@ -206,7 +206,7 @@ void Graph::pause() {
  * caller.
  * @return An integer indication the index of the vertex
  */
-int manageVertex(){
+int Graph::manageVertex(){
     int x;
 
     cout << "Insert the index of the vertex: " << endl;
@@ -227,7 +227,7 @@ int manageVertex(){
  * caller.
  * @return A pair of integers indication the indexes of the edge
  */
-pair<int,int> manageEdge(){
+pair<int,int> Graph::manageEdge(){
     int x, y;
 
     cout << "Insert the index of the first vertex: " << endl;
