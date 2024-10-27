@@ -184,7 +184,7 @@ void Digraph::updateIncMatrix(vector<vector<int>> incMatrix){
  */
 void Digraph::pause() {
   cout << "To return to the main menu, press Enter...";
-  cin.get(); // Espera o Enter
+  cin.get(); // Waits an entry
   cout << endl;
 }
 
@@ -273,7 +273,7 @@ void Digraph::runMenu() {
         removeEdge(manageEdge());
         break;
     default:
-      cout << "Selecione uma opção válida" << endl;
+      cout << "Select a valid option." << endl;
       break;
     }
   }  

@@ -15,87 +15,99 @@ using std::map;
 
 #include <vector>
 using std::vector;
+
 #include <stack>
 using std::stack;
 
 #include <iostream>
+using std::cin;
 using std::cout;
+using std::left;
 using std::endl;
+using std::setw;
+using std::setfill;
+using std::ostream;
 
-#include "digraph.hpp"
 #include "graph.hpp"
+#include "digraph.hpp"
 
 namespace sml {
-struct SearchResult {
-  int numNodes;
-  int initialNode;
-  vector<int> predecessors;
-  vector<bool> visited;
+  struct SearchResult {
+    int numNodes;
+    int initialNode;
+    vector<int> predecessors;
+    vector<bool> visited;
 
-  friend std::ostream &operator<<(std::ostream &os,
-                                  const SearchResult &result) {
-    os << std::left; // Align to the left
+    friend ostream &operator<<(ostream &os, const SearchResult &result) {
+      os << left; // Align to the left
 
-    // Print header
-    os << std::setw(15) << "Node" << std::setw(15) << "Visited" << std::setw(15)
-       << "Predecessor" << '\n';
+      // Print header
+      os << setw(15) << "Node" << setw(15) << "Visited" << setw(15)
+        << "Predecessor" << '\n';
 
-    // Print separator
-    os << std::setfill('-') << std::setw(45) << "" << std::setfill(' ') << '\n';
+      // Print separator
+      os << setfill('-') << setw(45) << "" << setfill(' ') << '\n';
 
-    // Print each node's information
-    for (int i = 1; i <= result.numNodes; ++i) {
-      os << std::setw(15) << i                      // Node number
-         << std::setw(15) << result.visited[i]      // Visited status
-         << std::setw(15) << result.predecessors[i] // Predecessor
-         << '\n';
+      // Print each node's information
+      for (int i = 1; i <= result.numNodes; ++i) {
+        os << setw(15) << i                      // Node number
+          << setw(15) << result.visited[i]      // Visited status
+          << setw(15) << result.predecessors[i] // Predecessor
+          << '\n';
+      }
+
+      return os;
     }
-
-    return os;
-  }
-};
+  };
 
 class Operations {
-public:
-  // THE MATH AND SEARCH OPERATIONS FROM GRAPHS
-  vector<vector<int>> adjListToAdjMatrix(map<int, vector<int>> adjList,
-                                         int numNodes);
+  private:
+    // THE MATH AND SEARCH OPERATIONS FROM GRAPHS
+    vector<vector<int>> adjListToAdjMatrix(map<int, vector<int>> adjList, int numNodes);
 
-  map<int, vector<int>> adjMatrixToAdjList(vector<vector<int>> adjMatrix,
-                                           int numNodes);
+    map<int, vector<int>> adjMatrixToAdjList(vector<vector<int>> adjMatrix, int numNodes);
 
-  void calculateDegrees(Graph g);
+    void calculateDegrees(Graph g);
 
-  void adjacentsVertex(Graph g, int u, int v);
+    void adjacentsVertex(Graph g, int u, int v);
 
-  int countVertices(Graph g);
+    int countVertices(Graph g);
 
-  int countEdges(Graph g);
+    int countEdges(Graph g);
 
-  bool connected(Graph g);
+    bool connected(Graph g);
 
-  bool bipartite(Graph g);
+    bool bipartite(Graph g);
 
-  SearchResult dfs(Graph g, int v);
+    SearchResult dfs(Graph g, int v);
 
-  void bfs(Graph g, int v);
+    void bfs(Graph g, int v);
 
-  void articulationsAndBlocks(Graph g);
+    void articulationsAndBlocks(Graph g);
 
-  // THE MATH AND SEARCH OPERATIONS FROM DIGRAPHS
-  void subjacenteGraph(Digraph d);
+    // THE MATH AND SEARCH OPERATIONS FROM DIGRAPHS
+    void subjacenteGraph(Digraph d);
 
-  void incMatrixToDirectStar(vector<vector<int>> incMatrix, int numNodes);
-  vector<vector<int>> directStarToIncMatrix(/*Dont know*/);
+    void incMatrixToDirectStar(vector<vector<int>> incMatrix, int numNodes);
 
-  void adjMatrixToIndirectStar(vector<vector<int>> adjMatrix, int numNodes);
+    vector<vector<int>> directStarToIncMatrix(/*Dont know*/);
 
-  vector<vector<int>> indirectStarToAdjMatrix(/*Dont know*/);
+    void adjMatrixToIndirectStar(vector<vector<int>> adjMatrix, int numNodes);
 
-  void dfs(Digraph d);
+    vector<vector<int>> indirectStarToAdjMatrix(/*Dont know*/);
 
-  void application();
-};
+    void dfs(Digraph d);
+
+    void application();
+
+    //Menu
+    void pause();
+    void displayMenu();
+    
+  public:
+    //Menu
+    void runMenu();
+  };
 } // namespace sml
 
 #endif // OPERATIONS_H

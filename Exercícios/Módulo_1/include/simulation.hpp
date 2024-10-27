@@ -39,6 +39,7 @@ class Simulation {
 private:
   Graph graph;
   Digraph digraph;
+  Operations operations;
 
   void pause();
   void manageDigraph();
@@ -51,7 +52,6 @@ private:
 public:
   // Contructors and Destructors
   Simulation();
-  Operations operations;
 
   void run();
   void initialize(int argc, char *argv[]);

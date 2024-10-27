@@ -10,7 +10,7 @@ Simulation::Simulation() {
   // Initialize the simulation
   this->graph = Graph();
   this->digraph = Digraph();
-  this->operations = sml::Operations();
+  this->operations = Operations();
 }
 
 /**!
@@ -28,18 +28,6 @@ void Simulation::displayMainMenu() {
   cout << "============================================" << endl;
 }
 
-/**!
- * This function displays the digraph menu of the
- * simulation.
- */
-void Simulation::displayOperationsMenu() {
-  cout << "============================================" << endl;
-  cout << "               OPERATIONS MENU              " << endl;
-  cout << "============================================" << endl;
-  cout << "1. Run DFS" << endl;
-  cout << "2. Exit to the main menu" << endl;
-  cout << "============================================" << endl;
-}
 
 /**!
  * This function loops around the main menu calling the
@@ -64,7 +52,7 @@ void Simulation::run() {
       digraph.runMenu();
       break;
     case 3:
-      manageOperations();
+      operations.runMenu();
       break;
     default:
       break;
