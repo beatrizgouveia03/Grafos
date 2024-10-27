@@ -59,11 +59,11 @@ namespace sml {
         Digraph();
         Digraph(int numNodes);
 
-
         //Get methods
         map<int,vector<int>> getAdjList();
         vector<vector<int>> getAdjMatrix();
         vector<vector<int>> getIncMatrix();
+        int getNumNodes();
 
         //Update(set) methods
         void updateAdjList(map<int, vector<int>> adjList);

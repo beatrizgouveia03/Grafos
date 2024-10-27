@@ -120,6 +120,17 @@ void Digraph::printIncMatrix(){
 }
 
 /**!
+    This function returns the numbers of node.
+  *
+  *
+  * @return Number of nodes
+ */
+
+int Digraph::getNumNodes(){
+    return numNodes;
+}
+
+/**!
  *  This function returns the adjacency list.
  *
  *  @return The adjacency list.
