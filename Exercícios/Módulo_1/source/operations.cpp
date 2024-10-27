@@ -3,6 +3,27 @@
 using namespace sml;
 
 /**!
+ * Constructor default of the operations class
+ */
+Operations::Operations(){
+  // Initialize the operations
+  this->graph = Graph();
+  this->digraph = Digraph();
+}
+
+/**!
+ * Constructor of the operations class that initializes the
+ * graph and the digraph basead on the values passed on the
+ * parameters
+ * @param g A copy of the graph to be initialized;
+ * @param d A copy of the digraph to be initialized;
+ */
+Operations::Operations(Graph g, Digraph d){
+  this->graph = g;
+  this->digraph = d;
+}
+
+/**!
  * This function loops around the operations menu calling the
  * functions related to them, until the user chooses to return
  * to the main menu.
@@ -19,55 +40,55 @@ void Operations::runMenu() {
     opt = stoi(str);
     switch (opt) {
     case 1:
-      adjListToAdjMatrix();
+      adjListToAdjMatrix(graph.getAdjList(), graph.getNumNodes());
       break;
     case 2:
-      adjMatrixToAdjList();
+      adjMatrixToAdjList(graph.getAdjMatrix(), graph.getNumNodes());
       break;
     case 3:
-      calculateDegrees();
+      calculateDegrees(graph);
       break;
     case 4:
-      adjacentsVertex();
+      adjacentsVertex(graph, 0, 0); // To be updated
       break;
     case 5:
-      countVertices();
+      countVertices(graph);
       break;
     case 6: 
-      countEdges();
+      countEdges(graph);
       break;
     case 7: 
-      connected();
+      connected(graph);
       break;
     case 8:
-      bipartite();
+      bipartite(graph);
       break;
     case 9:
-      dfs();
+      dfs(graph, 0); // To be updated
       break;
     case 10:
-      bfs();
+      bfs(graph, 0); // To be updated
       break;
     case 11:
-      articulationsAndBlocks();
+      articulationsAndBlocks(graph);
       break;
     case 12:
-      subjacentGraph();
+      subjacentGraph(digraph);
       break;
     case 13:
-      incMatrixToDirectStar();
+      incMatrixToDirectStar(digraph.getIncMatrix(), digraph.getNumNodes());
       break;
     case 14:
-      directStarToIncMatrix();
+      directStarToIncMatrix(); 
       break;
     case 15:
-      adjMatrixToIndirectStar();
+      adjMatrixToIndirectStar(digraph.getAdjMatrix(), digraph.getNumNodes());
       break;
     case 16:
       indirectStarToAdjMatrix();
       break;
     case 17:
-      dfs();
+      dfs(digraph, 0); // To be updated
       break;
     case 18:
       application();
@@ -204,7 +225,7 @@ void Operations::bfs(Graph g, int v) { /*TO-DO*/ }
 void Operations::articulationsAndBlocks(Graph g) { /*TO-DO*/ }
 
 // THE MATH AND SEARCH OPERATIONS FROM DIGRAPHS
-void Operations::subjacenteGraph(Digraph d) { /*TO-DO*/ }
+void Operations::subjacentGraph(Digraph d) { /*TO-DO*/ }
 
 void Operations::incMatrixToDirectStar(vector<vector<int>> incMatrix, int numNodes) {
   /*TO-DO*/

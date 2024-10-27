@@ -62,6 +62,9 @@ namespace sml {
 
 class Operations {
   private:
+    Graph graph;
+    Digraph digraph;
+
     // THE MATH AND SEARCH OPERATIONS FROM GRAPHS
     vector<vector<int>> adjListToAdjMatrix(map<int, vector<int>> adjList, int numNodes);
 
@@ -96,7 +99,7 @@ class Operations {
 
     vector<vector<int>> indirectStarToAdjMatrix(/*Dont know*/);
 
-    void dfs(Digraph d);
+    void dfs(Digraph d, int v);
 
     void application();
 
@@ -105,8 +108,17 @@ class Operations {
     void displayMenu();
     
   public:
+    //Constructors
+    Operations();
+    Operations(Graph g, Digraph d);
+
+
     //Menu
     void runMenu();
+
+    //Update(set) methods
+    void updateGraph();
+    void updateDigraph();
   };
 } // namespace sml
 
