@@ -7,7 +7,7 @@
  * @date Oct 22nd, 2024
  */
 
-#include "operations.hpp"
+
 #include <string>
 using std::stoi;
 using std::string;
@@ -30,8 +30,9 @@ using std::map;
 #include <vector>
 using std::vector;
 
-#include "digraph.hpp"
 #include "graph.hpp"
+#include "digraph.hpp"
+#include "operations.hpp"
 
 namespace sml {
 class Simulation {
@@ -40,8 +41,12 @@ private:
   Digraph digraph;
 
   void pause();
-  void manageGraph();
   void manageDigraph();
+  void manageOperations();
+
+  void displayMainMenu();
+  void displayDigraphMenu();
+  void displayOperationsMenu();
 
 public:
   // Contructors and Destructors
@@ -49,9 +54,6 @@ public:
   Operations operations;
 
   void run();
-  void displayMainMenu();
-  void displayGraphMenu();
-  void displayDigraphMenu();
   void initialize(int argc, char *argv[]);
 };
 } // namespace sml

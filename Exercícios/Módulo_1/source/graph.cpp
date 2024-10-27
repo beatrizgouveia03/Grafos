@@ -38,7 +38,7 @@ Graph::Graph(int numNodes){
 /**!
  *  This function printsthe adjacency list.
 */   
-void Graph::printGraphAsAdjList(){
+void Graph::printAdjList(){
     cout << endl;
     cout << "============================================" << endl;
     cout << "               ADJACENCY LIST                " << endl;
@@ -59,7 +59,7 @@ void Graph::printGraphAsAdjList(){
 /**!
  *  This function printsthe adjacency matrix.
 */  
-void Graph::printGraphAsAdjMatrix(){
+void Graph::printAdjMatrix(){
     cout << endl;
     cout << "============================================" << endl;
     cout << "              ADJACENCY MATRIX              " << endl;
@@ -91,7 +91,7 @@ void Graph::printGraphAsAdjMatrix(){
 /**!
  *  This function prints the incidence matrix.
 */        
-void Graph::printGraphAsIncMatrix(){
+void Graph::printIncMatrix(){
     cout << endl;
     cout << "============================================" << endl;
     cout << "              INCIDENCE MATRIX              " << endl;
@@ -192,9 +192,83 @@ void Graph::updateIncMatrix(vector<vector<int>> incMatrix){
 }
 
 /**!
+ * This function waits for any entry from the terminal to end.
+ */
+void Graph::pause() {
+  cout << "Para retornar ao menu, pressione Enter...";
+  cin.get(); // Espera o Enter
+  cout << endl;
+}
+
+/**!
+ * This function loops around the graph menu calling the
+ * functions related to them, until the user chooses to return
+ * to the main menu.
+ */
+void Graph::manageMenu() {
+  int opt = -1;
+  string str;
+  int nodeNum;
+
+  while (opt != 0) {
+    displayMenu();
+    cout << "Enter your option: " << endl;
+    getline(cin, str);
+    opt = stoi(str);
+    switch (opt) {
+    case 1:
+      printAdjList();
+      pause();
+      break;
+    case 2:
+      printAdjMatrix();
+      pause();
+      break;
+    case 3:
+      printIncMatrix();
+      pause();
+      break;
+    case 4:
+        addVertex(manageVertex());
+        break;
+    case 5:
+        removeVertex(manageVertex());
+    case 6:
+        addEdge(manageEdge());
+        break;
+    case 7:
+        removeEdge(manageEdge());
+        break;
+    default:
+      cout << "Selecione uma opção válida" << endl;
+      break;
+    }
+  }  
+}
+
+/**!
+ * This function displays the graph menu of the
+ * simulation.
+ */
+void Graph::displayMenu() {
+  cout << "============================================" << endl;
+  cout << "               GRAPH MENU                 " << endl;
+  cout << "============================================" << endl;
+  cout << "1. Display as adjacency list" << endl;
+  cout << "2. Display as adjacency matrix" << endl;
+  cout << "3. Display as incidence matrix" << endl;
+  cout << "4. Add vertex" << endl;
+  cout << "5. Remove vertex." << endl;
+  cout << "6. Add edge." << endl;
+  cout << "7. Remove edge." << endl;
+  cout << "0. Exit to the main menu" << endl;
+  cout << "============================================" << endl;
+}
+
+/**!
  * This function adds a new vertex to the graph along with its edges.
 */
-void Graph::addVertex(){
+void Graph::addVertex(int x){
     /*TO-DO*/
 }
 
@@ -203,7 +277,7 @@ void Graph::addVertex(){
  * @param u The first vertex of the edge
  *  @param v The second vertex of the edge
 */
-void Graph::addEdge(int u, int v){
+void Graph::addEdge(pair<int,int>){
     /*TO-DO*/
 }
 
@@ -213,7 +287,7 @@ void Graph::addEdge(int u, int v){
  *  @param incMatrix The new version of the incidence matrix to be
  * updated
 */
-void Graph::removeVertex(int vertex){
+void Graph::removeVertex(int x){
     /*TO-DO*/
 }
 
@@ -222,6 +296,6 @@ void Graph::removeVertex(int vertex){
  * @param u The first vertex of the edge
  *  @param v The second vertex of the edge
 */
-void Graph::removeEdge(int u, int v){
+void Graph::removeEdge(pair<int,int>){
     /*TO-DO*/
 }

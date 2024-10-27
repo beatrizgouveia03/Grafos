@@ -14,9 +14,16 @@ using std::map;
 using std::vector;
 
 #include <iostream>
+using std::cin;
 using std::cout;
 using std::endl;
 
+#include <string>
+using std::stoi;
+using std::string;
+
+#include <utility>
+using std::pair;
 namespace sml {
     class Graph
     {
@@ -25,15 +32,31 @@ namespace sml {
         map<int, vector<int>> adjList; //!< The adjacency list that represents the graph;
         vector<vector<int>> adjMatrix; //!< The adjacency matrix that represents the graph;
         vector<vector<int>> incMatrix; //!< The incidence matrix that represents the graph;
+
+        //Printing functions
+        void printAdjList();
+        void printAdjMatrix();
+        void printIncMatrix();
+
+        //Modification functions
+        void addVertex(int x);
+        void addEdge(pair<int, int> x);
+
+        void removeVertex(int x);
+        void removeEdge(pair<int,int> x);
+
+        int manageVertex();
+        pair<int,int> manageEdge();
+
+        //Menu
+        void pause();
+        void manageMenu();
+        void displayMenu();
+
     public:
         //Contructors
         Graph();
         Graph(int numNodes);
-
-        //Printing functions
-        void printGraphAsAdjList();
-        void printGraphAsAdjMatrix();
-        void printGraphAsIncMatrix();
 
         //Get methods
         map<int,vector<int>> getAdjList();
@@ -45,16 +68,6 @@ namespace sml {
         void updateAdjList(map<int, vector<int>> adjList);
         void updateAdjMatrix(vector<vector<int>> adjMatrix);
         void updateIncMatrix(vector<vector<int>> incMatrix);
-
-        //Modification functions
-        void addVertex();
-        void addEdge(int u, int v);
-
-        void removeVertex(int u);
-        void removeEdge(int u, int v);
-
-        //Other functios
-        /* ADD HERE THE REST OF THE GRAPH FUNCTIONS*/
     };    
 }
 

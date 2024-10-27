@@ -2,11 +2,6 @@
 
 using namespace sml;
 
-void Simulation::pause() {
-  cout << "Para retornar ao menu, pressione Enter...";
-  cin.get(); // Espera o Enter
-  cout << endl;
-}
 
 /**!
  * Constructor default of the simulation class
@@ -16,47 +11,6 @@ Simulation::Simulation() {
   this->graph = Graph();
   this->digraph = Digraph();
   this->operations = sml::Operations();
-}
-
-/**!
- * This function loops around the graph menu calling the
- * functions related to them, until the user chooses to return
- * to the main menu.
- */
-void Simulation::manageGraph() {
-  int opt = -1;
-  string str;
-  int nodeNum;
-
-  while (opt != 0) {
-    displayGraphMenu();
-    cout << "Enter your option: " << endl;
-    getline(cin, str);
-    opt = stoi(str);
-    switch (opt) {
-    case 1:
-      graph.printGraphAsAdjList();
-      pause();
-      break;
-    case 2:
-      graph.printGraphAsAdjMatrix();
-      pause();
-      break;
-    case 3:
-      graph.printGraphAsIncMatrix();
-      pause();
-      break;
-    case 4:
-      cout << "Enter the node number to start DFS" << endl;
-      cin >> nodeNum;
-      cout << operations.dfs(graph, nodeNum);
-      pause();
-      break;
-    default:
-      cout << "Selecione uma opção válida" << endl;
-      break;
-    }
-  }
 }
 
 /**!
@@ -105,23 +59,8 @@ void Simulation::displayMainMenu() {
   cout << "============================================" << endl;
   cout << "1. Graph options" << endl;
   cout << "2. Digraph options" << endl;
-  cout << "3. Exit" << endl;
-  cout << "============================================" << endl;
-}
-
-/**!
- * This function displays the graph menu of the
- * simulation.
- */
-void Simulation::displayGraphMenu() {
-  cout << "============================================" << endl;
-  cout << "               GRAPH MENU                 " << endl;
-  cout << "============================================" << endl;
-  cout << "1. Display as adjacency list" << endl;
-  cout << "2. Display as adjacency matrix" << endl;
-  cout << "3. Display as incidence matrix" << endl;
-  cout << "4. Run DFS" << endl;
-  cout << "0. Exit to the main menu" << endl;
+  cout << "3. Operations options" << endl;
+  cout << "4. Exit" << endl;
   cout << "============================================" << endl;
 }
 
@@ -137,6 +76,19 @@ void Simulation::displayDigraphMenu() {
   cout << "2. Display as adjacency matrix" << endl;
   cout << "3. Display as incidence matrix" << endl;
   cout << "4. Exit to the main menu" << endl;
+  cout << "============================================" << endl;
+}
+
+/**!
+ * This function displays the digraph menu of the
+ * simulation.
+ */
+void Simulation::displayOperationsMenu() {
+  cout << "============================================" << endl;
+  cout << "               OPERATIONS MENU              " << endl;
+  cout << "============================================" << endl;
+  cout << "1. Run DFS" << endl;
+  cout << "2. Exit to the main menu" << endl;
   cout << "============================================" << endl;
 }
 
@@ -161,6 +113,9 @@ void Simulation::run() {
       break;
     case 2:
       manageDigraph();
+      break;
+    case 3:
+      manageOperations();
       break;
     default:
       break;
