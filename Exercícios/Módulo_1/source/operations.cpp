@@ -19,7 +19,59 @@ void Operations::runMenu() {
     opt = stoi(str);
     switch (opt) {
     case 1:
-        break;
+      adjListToAdjMatrix();
+      break;
+    case 2:
+      adjMatrixToAdjList();
+      break;
+    case 3:
+      calculateDegrees();
+      break;
+    case 4:
+      adjacentsVertex();
+      break;
+    case 5:
+      countVertices();
+      break;
+    case 6: 
+      countEdges();
+      break;
+    case 7: 
+      connected();
+      break;
+    case 8:
+      bipartite();
+      break;
+    case 9:
+      dfs();
+      break;
+    case 10:
+      bfs();
+      break;
+    case 11:
+      articulationsAndBlocks();
+      break;
+    case 12:
+      subjacentGraph();
+      break;
+    case 13:
+      incMatrixToDirectStar();
+      break;
+    case 14:
+      directStarToIncMatrix();
+      break;
+    case 15:
+      adjMatrixToIndirectStar();
+      break;
+    case 16:
+      indirectStarToAdjMatrix();
+      break;
+    case 17:
+      dfs();
+      break;
+    case 18:
+      application();
+      break;
     default:
       cout << "Select a valid option." << endl;
       break;
@@ -44,13 +96,24 @@ void Digraph::displayMenu() {
   cout << "============================================" << endl;
   cout << "               OPERATIONS MENU              " << endl;
   cout << "============================================" << endl;
-  cout << "1. Display as adjacency list" << endl;
-  cout << "2. Display as adjacency matrix" << endl;
-  cout << "3. Display as incidence matrix" << endl;
-  cout << "4. Add vertex" << endl;
-  cout << "5. Remove vertex." << endl;
-  cout << "6. Add edge." << endl;
-  cout << "7. Remove edge." << endl;
+  cout << "1. Convert the graph from an adjacency list to an adjacency matrix" << endl;
+  cout << "2. Convert the graph from an adjacency matrix to an adjacency list" << endl;
+  cout << "3. Calculate the degrees of the vertex of the graph" << endl;
+  cout << "4. Check if two vertices of the graph are adjacents" << endl;
+  cout << "5. Count the vertices of the graph" << endl;
+  cout << "6. Count the edges of the graph" << endl;
+  cout << "7. Check if the graph is connected" << endl;
+  cout << "8. Check if the graph is bipartite" << endl;
+  cout << "9. Run a DFS on the graph" << endl;
+  cout << "10. Run a BFS on the graph" << endl;
+  cout << "11. Determinate the articulations and the block" << endl;
+  cout << "12. Determinate the subjacent graph of the digraph" << endl;
+  cout << "13. Convert the digraph from an incidence matrix to a direct star" << endl;
+  cout << "14. Convert the digraph from a direct star to an incidence matrix" << endl;
+  cout << "15. Convert the digraph from an adjacency matrix to an indirect star" << endl;
+  cout << "16. Convert the digraph from an indirect star to an adjacency matrix" << endl;
+  cout << "17. Run a DFS on the digraph" << endl;
+  cout << "18. Show the application" << endl;  
   cout << "0. Exit to the main menu" << endl;
   cout << "============================================" << endl;
 }

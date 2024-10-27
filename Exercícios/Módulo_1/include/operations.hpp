@@ -86,7 +86,7 @@ class Operations {
     void articulationsAndBlocks(Graph g);
 
     // THE MATH AND SEARCH OPERATIONS FROM DIGRAPHS
-    void subjacenteGraph(Digraph d);
+    void subjacentGraph(Digraph d);
 
     void incMatrixToDirectStar(vector<vector<int>> incMatrix, int numNodes);
 
