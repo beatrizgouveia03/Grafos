@@ -5,8 +5,9 @@
  * @file simulation.hpp
  * @author Beatriz Gouveia
  * @date Oct 22nd, 2024
-*/
+ */
 
+#include "operations.hpp"
 #include <string>
 using std::stoi;
 using std::string;
@@ -18,9 +19,9 @@ using std::ifstream;
 using std::istringstream;
 
 #include <iostream>
+using std::cerr;
 using std::cin;
 using std::cout;
-using std::cerr;
 using std::endl;
 
 #include <map>
@@ -29,30 +30,30 @@ using std::map;
 #include <vector>
 using std::vector;
 
-#include "graph.hpp"
 #include "digraph.hpp"
+#include "graph.hpp"
 
 namespace sml {
-    class Simulation{
-        private:
-            Graph graph;
-            Digraph digraph;
+class Simulation {
+private:
+  Graph graph;
+  Digraph digraph;
 
-            void pause();
-            void manageGraph();
-            void manageDigraph();
-            
-        public: 
-            //Contructors and Destructors
-            Simulation();
+  void pause();
+  void manageGraph();
+  void manageDigraph();
 
-            void run();
-            void displayMainMenu();
-            void displayGraphMenu();
-            void displayDigraphMenu();
-            void initialize(int argc, char *argv[]);
-            
-    };
-}
+public:
+  // Contructors and Destructors
+  Simulation();
+  Operations operations;
 
-#endif //SIMULATION_H
+  void run();
+  void displayMainMenu();
+  void displayGraphMenu();
+  void displayDigraphMenu();
+  void initialize(int argc, char *argv[]);
+};
+} // namespace sml
+
+#endif // SIMULATION_H

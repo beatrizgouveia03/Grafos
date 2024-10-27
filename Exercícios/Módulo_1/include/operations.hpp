@@ -8,13 +8,13 @@
  */
 
 #include <algorithm>
+#include <iomanip>
 
 #include <map>
 using std::map;
 
 #include <vector>
 using std::vector;
-
 #include <stack>
 using std::stack;
 
@@ -22,52 +22,80 @@ using std::stack;
 using std::cout;
 using std::endl;
 
-#include "graph.hpp"
 #include "digraph.hpp"
+#include "graph.hpp"
 
-namespace sml
-{
-    class Operations
-    {
-    public:
-        // THE MATH AND SEARCH OPERATIONS FROM GRAPHS
-        vector<vector<int>> adjListToAdjMatrix(map<int, vector<int>> adjList, int numNodes);
+namespace sml {
+struct SearchResult {
+  int numNodes;
+  int initialNode;
+  vector<int> predecessors;
+  vector<bool> visited;
 
-        map<int, vector<int>> adjMatrixToAdjList(vector<vector<int>> adjMatrix, int numNodes);
+  friend std::ostream &operator<<(std::ostream &os,
+                                  const SearchResult &result) {
+    os << std::left; // Align to the left
 
-        void calculateDegrees(Graph g);
+    // Print header
+    os << std::setw(15) << "Node" << std::setw(15) << "Visited" << std::setw(15)
+       << "Predecessor" << '\n';
 
-        void adjacentsVertex(Graph g, int u, int v);
+    // Print separator
+    os << std::setfill('-') << std::setw(45) << "" << std::setfill(' ') << '\n';
 
-        int countVertices(Graph g);
+    // Print each node's information
+    for (int i = 1; i <= result.numNodes; ++i) {
+      os << std::setw(15) << i                      // Node number
+         << std::setw(15) << result.visited[i]      // Visited status
+         << std::setw(15) << result.predecessors[i] // Predecessor
+         << '\n';
+    }
 
-        int countEdges(Graph g);
+    return os;
+  }
+};
 
-        bool connected(Graph g);
+class Operations {
+public:
+  // THE MATH AND SEARCH OPERATIONS FROM GRAPHS
+  vector<vector<int>> adjListToAdjMatrix(map<int, vector<int>> adjList,
+                                         int numNodes);
 
-        bool bipartite(Graph g);
+  map<int, vector<int>> adjMatrixToAdjList(vector<vector<int>> adjMatrix,
+                                           int numNodes);
 
-        void dfs(Graph g, int v);
+  void calculateDegrees(Graph g);
 
-        void bfs(Graph g, int v);
+  void adjacentsVertex(Graph g, int u, int v);
 
-        void articulationsAndBlocks(Graph g);
+  int countVertices(Graph g);
 
-        // THE MATH AND SEARCH OPERATIONS FROM DIGRAPHS
-        void subjacenteGraph(Digraph d);
+  int countEdges(Graph g);
 
-        void incMatrixToDirectStar(vector<vector<int>> incMatrix, int numNodes);
+  bool connected(Graph g);
 
-        vector<vector<int>> directStarToIncMatrix(/*Dont know*/);
+  bool bipartite(Graph g);
 
-        void adjMatrixToIndirectStar(vector<vector<int>> adjMatrix, int numNodes);
+  SearchResult dfs(Graph g, int v);
 
-        vector<vector<int>> indirectStarToAdjMatrix(/*Dont know*/);
+  void bfs(Graph g, int v);
 
-        void dfs(Digraph d);
+  void articulationsAndBlocks(Graph g);
 
-        void application();
-    };
-}
+  // THE MATH AND SEARCH OPERATIONS FROM DIGRAPHS
+  void subjacenteGraph(Digraph d);
+
+  void incMatrixToDirectStar(vector<vector<int>> incMatrix, int numNodes);
+  vector<vector<int>> directStarToIncMatrix(/*Dont know*/);
+
+  void adjMatrixToIndirectStar(vector<vector<int>> adjMatrix, int numNodes);
+
+  vector<vector<int>> indirectStarToAdjMatrix(/*Dont know*/);
+
+  void dfs(Digraph d);
+
+  void application();
+};
+} // namespace sml
 
 #endif // OPERATIONS_H
