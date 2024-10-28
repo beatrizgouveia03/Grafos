@@ -207,18 +207,33 @@ void Operations::adjListToAdjMatrix(map<int, vector<int>> adjList) {
   int numNodes = adjList.size();
   vector<vector<int>> adjMatrix = vector(numNodes, vector(numNodes, 0));
 
-  cout << "Initiating the conversion..." << endl;
+  //Print the entry
+  cout << endl;
+  cout << "============================================" << endl;
+  cout << "               ADJACENCY LIST                " << endl;
+  cout << "============================================" << endl;
+  for(int i = 1; i <= numNodes; i++){
+      
+      cout << "Adjacency list of node " << i << " : ";
+      for(int j = 0; j < adjList[i].size(); j++){
+          cout << adjList[i][j] << " ";
+      }
+      cout << endl;
+  }
+  cout << endl;
+
+  cout << "============================================" << endl;
 
   //Run throw the list updating the edges in the matrix
   for(auto it = adjList.begin(); it != adjList.end(); ++it) {
     //Check if the vertex has been deleted
     if(it->second[0] == -1){
       for(size_t i{0}; i<numNodes; ++i){
-        adjMatrix[it->first][i] = -1;
+        adjMatrix[(it->first)-1][i] = -1;
       }
     } else {
       for(size_t i{0}; i<it->second.size(); ++i){
-        adjMatrix[it->first][it->second[i]] = 1;
+        adjMatrix[(it->first)-1][(it->second[i])-1] = 1;
       }
     }
   }
@@ -267,50 +282,52 @@ void Operations::adjMatrixToAdjList(vector<vector<int>> adjMatrix) {
     adjList[i];
   }
 
+  //Print the entry
   cout << endl;
-    cout << "============================================" << endl;
-    cout << "              ADJACENCY MATRIX              " << endl;
-    cout << "============================================" << endl;
-    cout << "\\ ";
-    for(int j = 0; j < numNodes; j++){
-        cout << " " << j+1;
-    }
-    cout << endl;
+  cout << "============================================" << endl;
+  cout << "              ADJACENCY MATRIX              " << endl;
+  cout << "============================================" << endl;
+  cout << "\\ ";
+  for(int j = 0; j < numNodes; j++){
+      cout << " " << j+1;
+  }
+  cout << endl;
 
-    cout << "  ";
-    for(int j = 0; j < numNodes; j++){
-        cout << "--";
-    }
-    cout << endl;
+  cout << "  ";
+  for(int j = 0; j < numNodes; j++){
+      cout << "--";
+  }
+  cout << endl;
 
-    for(int i = 0; i < numNodes; i++){
-        cout << i+1 << "| ";
-        for(int j = 0; j < numNodes; j++){
-            cout << adjMatrix[i][j] << " ";
-        }
-        cout << endl;
-    }
-    cout << endl;
+  for(int i = 0; i < numNodes; i++){
+      cout << i+1 << "| ";
+      for(int j = 0; j < numNodes; j++){
+          cout << adjMatrix[i][j] << " ";
+      }
+      cout << endl;
+  }
+  cout << endl;
 
-    cout << "============================================" << endl;
+  cout << "============================================" << endl;
+
 
   //Run throw the matrix updating the edges in the list
-  for(int i = 0; i < numNodes; i++){
-    for(int j = 0; j < numNodes; j++){
+  for(int i = 1; i <= numNodes; i++){
+    for(int j = 1; j <= numNodes; j++){
       if(j<i){
         continue;
       } else if(j > i) {
-        if(adjMatrix[i][j] = -1){
+        if(adjMatrix[i-1][j-1] == -1){
           adjList[i].push_back(-1);
           adjList[j].push_back(-1);
-        } else if (adjMatrix[i][j] = 1){
+        } else if (adjMatrix[i-1][j-1]){
           adjList[i].push_back(j);
           adjList[j].push_back(i);
         }
       } else{
-        if(adjMatrix[i][j] = -1){
+        if(adjMatrix[i-1][j-1] == -1){
           adjList[i].push_back(-1);
-        } else if (adjMatrix[i][j] = 1){
+        } else if (adjMatrix[i-1][j-1]){
           adjList[i].push_back(j);
         }
       }
