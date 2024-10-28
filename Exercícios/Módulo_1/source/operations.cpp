@@ -74,66 +74,84 @@ void Operations::runMenu() {
     getline(cin, str);
     opt = stoi(str);
     switch (opt) {
-    case 1:
-      dfs(graph, handleSearch(int()));
-      pause();
-      break;
-    case 2:
-      bfs(graph, handleSearch(int()));
-      pause();
-      break;
-    case 3:
-      countEdges(graph);
-      break;
-    case 4:
-      countVertices(graph);
-      break;
-    case 5:
-      connected(graph);
-      break;
-    case 6: 
-      bipartite(graph);
-      break;
-    case 7: 
-      calculateDegrees(graph);
-      break;
-    case 8:
-      adjacentsVertex(graph, handleSearch(pair<int,int>()));
-      break;
-    case 9:
-      articulationsAndBlocks(graph);
-      break;
-    case 10:
-      adjListToAdjMatrix(graph.getAdjList());
-      break;
-    case 11:
-      adjMatrixToAdjList(graph.getAdjMatrix());
-      break;
-    case 12:
-      dfs(digraph, handleSearch(int()));
-      break;
-    case 13:
-      application();
-      break;
-    case 14:
-      subjacentGraph(digraph);
-      break;
-    case 15:
-      incMatrixToDirectStar(digraph.getIncMatrix());
-      break;
-    case 16:
-      directStarToIncMatrix();
-      break;
-    case 17:
-      adjMatrixToIndirectStar(digraph.getAdjMatrix());
-      break;
-    case 18:
-      indirectStarToAdjMatrix();
-      break;
-    default:
-      cout << "Select a valid option." << endl;
-      break;
-    }
+      case 0:
+        break;
+      case 1:
+        dfs(graph, handleSearch(int()));
+        pause();
+        break;
+      case 2:
+        bfs(graph, handleSearch(int()));
+        pause();
+        break;
+      case 3:
+        countEdges(graph);
+        pause();
+        break;
+      case 4:
+        countVertices(graph);
+        pause();
+        break;
+      case 5:
+        connected(graph);
+        pause();
+        break;
+      case 6: 
+        bipartite(graph);
+        pause();
+        break;
+      case 7: 
+        calculateDegrees(graph);
+        pause();
+        break;
+      case 8:
+        adjacentsVertex(graph, handleSearch(pair<int,int>()));
+        pause();
+        break;
+      case 9:
+        articulationsAndBlocks(graph);
+        pause();
+        break;
+      case 10:
+        adjListToAdjMatrix(graph.getAdjList());
+        pause();
+        break;
+      case 11:
+        adjMatrixToAdjList(graph.getAdjMatrix());
+        pause();
+        break;
+      case 12:
+        dfs(digraph, handleSearch(int()));
+        pause();
+        break;
+      case 13:
+        application();
+        pause();
+        break;
+      case 14:
+        subjacentGraph(digraph);
+        pause();
+        break;
+      case 15:
+        incMatrixToDirectStar(digraph.getIncMatrix());
+        pause();
+        break;
+      case 16:
+        directStarToIncMatrix();
+        pause();
+        break;
+      case 17:
+        adjMatrixToIndirectStar(digraph.getAdjMatrix());
+        pause();
+        break;
+      case 18:
+        indirectStarToAdjMatrix();
+        pause();
+        break;
+      default:
+        cout << "Select a valid option." << endl;
+        break;
+      }
   }  
 }
 
@@ -164,8 +182,8 @@ void Operations::displayMenu() {
   cout << "7. Calculate the degrees of the vertex" << endl;
   cout << "8. Check if two vertices are adjacents" << endl;
   cout << "9. Determinate the articulations and the block" << endl;
-  cout << "10. Convert adjacency matrix to an adjacency list" << endl;
-  cout << "11. Convert adjacency list to an adjacency matrix" << endl;
+  cout << "10. Convert adjacency list to an adjacency matrix" << endl;
+  cout << "11. Convert adjacency matrix to an adjacency list" << endl;
   cout << "--------------Digraph Operations------------" << endl;
   cout << "12. Run a DFS" << endl;
   cout << "13. Show the application" << endl;  
@@ -185,7 +203,53 @@ void Operations::displayMenu() {
  * @param adjList The adjacency list to be converted
  */
 void Operations::adjListToAdjMatrix(map<int, vector<int>> adjList) {
-  /*TO-DO*/
+  //Initialize the adjacency matrix
+  int numNodes = adjList.size();
+  vector<vector<int>> adjMatrix = vector(numNodes, vector(numNodes, 0));
+
+  cout << "Initiating the conversion..." << endl;
+
+  //Run throw the list updating the edges in the matrix
+  for(auto it = adjList.begin(); it != adjList.end(); ++it) {
+    //Check if the vertex has been deleted
+    if(it->second[0] == -1){
+      for(size_t i{0}; i<numNodes; ++i){
+        adjMatrix[it->first][i] = -1;
+      }
+    } else {
+      for(size_t i{0}; i<it->second.size(); ++i){
+        adjMatrix[it->first][it->second[i]] = 1;
+      }
+    }
+  }
+
+  //Prints the result
+  cout << endl;
+    cout << "============================================" << endl;
+    cout << "              ADJACENCY MATRIX              " << endl;
+    cout << "============================================" << endl;
+    cout << "\\ ";
+    for(int j = 0; j < numNodes; j++){
+        cout << " " << j+1;
+    }
+    cout << endl;
+
+    cout << "  ";
+    for(int j = 0; j < numNodes; j++){
+        cout << "--";
+    }
+    cout << endl;
+
+    for(int i = 0; i < numNodes; i++){
+        cout << i+1 << "| ";
+        for(int j = 0; j < numNodes; j++){
+            cout << adjMatrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    cout << "============================================" << endl;
 }
 
 
@@ -195,7 +259,81 @@ void Operations::adjListToAdjMatrix(map<int, vector<int>> adjList) {
  * @param adjMatrix The adjacency matrix to be converted
  */
 void Operations::adjMatrixToAdjList(vector<vector<int>> adjMatrix) {
-  /*TO-DO*/
+   //Initialize the adjacency list
+  int numNodes = adjMatrix.size();
+  map<int, vector<int>> adjList;
+
+  for(int i(0); i< numNodes; ++i){
+    adjList[i];
+  }
+
+  cout << endl;
+    cout << "============================================" << endl;
+    cout << "              ADJACENCY MATRIX              " << endl;
+    cout << "============================================" << endl;
+    cout << "\\ ";
+    for(int j = 0; j < numNodes; j++){
+        cout << " " << j+1;
+    }
+    cout << endl;
+
+    cout << "  ";
+    for(int j = 0; j < numNodes; j++){
+        cout << "--";
+    }
+    cout << endl;
+
+    for(int i = 0; i < numNodes; i++){
+        cout << i+1 << "| ";
+        for(int j = 0; j < numNodes; j++){
+            cout << adjMatrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    cout << "============================================" << endl;
+
+  //Run throw the matrix updating the edges in the list
+  for(int i = 0; i < numNodes; i++){
+    for(int j = 0; j < numNodes; j++){
+      if(j<i){
+        continue;
+      } else if(j > i) {
+        if(adjMatrix[i][j] = -1){
+          adjList[i].push_back(-1);
+          adjList[j].push_back(-1);
+        } else if (adjMatrix[i][j] = 1){
+          adjList[i].push_back(j);
+          adjList[j].push_back(i);
+        }
+      } else{
+        if(adjMatrix[i][j] = -1){
+          adjList[i].push_back(-1);
+        } else if (adjMatrix[i][j] = 1){
+          adjList[i].push_back(j);
+        }
+      }
+    }
+  }
+
+  //Print the result
+  cout << endl;
+  cout << "============================================" << endl;
+  cout << "               ADJACENCY LIST                " << endl;
+  cout << "============================================" << endl;
+  for(int i = 1; i <= numNodes; i++){
+      
+      cout << "Adjacency list of node " << i << " : ";
+      for(int j = 0; j < adjList[i].size(); j++){
+          cout << adjList[i][j] << " ";
+      }
+      cout << endl;
+  }
+  cout << endl;
+
+  cout << "============================================" << endl;
+
 }
 
 /**!
