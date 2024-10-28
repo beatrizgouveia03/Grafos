@@ -19,7 +19,7 @@ O repositório ainda está em desenvolvimento, bem como esse README, e as próxi
     - [x] (1)  Representação do Grafo a partir da Lista de Adjacências.[Beatriz]
     - [x] (2)  Representação do Grafo a partir da Matriz de Adjacências.[Beatriz]
     - [x] (3)  Representação do Grafo a partir da Matriz de Incidência.[Beatriz]
-    - [ ] (4)  Conversão de matriz de adjacência para lista de Adjacências e vice-versa.[Beatriz]
+    - [x] (4)  Conversão de matriz de adjacência para lista de Adjacências e vice-versa.[Beatriz]
     - [ ] (5)  Função que calcula o grau de cada vértice.[Anny]
     - [ ] (6)  Função que determina se dois vértices são adjacentes.[Anny]
     - [ ] (7)  Função que determina o número total de vértices[Anny]
