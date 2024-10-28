@@ -208,9 +208,11 @@ void Graph::pause() {
  */
 int Graph::manageVertex(){
     int x;
+    string str;
 
     cout << "Insert the index of the vertex: " << endl;
-    cin >> x;
+    getline(cin, str);
+    x = stoi(str);
 
     if( x<=0 ) {
         cout << "Insert a valid index." << endl;
@@ -229,11 +231,14 @@ int Graph::manageVertex(){
  */
 pair<int,int> Graph::manageEdge(){
     int x, y;
+    string str;
 
     cout << "Insert the index of the first vertex: " << endl;
-    cin >> x;
+    getline(cin, str);
+    x = stoi(str);
     cout << "Insert the index of the second vertex: " << endl;
-    cin >> y;
+    getline(cin, str);
+    y = stoi(str);
 
     if( x<=0 || y<=0 ) {
         cout << "Insert a valid index." << endl;
@@ -253,7 +258,6 @@ pair<int,int> Graph::manageEdge(){
 void Graph::runMenu() {
   int opt = -1;
   string str;
-  int nodeNum;
 
   while (opt != 0) {
     displayMenu();

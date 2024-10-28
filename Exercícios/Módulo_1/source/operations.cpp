@@ -25,9 +25,11 @@ Operations::Operations(Graph g, Digraph d){
 
 int Operations::handleSearch(int v){
   int x;
+  string str;
 
   cout << "Insert the index of the vertex to start the search: " << endl;
-  cin >> x;
+  getline(cin, str);
+  x = stoi(str);
 
   if( x<=0 ) {
         cout << "Insert a valid index." << endl;
@@ -43,19 +45,23 @@ int Operations::handleSearch(int v){
 
 pair<int,int> Operations::handleSearch(pair<int,int> v){
   int x, y;
+  string str;
 
-    cout << "Insert the index of the first vertex: " << endl;
-    cin >> x;
-    cout << "Insert the index of the second vertex: " << endl;
-    cin >> y;
+  cout << "Insert the index of the first vertex: " << endl;
+  getline(cin, str);
+  x = stoi(str);
 
-    if( x<=0 || y<=0 ) {
-        cout << "Insert a valid index." << endl;
-        return handleSearch(pair<int,int>());
-    }
-    else {
-        return make_pair(x, y);
-    }
+  cout << "Insert the index of the second vertex: " << endl;
+  getline(cin, str);
+  y = stoi(str);
+
+  if( x<=0 || y<=0 ) {
+      cout << "Insert a valid index." << endl;
+      return handleSearch(pair<int,int>());
+  }
+  else {
+      return make_pair(x, y);
+  }
 }
 
 /**!
@@ -66,7 +72,6 @@ pair<int,int> Operations::handleSearch(pair<int,int> v){
 void Operations::runMenu() {
   int opt = -1;
   string str;
-  int nodeNum;
 
   while (opt != 0) {
     displayMenu();
