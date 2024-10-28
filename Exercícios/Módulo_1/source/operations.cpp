@@ -156,7 +156,7 @@ void Operations::runMenu() {
       default:
         cout << "Select a valid option." << endl;
         break;
-      }
+    }
   }  
 }
 

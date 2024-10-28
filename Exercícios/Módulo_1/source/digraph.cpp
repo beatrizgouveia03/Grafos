@@ -264,37 +264,39 @@ void Digraph::runMenu() {
     getline(cin, str);
     opt = stoi(str);
     switch (opt) {
-    case 1:
-        addEdge(manageEdge());
-        pause();
+        case 0: 
+            break;
+        case 1:
+            addEdge(manageEdge());
+            pause();
+            break;
+        case 2:
+            addVertex(manageVertex());
+            pause();
+            break;
+        case 3:
+            removeEdge(manageEdge());
+            pause();
+            break;
+        case 4:
+            removeVertex(manageVertex());
+            pause();
+            break;
+        case 5:
+            printAdjList();
+            pause();
+            break;
+        case 6:
+            printAdjMatrix();
+            pause();
+            break;
+        case 7:
+            printIncMatrix();
+            pause();
+            break;
+        default:
+        cout << "Select a valid option." << endl;
         break;
-    case 2:
-        addVertex(manageVertex());
-        pause();
-        break;
-    case 3:
-        removeEdge(manageEdge());
-        pause();
-        break;
-    case 4:
-        removeVertex(manageVertex());
-        pause();
-        break;
-    case 5:
-        printAdjList();
-        pause();
-        break;
-    case 6:
-        printAdjMatrix();
-        pause();
-        break;
-    case 7:
-        printIncMatrix();
-        pause();
-        break;
-    default:
-      cout << "Select a valid option." << endl;
-      break;
     }
   }  
 }
