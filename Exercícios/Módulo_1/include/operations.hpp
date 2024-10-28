@@ -66,46 +66,50 @@ class Operations {
     Digraph digraph;
 
     // THE MATH AND SEARCH OPERATIONS FROM GRAPHS
-    vector<vector<int>> adjListToAdjMatrix(map<int, vector<int>> adjList, int numNodes);
+    void adjListToAdjMatrix(map<int, vector<int>> adjLists);
 
-    map<int, vector<int>> adjMatrixToAdjList(vector<vector<int>> adjMatrix, int numNodes);
+    void adjMatrixToAdjList(vector<vector<int>> adjMatrix);
 
     void calculateDegrees(Graph g);
 
-    void adjacentsVertex(Graph g, int u, int v);
+    void adjacentsVertex(Graph g, pair<int,int> vs);
 
-    int countVertices(Graph g);
+    void countVertices(Graph g);
 
-    int countEdges(Graph g);
+    void countEdges(Graph g);
 
-    bool connected(Graph g);
+    void connected(Graph g);
 
-    bool bipartite(Graph g);
+    void bipartite(Graph g);
 
     SearchResult dfs(Graph g, int v);
 
-    void bfs(Graph g, int v);
+    SearchResult bfs(Graph g, int v);
 
     void articulationsAndBlocks(Graph g);
 
     // THE MATH AND SEARCH OPERATIONS FROM DIGRAPHS
     void subjacentGraph(Digraph d);
 
-    void incMatrixToDirectStar(vector<vector<int>> incMatrix, int numNodes);
+    void incMatrixToDirectStar(vector<vector<int>> incMatrix);
 
-    vector<vector<int>> directStarToIncMatrix(/*Dont know*/);
+    void directStarToIncMatrix(/*Dont know*/);
 
-    void adjMatrixToIndirectStar(vector<vector<int>> adjMatrix, int numNodes);
+    void adjMatrixToIndirectStar(vector<vector<int>> adjMatrix);
 
-    vector<vector<int>> indirectStarToAdjMatrix(/*Dont know*/);
+    void indirectStarToAdjMatrix(/*Dont know*/);
 
-    void dfs(Digraph d, int v);
+    SearchResult dfs(Digraph d, int v);
 
     void application();
 
     //Menu
     void pause();
     void displayMenu();
+
+    int handleSearch(int v);
+    pair<int,int> handleSearch(pair<int,int> v);
+
     
   public:
     //Constructors

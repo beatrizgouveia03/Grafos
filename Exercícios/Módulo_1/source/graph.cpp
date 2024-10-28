@@ -36,7 +36,7 @@ Graph::Graph(int numNodes){
 }
 
 /**!
- *  This function printsthe adjacency list.
+ *  This function prints the adjacency list.
 */   
 void Graph::printAdjList(){
     cout << endl;
@@ -57,7 +57,7 @@ void Graph::printAdjList(){
 }
 
 /**!
- *  This function printsthe adjacency matrix.
+ *  This function prints the adjacency matrix.
 */  
 void Graph::printAdjMatrix(){
     cout << endl;
@@ -262,27 +262,32 @@ void Graph::runMenu() {
     opt = stoi(str);
     switch (opt) {
     case 1:
-      printAdjList();
-      pause();
-      break;
+        addEdge(manageEdge());
+        pause();
+        break;
     case 2:
-      printAdjMatrix();
-      pause();
-      break;
-    case 3:
-      printIncMatrix();
-      pause();
-      break;
-    case 4:
         addVertex(manageVertex());
+        pause();
+        break;
+    case 3:
+        removeEdge(manageEdge());
+        pause();
+        break;
+    case 4:
+        removeVertex(manageVertex());
+        pause();
         break;
     case 5:
-        removeVertex(manageVertex());
+        printAdjList();
+        pause();
+        break;
     case 6:
-        addEdge(manageEdge());
+        printAdjMatrix();
+        pause();
         break;
     case 7:
-        removeEdge(manageEdge());
+        printIncMatrix();
+        pause();
         break;
     default:
       cout << "Select a valid option." << endl;
@@ -299,48 +304,48 @@ void Graph::displayMenu() {
   cout << "============================================" << endl;
   cout << "               GRAPH MENU                 " << endl;
   cout << "============================================" << endl;
-  cout << "1. Display as adjacency list" << endl;
-  cout << "2. Display as adjacency matrix" << endl;
-  cout << "3. Display as incidence matrix" << endl;
-  cout << "4. Add vertex" << endl;
-  cout << "5. Remove vertex." << endl;
-  cout << "6. Add edge." << endl;
-  cout << "7. Remove edge." << endl;
+  cout << "1. Add edge." << endl;
+  cout << "2. Add vertex" << endl;
+  cout << "3. Remove edge." << endl;
+  cout << "4. Remove vertex." << endl;
+  cout << "5. Display as adjacency list" << endl;
+  cout << "6. Display as adjacency matrix" << endl;
+  cout << "7. Display as incidence matrix" << endl;
   cout << "0. Exit to the main menu" << endl;
   cout << "============================================" << endl;
 }
 
 /**!
  * This function adds a new vertex to the graph along with its edges.
+ * @param v The index of the vertex to be added
 */
-void Graph::addVertex(int x){
+void Graph::addVertex(int v){
     /*TO-DO*/
 }
+
 
 /**!
  * This function adds a new edge to the graph.
- * @param u The first vertex of the edge
- *  @param v The second vertex of the edge
+ * @param v A pair of integers representing the indexes
+ * of the vertices to be connected
 */
-void Graph::addEdge(pair<int,int>){
+void Graph::addEdge(pair<int,int> v){
     /*TO-DO*/
 }
 
 /**!
- * This function removes a vertex to the graph along with its edges.
- *
- *  @param incMatrix The new version of the incidence matrix to be
- * updated
+ * This function removes a vertex to the graph along with its edges
+ * @param v The index of the vertex to be removed
 */
-void Graph::removeVertex(int x){
+void Graph::removeVertex(int v){
     /*TO-DO*/
 }
 
 /**!
  * This function removes an edge to the graph.
- * @param u The first vertex of the edge
- *  @param v The second vertex of the edge
+ * @param v  A pair of integers representing the indexes
+ * of the vertices to be disconnected
 */
-void Graph::removeEdge(pair<int,int>){
+void Graph::removeEdge(pair<int,int> v){
     /*TO-DO*/
 }
