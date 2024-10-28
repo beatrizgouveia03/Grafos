@@ -149,6 +149,8 @@ void Simulation::initialize(int argc, char *argv[]) {
       graph.updateAdjMatrix(adjMatrix);
       graph.updateIncMatrix(incMatrix);
 
+      operations = Operations(graph, digraph);
+
       cout << "Sucessfully updated all the graph" << endl;
     }
   }
