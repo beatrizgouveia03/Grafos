@@ -24,7 +24,7 @@ void Simulation::displayMainMenu() {
   cout << "1. Graph options" << endl;
   cout << "2. Digraph options" << endl;
   cout << "3. Operations options" << endl;
-  cout << "4. Exit" << endl;
+  cout << "0. Exit the simulation" << endl;
   cout << "============================================" << endl;
 }
 
@@ -34,10 +34,10 @@ void Simulation::displayMainMenu() {
  * functions related to them, until the user chooses to end the program.
  */
 void Simulation::run() {
-  int opt = 0;
+  int opt = -1;
   string str;
 
-  while (opt != 3) {
+  while (opt != 0) {
     displayMainMenu();
 
     cout << "Enter your option: " << endl;
@@ -45,18 +45,20 @@ void Simulation::run() {
     opt = stoi(str);
 
     switch (opt) {
-    case 1:
-      graph.runMenu();
-      break;
-    case 2:
-      digraph.runMenu();
-      break;
-    case 3:
-      operations.runMenu();
-      break;
-    default:
-      break;
-    }
+      case 0:
+        break;
+      case 1:
+        graph.runMenu();
+        break;
+      case 2:
+        digraph.runMenu();
+        break;
+      case 3:
+        operations.runMenu();
+        break;
+      default:
+        break;
+      }
   }
 }
 
