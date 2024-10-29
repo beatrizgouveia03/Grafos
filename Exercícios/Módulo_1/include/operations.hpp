@@ -82,9 +82,9 @@ class Operations {
 
     void bipartite(Graph g);
 
-    SearchResult dfs(Graph g, int v);
+    void dfs(Graph g, int v);
 
-    SearchResult bfs(Graph g, int v);
+    void bfs(Graph g, int v);
 
     void articulationsAndBlocks(Graph g);
 
@@ -99,7 +99,7 @@ class Operations {
 
     void indirectStarToAdjMatrix(/*Dont know*/);
 
-    SearchResult dfs(Digraph d, int v);
+    void dfs(Digraph d, int v);
 
     void application();
 
@@ -126,4 +126,4 @@ class Operations {
   };
 } // namespace sml
 
-#endif // OPERATIONS_H
+#endif //OPERATIONS_H

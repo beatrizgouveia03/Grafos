@@ -215,7 +215,7 @@ void Operations::adjListToAdjMatrix(map<int, vector<int>> adjList) {
   //Print the entry
   cout << endl;
   cout << "============================================" << endl;
-  cout << "               ADJACENCY LIST                " << endl;
+  cout << "           ORIGINAL ADJACENCY LIST          " << endl;
   cout << "============================================" << endl;
   for(int i = 1; i <= numNodes; i++){
       
@@ -246,7 +246,7 @@ void Operations::adjListToAdjMatrix(map<int, vector<int>> adjList) {
   //Prints the result
   cout << endl;
     cout << "============================================" << endl;
-    cout << "              ADJACENCY MATRIX              " << endl;
+    cout << "          RESULTANT ADJACENCY MATRIX        " << endl;
     cout << "============================================" << endl;
     cout << "\\ ";
     for(int j = 0; j < numNodes; j++){
@@ -290,7 +290,7 @@ void Operations::adjMatrixToAdjList(vector<vector<int>> adjMatrix) {
   //Print the entry
   cout << endl;
   cout << "============================================" << endl;
-  cout << "              ADJACENCY MATRIX              " << endl;
+  cout << "          ORIGINAL ADJACENCY MATRIX         " << endl;
   cout << "============================================" << endl;
   cout << "\\ ";
   for(int j = 0; j < numNodes; j++){
@@ -342,7 +342,7 @@ void Operations::adjMatrixToAdjList(vector<vector<int>> adjMatrix) {
   //Print the result
   cout << endl;
   cout << "============================================" << endl;
-  cout << "               ADJACENCY LIST                " << endl;
+  cout << "           RESULTANT ADJACENCY LIST         " << endl;
   cout << "============================================" << endl;
   for(int i = 1; i <= numNodes; i++){
       
@@ -450,7 +450,7 @@ void Operations::bipartite(Graph g) {
  * @param v The index of the initial search vertex
  * @return The search result to be displayed
  */
-SearchResult Operations::dfs(Graph g, int v) {
+void Operations::dfs(Graph g, int v) {
   auto numNodes = g.getNumNodes();
 
   auto adjList = g.getAdjList();
@@ -474,10 +474,13 @@ SearchResult Operations::dfs(Graph g, int v) {
       }
     }
   }
-  return SearchResult{.numNodes = numNodes,
+
+  SearchResult result = SearchResult{.numNodes = numNodes,
                       .initialNode = v,
                       .predecessors = pred,
                       .visited = visited};
+
+  cout << result;
 }
 
 /**!
@@ -485,9 +488,8 @@ SearchResult Operations::dfs(Graph g, int v) {
  *  in the vertex "v" and displays the result in the terminal
  * @param g The graph to be checked
  * @param v The index of the initial search vertex
- * @return The search result to be displayed
  */
-SearchResult Operations::bfs(Graph g, int v) { /*TO-DO*/ }
+void Operations::bfs(Graph g, int v) { /*TO-DO*/ }
 
 /**!
  * This function determinates the articulations and the blocks of the graph
@@ -546,8 +548,7 @@ void Operations::indirectStarToAdjMatrix(/*Dont know*/) {
  *  in the vertex "v" and displays the result in the terminal
  * @param d The digraph to be checked
  * @param v The index of the initial search vertex
- * @return The search result to be displayed
  */
-SearchResult Operations::dfs(Digraph d, int v) { /*TO-DO*/ }
+void Operations::dfs(Digraph d, int v) { /*TO-DO*/ }
 
 void Operations::application() { /*TO-DO*/ }
