@@ -455,8 +455,8 @@ void Operations::dfs(Graph g, int v) {
 
   auto adjList = g.getAdjList();
 
-  vector<bool> visited = vector(numNodes, false);
-  vector<int> pred = vector(numNodes, -1);
+  vector<bool> visited = vector(numNodes+1, false);
+  vector<int> pred = vector(numNodes+1, -1);
   stack<int> s;
 
   visited[v] = true;
@@ -466,11 +466,11 @@ void Operations::dfs(Graph g, int v) {
     int curr = s.top();
     s.pop();
 
-    for (auto edge : adjList[v]) {
-      if (!visited[edge]) {
-        visited[edge] = true;
-        pred[edge] = v;
-        s.push(edge);
+    for (auto adj : adjList[curr]) {
+      if (!visited[adj]) {
+        visited[adj] = true;
+        pred[adj] = curr;
+        s.push(adj);
       }
     }
   }
