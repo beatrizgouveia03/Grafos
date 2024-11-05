@@ -59,8 +59,8 @@ pair<string, string> Operations::handleSearch(pair<string, string> v)
   cout << "Insert the index of the second vertex: " << endl;
   getline(cin, str);
 
-  istringstream ss(str);
-  getline(ss, y);
+  istringstream ss2(str);
+  getline(ss2, y);
 
   if (x == " " || y == " ")
   {
@@ -130,11 +130,11 @@ void Operations::runMenu()
       pause();
       break;
     case 10:
-      adjListToAdjMatrix(graph.getAdjList());
+      adjListToAdjMatrix(graph);
       pause();
       break;
     case 11:
-      adjMatrixToAdjList(graph.getAdjMatrix());
+      adjMatrixToAdjList(graph);
       pause();
       break;
     case 12:
@@ -218,32 +218,17 @@ void Operations::displayMenu()
 /**!
  * This function converts the adjacency list of the graph to an
  * adjacency matrix and displays the matrix resultant in the terminal
- * @param adjList The adjacency list to be converted
+ * @param g The graph of the simulation
  */
-void Operations::adjListToAdjMatrix(map<int, vector<int>> adjList)
+void Operations::adjListToAdjMatrix(Graph g)
 {
+  
+  map<int,string> dictionary = g.getDictionary();
+  map<int, vector<int>> adjList = g.getAdjList();
+
   // Initialize the adjacency matrix
   int numNodes = adjList.size();
   vector<vector<int>> adjMatrix = vector(numNodes, vector(numNodes, 0));
-
-  // Print the entry
-  cout << endl;
-  cout << "============================================" << endl;
-  cout << "           ORIGINAL ADJACENCY LIST          " << endl;
-  cout << "============================================" << endl;
-  for (int i = 1; i <= numNodes; i++)
-  {
-
-    cout << "Adjacency list of node " << i << " : ";
-    for (int j = 0; j < adjList[i].size(); j++)
-    {
-      cout << adjList[i][j] << " ";
-    }
-    cout << endl;
-  }
-  cout << endl;
-
-  cout << "============================================" << endl;
 
   // Run throw the list updating the edges in the matrix
   for (auto it = adjList.begin(); it != adjList.end(); ++it)
@@ -265,46 +250,27 @@ void Operations::adjListToAdjMatrix(map<int, vector<int>> adjList)
     }
   }
 
-  // Prints the result
-  cout << endl;
-  cout << "============================================" << endl;
-  cout << "          RESULTANT ADJACENCY MATRIX        " << endl;
-  cout << "============================================" << endl;
-  cout << "\\ ";
-  for (int j = 0; j < numNodes; j++)
-  {
-    cout << " " << j + 1;
-  }
-  cout << endl;
+  //Create a aux graph o print the sides of the conversion
+  Graph aux = Graph(g.getNumNodes());
 
-  cout << "  ";
-  for (int j = 0; j < numNodes; j++)
-  {
-    cout << "--";
-  }
-  cout << endl;
+  aux.updateAdjList(adjList);
+  aux.updateAdjMatrix(adjMatrix);
+  aux.updateDictionary(dictionary);
 
-  for (int i = 0; i < numNodes; i++)
-  {
-    cout << i + 1 << "| ";
-    for (int j = 0; j < numNodes; j++)
-    {
-      cout << adjMatrix[i][j] << " ";
-    }
-    cout << endl;
-  }
-  cout << endl;
-
-  cout << "============================================" << endl;
+  aux.printAdjList();
+  aux.printAdjMatrix();
 }
 
 /**!
  * This function converts the adjacency matrix of the graph to an
  * adjacency list and displays the list resultant in the terminal
- * @param adjMatrix The adjacency matrix to be converted
+ * @param g The graph of the simulation
  */
-void Operations::adjMatrixToAdjList(vector<vector<int>> adjMatrix)
+void Operations::adjMatrixToAdjList(Graph g)
 {
+  map<int,string> dictionary = g.getDictionary();
+  vector<vector<int>> adjMatrix = g.getAdjMatrix();
+  
   // Initialize the adjacency list
   int numNodes = adjMatrix.size();
   map<int, vector<int>> adjList;
@@ -313,38 +279,6 @@ void Operations::adjMatrixToAdjList(vector<vector<int>> adjMatrix)
   {
     adjList[i];
   }
-
-  // Print the entry
-  cout << endl;
-  cout << "============================================" << endl;
-  cout << "          ORIGINAL ADJACENCY MATRIX         " << endl;
-  cout << "============================================" << endl;
-  cout << "\\ ";
-  for (int j = 0; j < numNodes; j++)
-  {
-    cout << " " << j + 1;
-  }
-  cout << endl;
-
-  cout << "  ";
-  for (int j = 0; j < numNodes; j++)
-  {
-    cout << "--";
-  }
-  cout << endl;
-
-  for (int i = 0; i < numNodes; i++)
-  {
-    cout << i + 1 << "| ";
-    for (int j = 0; j < numNodes; j++)
-    {
-      cout << adjMatrix[i][j] << " ";
-    }
-    cout << endl;
-  }
-  cout << endl;
-
-  cout << "============================================" << endl;
 
   // Run throw the matrix updating the edges in the list
   for (int i = 1; i <= numNodes; i++)
@@ -382,24 +316,15 @@ void Operations::adjMatrixToAdjList(vector<vector<int>> adjMatrix)
     }
   }
 
-  // Print the result
-  cout << endl;
-  cout << "============================================" << endl;
-  cout << "           RESULTANT ADJACENCY LIST         " << endl;
-  cout << "============================================" << endl;
-  for (int i = 1; i <= numNodes; i++)
-  {
+  //Create a aux graph o print the sides of the conversion
+  Graph aux = Graph(g.getNumNodes());
 
-    cout << "Adjacency list of node " << i << " : ";
-    for (int j = 0; j < adjList[i].size(); j++)
-    {
-      cout << adjList[i][j] << " ";
-    }
-    cout << endl;
-  }
-  cout << endl;
+  aux.updateAdjList(adjList);
+  aux.updateAdjMatrix(adjMatrix);
+  aux.updateDictionary(dictionary);
 
-  cout << "============================================" << endl;
+  aux.printAdjMatrix();
+  aux.printAdjList();
 }
 
 /**!

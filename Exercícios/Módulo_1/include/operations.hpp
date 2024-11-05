@@ -89,8 +89,8 @@ class Operations {
     pair<string,string> handleSearch(pair<string,string> v);
 
   // THE MATH AND SEARCH OPERATIONS FROM GRAPHS
-    void adjListToAdjMatrix(map<int, vector<int>> adjLists);
-    void adjMatrixToAdjList(vector<vector<int>> adjMatrix);
+    void adjListToAdjMatrix(Graph g);
+    void adjMatrixToAdjList(Graph g);
     void calculateDegrees(Graph g);
     void adjacentsVertex(Graph g, pair<string,string> vs);
     void countVertices(Graph g);

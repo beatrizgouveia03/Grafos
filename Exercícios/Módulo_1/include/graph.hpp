@@ -43,6 +43,9 @@ namespace sml {
             Graph(void);
             Graph(int numNodes);
             int getNumNodes(void);
+            void printAdjList(void);
+            void printAdjMatrix(void);
+            void printIncMatrix(void);
             map<int, string> getDictionary(void);
             map<int,vector<int>> getAdjList(void);
             vector<vector<int>> getAdjMatrix(void);
@@ -57,9 +60,6 @@ namespace sml {
         private:
             void pause(void);
             void displayMenu(void);
-            void printAdjList(void);
-            void printAdjMatrix(void);
-            void printIncMatrix(void);
             void addVertex(int x);
             void addEdge(pair<int, int> x);
             void removeVertex(int x);
