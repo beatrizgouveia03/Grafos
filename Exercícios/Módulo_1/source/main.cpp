@@ -13,8 +13,13 @@
 int main(int argc, char *argv[]) {
     sml::Simulation simulation;
 
-    simulation.initialize(argc, argv);
+    auto result = simulation.initialize(argc, argv);
+    if(result.type == sml::simulation_result_e::ERROR){
+      cerr << result.msg << "\n";
+      return EXIT_FAILURE;
+    }
+    
     simulation.run();
 
-  return 0;
+  return EXIT_SUCCESS;
 }
