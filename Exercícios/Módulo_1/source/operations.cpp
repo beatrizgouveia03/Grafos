@@ -25,45 +25,47 @@ Operations::Operations(Graph g, Digraph d)
   this->digraph = d;
 }
 
-int Operations::handleSearch(int v)
+string Operations::handleSearch(string v)
 {
-  int x;
-  string str;
+  string str, x;
 
   cout << "Insert the index of the vertex to start the search: " << endl;
   getline(cin, str);
-  x = stoi(str);
 
-  if (x <= 0)
+  istringstream ss(str);
+  getline(ss, x);
+
+  if (x == " ")
   {
     cout << "Insert a valid index." << endl;
-    return handleSearch(int());
+    return handleSearch(string());
   }
   else
   {
     return x;
   }
-
-  return x;
 }
 
-pair<int, int> Operations::handleSearch(pair<int, int> v)
+pair<string, string> Operations::handleSearch(pair<string, string> v)
 {
-  int x, y;
-  string str;
+  string str, x, y;
 
   cout << "Insert the index of the first vertex: " << endl;
   getline(cin, str);
-  x = stoi(str);
+  
+  istringstream ss(str);
+  getline(ss, x);
 
   cout << "Insert the index of the second vertex: " << endl;
   getline(cin, str);
-  y = stoi(str);
 
-  if (x <= 0 || y <= 0)
+  istringstream ss(str);
+  getline(ss, y);
+
+  if (x == " " || y == " ")
   {
     cout << "Insert a valid index." << endl;
-    return handleSearch(pair<int, int>());
+    return handleSearch(pair<string, string>());
   }
   else
   {
@@ -92,11 +94,11 @@ void Operations::runMenu()
     case 0:
       break;
     case 1:
-      dfs(graph, handleSearch(int()));
+      dfs(graph, handleSearch(string()));
       pause();
       break;
     case 2:
-      bfs(graph, handleSearch(int()));
+      bfs(graph, handleSearch(string()));
       pause();
       break;
     case 3:
@@ -120,7 +122,7 @@ void Operations::runMenu()
       pause();
       break;
     case 8:
-      adjacentsVertex(graph, handleSearch(pair<int, int>()));
+      adjacentsVertex(graph, handleSearch(pair<string, string>()));
       pause();
       break;
     case 9:
@@ -432,9 +434,19 @@ void Operations::calculateDegrees(Graph g)
  * @param g The graph to be checked
  * @param vs A pair of integers indicating the indexes of the vertices
  */
-void Operations::adjacentsVertex(Graph g, pair<int, int> vs)
+void Operations::adjacentsVertex(Graph g, pair<string, string> vs)
 {
-  int u = vs.first, v = vs.second;
+  string vsu = vs.first, vsv = vs.second;
+  int u, v;
+  map<int, string> dictionary = g.getDictionary();
+
+  for(int i{0}; i<g.getNumNodes(); ++i){
+    if(dictionary[i] == vsu){
+      u = i;
+    } else if( dictionary[i] == vsv){
+      v = i;
+    }
+  }
 
   const auto &adjList = g.getAdjList();
 
