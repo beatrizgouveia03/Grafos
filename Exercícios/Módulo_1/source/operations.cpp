@@ -432,7 +432,7 @@ void Operations::calculateDegrees(Graph g)
 /**!
  * This function checks if two vertices of the graph are adjacents
  * @param g The graph to be checked
- * @param vs A pair of integers indicating the indexes of the vertices
+ * @param vs A pair of strings indicating the "names" of the vertices
  */
 void Operations::adjacentsVertex(Graph g, pair<string, string> vs)
 {
@@ -472,7 +472,7 @@ void Operations::countVertices(Graph g)
 
   int totalVertices = adjList.size();
 
-  cout << "The amount of vetrices of the graph is " << totalVertices << endl;
+  cout << "The amount of vertces of the graph is " << totalVertices << endl;
 }
 
 /**!
@@ -524,21 +524,30 @@ void Operations::bipartite(Graph g)
  * This function does a Depth-First Search(DFS) in the graph beggining
  *  in the vertex "v" and displays the result in the terminal
  * @param g The graph to be checked
- * @param v The index of the initial search vertex
+ * @param v The "name" of the initial search vertex
  * @return The search result to be displayed
  */
-void Operations::dfs(Graph g, int v)
+void Operations::dfs(Graph g, string v)
 {
+  int idxV;
+  map<int,string> dictionary = g.getDictionary();
+
   auto numNodes = g.getNumNodes();
 
   auto adjList = g.getAdjList();
 
+  for(int i{0}; i<numNodes; ++i){
+    if(dictionary[i] == v){
+      idxV = i;
+      return;
+    }
+  }
   vector<bool> visited = vector(numNodes + 1, false);
   vector<int> pred = vector(numNodes + 1, -1);
   stack<int> s;
 
-  visited[v] = true;
-  s.push(v);
+  visited[idxV] = true;
+  s.push(idxV);
 
   while (!s.empty())
   {
@@ -557,7 +566,7 @@ void Operations::dfs(Graph g, int v)
   }
 
   SearchResult result = SearchResult{.numNodes = numNodes,
-                                     .initialNode = v,
+                                     .initialNode = idxV,
                                      .predecessors = pred,
                                      .visited = visited};
 
@@ -568,9 +577,9 @@ void Operations::dfs(Graph g, int v)
  * This function does a Breadth-First Search(BFS) in the graph beggining
  *  in the vertex "v" and displays the result in the terminal
  * @param g The graph to be checked
- * @param v The index of the initial search vertex
+ * @param v The "name" of the initial search vertex
  */
-void Operations::bfs(Graph g, int v) { /*TO-DO*/ }
+void Operations::bfs(Graph g, string v) { /*TO-DO*/ }
 
 /**!
  * This function determinates the articulations and the blocks of the graph
@@ -633,6 +642,6 @@ void Operations::indirectStarToAdjMatrix(/*Dont know*/)
  * @param d The digraph to be checked
  * @param v The index of the initial search vertex
  */
-void Operations::dfs(Digraph d, int v) { /*TO-DO*/ }
+void Operations::dfs(Digraph d, string v) { /*TO-DO*/ }
 
 void Operations::application() { /*TO-DO*/ }
