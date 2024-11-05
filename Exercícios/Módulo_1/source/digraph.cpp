@@ -5,7 +5,7 @@ using namespace sml;
 /**!
  * Constructor default of the digraph class
  */
-Digraph::Digraph(){/*EMPTY*/}
+Digraph::Digraph(void){/*EMPTY*/}
 
 /**!
  * Constructor of the digraph class that initializes the
@@ -37,7 +37,7 @@ Digraph::Digraph(int numNodes){
 /**!
  *  This function prints the adjacency list.
 */   
-void Digraph::printAdjList(){
+void Digraph::printAdjList(void){
     cout << endl;
     cout << "============================================" << endl;
     cout << "               ADJACENCY LIST               " << endl;
@@ -58,7 +58,7 @@ void Digraph::printAdjList(){
 /**!
  *  This function prints the adjacency matrix.
 */  
-void Digraph::printAdjMatrix(){
+void Digraph::printAdjMatrix(void){
     cout << endl;
     cout << "============================================" << endl;
     cout << "              ADJACENCY MATRIX              " << endl;
@@ -90,8 +90,8 @@ void Digraph::printAdjMatrix(){
 /**!
  *  This function prints the incidence matrix.
 */        
-void Digraph::printIncMatrix(){
-    cout << endl;
+void Digraph::printIncMatrix(void){
+   cout << endl;
     cout << "============================================" << endl;
     cout << "              INCIDENCE MATRIX              " << endl;
     cout << "============================================" << endl;
@@ -126,8 +126,17 @@ void Digraph::printIncMatrix(){
   * @return Number of nodes
  */
 
-int Digraph::getNumNodes(){
+int Digraph::getNumNodes(void){
     return numNodes;
+}
+
+/**!
+ *  This function returns the dictionary map.
+ *
+ *  @return The dictionary map.
+*/
+map<int, string> Digraph::getDictionary(void){
+    return dictionary;
 }
 
 /**!
@@ -135,7 +144,7 @@ int Digraph::getNumNodes(){
  *
  *  @return The adjacency list.
 */
-map<int,vector<int>> Digraph::getAdjList(){
+map<int,vector<int>> Digraph::getAdjList(void){
     return adjList;
 }
 
@@ -144,7 +153,7 @@ map<int,vector<int>> Digraph::getAdjList(){
  *
  *  @return The adjacency matrix.
 */
-vector<vector<int>> Digraph::getAdjMatrix(){
+vector<vector<int>> Digraph::getAdjMatrix(void){
     return adjMatrix;
 }
 
@@ -153,8 +162,19 @@ vector<vector<int>> Digraph::getAdjMatrix(){
  *
  *  @return The incidence matrix.
 */
-vector<vector<int>> Digraph::getIncMatrix(){
+vector<vector<int>> Digraph::getIncMatrix(void){
     return incMatrix;
+}
+
+/**!
+ * This function updates the dictionary map by replacing the 
+ * actual one with the one passed as parameter.
+ *
+ *  @param dictionary The new version of the dictionary map to be
+ * updated
+*/
+void Digraph::updateDictionary(map<int,string> dictionary){
+    this->dictionary = dictionary;
 }
 
 /**!
@@ -193,7 +213,7 @@ void Digraph::updateIncMatrix(vector<vector<int>> incMatrix){
 /**!
  * This function waits for any entry from the terminal to end.
  */
-void Digraph::pause() {
+void Digraph::pause(void) {
   cout << "To return to the main menu, press Enter...";
   cin.get(); // Waits an entry
   cout << endl;
@@ -205,7 +225,7 @@ void Digraph::pause() {
  * caller.
  * @return An integer indication the index of the vertex
  */
-int Digraph::manageVertex(){
+int Digraph::manageVertex(void){
     int x;
     string str;
 
@@ -228,7 +248,7 @@ int Digraph::manageVertex(){
  * caller.
  * @return A pair of integers indication the indexes of the edge
  */
-pair<int,int> Digraph::manageEdge(){
+pair<int,int> Digraph::manageEdge(void){
     int x, y;
     string str;
 
@@ -254,7 +274,7 @@ pair<int,int> Digraph::manageEdge(){
  * functions related to them, until the user chooses to return
  * to the main menu.
  */
-void Digraph::runMenu() {
+void Digraph::runMenu(void) {
   int opt = -1;
   string str;
 
@@ -305,7 +325,7 @@ void Digraph::runMenu() {
  * This function displays the digraph menu of the
  * simulation.
  */
-void Digraph::displayMenu() {
+void Digraph::displayMenu(void) {
   cout << "============================================" << endl;
   cout << "               DIGRAPH MENU                 " << endl;
   cout << "============================================" << endl;

@@ -99,8 +99,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
     } else {
 
       // Read the graph from the file
-      int x, y;
-      char v1, v2;
+      string v1, v2;
       int numNodes, numConnection = 0;
 
       string line;
@@ -115,7 +114,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
       this->graph = Graph(numNodes);
       this->digraph = Digraph(numNodes);
 
-      vector<char> dictionary = graph.getDictionary();
+      map<int, string> dictionary = graph.getDictionary();
       map<int, vector<int>> adjList = graph.getAdjList();
       vector<vector<int>> adjMatrix = graph.getAdjMatrix();
       vector<vector<int>> incMatrix = graph.getIncMatrix();
@@ -126,45 +125,57 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
           continue;
 
         istringstream ss(line);
-        ss >> v1 >> trash >> v2;
+        getline(ss, v1, ',');
+        getline(ss, v2);
 
-        if(v1>='a' && v1 <='z'){
-          x = v1 - 'a'+1;
-          y = v2 - 'a'+1;
-        } else {
-          x = v1 - '0';
-          y = v2 - '0';
-        }
 
         cout << "Reading connection " << v1 << " " << v2 << endl;
-    
-
+        
+        int x = -1, y = -1;
 
         //Update the dictionary
-        dictionary.push_back(v1);
-        dictionary.push_back(v2);
+        for(auto i{0}; i<dictionary.size();++i){
+          if(dictionary[i] == v1){
+            x = i;
+          }
+          else if(dictionary[i] == v2){
+            y = i;
+          }
+        }
+        
+        if(x == -1){
+          x = dictionary.size();
+          dictionary[x] = v1;
+        }
+        cout << x << " " << dictionary[x] << endl;
+        
+        if(y == -1){
+          y = dictionary.size();
+          dictionary[y] = v2;
+        }
+        cout << y << " " << dictionary[y] << endl;
 
         if (dictionary.size() > numNodes) {
           return usage("Error: Node out-of-index");
         }
 
         // Update the adjacency list
-        adjList[x].push_back(y);
-        adjList[y].push_back(x);
+        adjList[x+1].push_back(y+1);
+        adjList[y+1].push_back(x+1);
 
         cout << "Sucessfully addded connection in the adjacency list" << endl;
 
         // Update the adjancency matrix
-        adjMatrix[x - 1][y - 1] = 1;
-        adjMatrix[y - 1][x - 1] = 1;
+        adjMatrix[x][y] = 1;
+        adjMatrix[y][x] = 1;
 
         cout << "Sucessfully addded connection in the adjacency matrix" << endl;
 
         // Update the incidence matrix
         incMatrix.push_back(vector<int>(numNodes, 0));
 
-        incMatrix[numConnection][x - 1] = 1;
-        incMatrix[numConnection][y - 1] = 1;
+        incMatrix[numConnection][x] = 1;
+        incMatrix[numConnection][y] = 1;
 
         cout << "Sucessfully addded connection in the incidence matrix" << endl;
 
@@ -178,6 +189,8 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
       graph.updateDictionary(dictionary);
 
       operations = Operations(graph, digraph);
+
+      cout << "Sucessfully initialized" << endl;
 
       return SimulationResult("", simulation_result_e(0));
     }

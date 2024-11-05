@@ -43,11 +43,11 @@ void Graph::printAdjList(void){
     cout << "============================================" << endl;
     cout << "               ADJACENCY LIST                " << endl;
     cout << "============================================" << endl;
-    for(int i = 1; i <= numNodes; i++){
+    for(int i = 0; i < numNodes; i++){
         
-        cout << "Adjacency list of node " << i << " : ";
-        for(int j = 0; j < adjList[i].size(); j++){
-            cout << adjList[i][j] << " ";
+        cout << "Adjacency list of node " << dictionary[i] << " : ";
+        for(int j = 0; j < adjList[i+1].size(); j++){
+            cout << dictionary[adjList[i+1][j]-1] << " ";
         }
         cout << endl;
     }
@@ -60,13 +60,13 @@ void Graph::printAdjList(void){
  *  This function prints the adjacency matrix.
 */  
 void Graph::printAdjMatrix(void){
-    cout << endl;
+     cout << endl;
     cout << "============================================" << endl;
     cout << "              ADJACENCY MATRIX              " << endl;
     cout << "============================================" << endl;
     cout << "\\ ";
-    for(int j = 0; j < numNodes; j++){
-        cout << " " << j+1;
+    for(int i = 0; i < numNodes; i++){
+        cout << " " << dictionary[i];
     }
     cout << endl;
 
@@ -77,7 +77,7 @@ void Graph::printAdjMatrix(void){
     cout << endl;
 
     for(int i = 0; i < numNodes; i++){
-        cout << i+1 << "| ";
+        cout << dictionary[i] << "| ";
         for(int j = 0; j < numNodes; j++){
             cout << adjMatrix[i][j] << " ";
         }
@@ -97,13 +97,13 @@ void Graph::printIncMatrix(void){
     cout << "              INCIDENCE MATRIX              " << endl;
     cout << "============================================" << endl;
     cout << "\\ ";
-    for(int j = 0; j < numNodes; j++){
-        cout << " " << j+1;
+    for(int i = 0; i < numNodes; i++){
+        cout << " " << dictionary[i];
     }
     cout << endl;
 
     cout << "  ";
-    for(int j = 0; j < numNodes; j++){
+    for(int i = 0; i < numNodes; i++){
         cout << "--";
     }
     cout << endl;
@@ -132,11 +132,11 @@ int Graph::getNumNodes(void){
 }
 
 /**!
- *  This function returns the dictionary list.
+ *  This function returns the dictionary map.
  *
  *  @return The dictionary list.
 */
-vector<char> Graph::getDictionary(void){
+map<int, string> Graph::getDictionary(void){
     return dictionary;
 }
 
@@ -168,13 +168,13 @@ vector<vector<int>> Graph::getIncMatrix(void){
 }
 
 /**!
- * This function updates the dictionary list by replacing the 
+ * This function updates the dictionary map by replacing the 
  * actual one with the one passed as parameter.
  *
- *  @param adjList The new version of the dictionary list to be
+ *  @param dictionary The new version of the dictionary map to be
  * updated
 */
-void Graph::updateDictionary(vector<char> dictionary){
+void Graph::updateDictionary(map<int, string> dictionary){
     this->dictionary = dictionary;
 }
 
@@ -316,7 +316,7 @@ void Graph::runMenu(void) {
             pause();
             break;
         default:
-        cout << "Select a valid option." << endl;
+            cout << "Select a valid option." << endl;
         break;
     }
   }  

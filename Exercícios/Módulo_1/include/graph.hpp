@@ -10,6 +10,9 @@
 #include <map>
 using std::map;
 
+#include <set>
+using std::set;
+
 #include <vector>
 using std::vector;
 
@@ -30,7 +33,7 @@ namespace sml {
         //== Private Members
         private:
             int numNodes;                  //!< The amount of vertices of the graph;
-            vector<char> dictionary;       //!< The list that keeps the name of each vertex;
+            map<int, string> dictionary;     //!< The list that keeps the name of each vertex;
             map<int, vector<int>> adjList; //!< The adjacency list that represents the graph;
             vector<vector<int>> adjMatrix; //!< The adjacency matrix that represents the graph;
             vector<vector<int>> incMatrix; //!< The incidence matrix that represents the graph;
@@ -40,11 +43,11 @@ namespace sml {
             Graph(void);
             Graph(int numNodes);
             int getNumNodes(void);
-            vector<char> getDictionary(void);
+            map<int, string> getDictionary(void);
             map<int,vector<int>> getAdjList(void);
             vector<vector<int>> getAdjMatrix(void);
             vector<vector<int>> getIncMatrix(void);
-            void updateDictionary(vector<char> dictionary);
+            void updateDictionary(map<int, string> dictionary);
             void updateAdjList(map<int, vector<int>> adjList);
             void updateAdjMatrix(vector<vector<int>> adjMatrix);
             void updateIncMatrix(vector<vector<int>> incMatrix);
