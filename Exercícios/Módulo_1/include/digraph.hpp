@@ -30,10 +30,11 @@ namespace sml {
     class Digraph
     {
     private:
-        int numNodes;
-        map<int, vector<int>> adjList; //!< The adjacency list that represents the graph;
-        vector<vector<int>> adjMatrix; //!< The adjacency matrix that represents the graph;
-        vector<vector<int>> incMatrix; //!< The incidence matrix that represents the graph;
+        int numNodes;                  //!< The amount of vertices of the digraph;
+        vector<string> dictionary;     //!< The list that keeps the name of each vertex;
+        map<int, vector<int>> adjList; //!< The adjacency list that represents the digraph;
+        vector<vector<int>> adjMatrix; //!< The adjacency matrix that represents the digraph;
+        vector<vector<int>> incMatrix; //!< The incidence matrix that represents the digraph;
 
         //Printing methods
         void printAdjList();

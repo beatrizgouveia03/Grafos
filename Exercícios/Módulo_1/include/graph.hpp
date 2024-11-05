@@ -29,7 +29,8 @@ namespace sml {
     class Graph
     {
     private:
-        int numNodes;
+        int numNodes;                  //!< The amount of vertices of the graph;
+        vector<string> dictionary;     //!< The list that keeps the name of each vertex;
         map<int, vector<int>> adjList; //!< The adjacency list that represents the graph;
         vector<vector<int>> adjMatrix; //!< The adjacency matrix that represents the graph;
         vector<vector<int>> incMatrix; //!< The incidence matrix that represents the graph;
