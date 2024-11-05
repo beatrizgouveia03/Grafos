@@ -14,6 +14,15 @@ Simulation::Simulation() {
 }
 
 /**!
+ * This function waits for any entry from the terminal to end.
+ */
+void Simulation::pause(){
+  cout << "To return to the main menu, press Enter...";
+  cin.get(); // Waits an entry
+  cout << endl;
+}
+
+/**!
  * This function displays the main menu of the
  * simulation.
  */
