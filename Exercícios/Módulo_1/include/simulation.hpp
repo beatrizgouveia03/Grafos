@@ -42,12 +42,9 @@ private:
   Operations operations;
 
   void pause();
-  void manageDigraph();
-  void manageOperations();
-
   void displayMainMenu();
-  void displayDigraphMenu();
-  void displayOperationsMenu();
+  void readGraph(int x);
+  
 
 public:
   // Contructors and Destructors
