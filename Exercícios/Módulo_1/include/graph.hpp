@@ -26,52 +26,43 @@ using std::string;
 using std::pair;
 using std::make_pair;
 namespace sml {
-    class Graph
-    {
-    private:
-        int numNodes;                  //!< The amount of vertices of the graph;
-        vector<string> dictionary;     //!< The list that keeps the name of each vertex;
-        map<int, vector<int>> adjList; //!< The adjacency list that represents the graph;
-        vector<vector<int>> adjMatrix; //!< The adjacency matrix that represents the graph;
-        vector<vector<int>> incMatrix; //!< The incidence matrix that represents the graph;
+    class Graph {
+        //== Private Members
+        private:
+            int numNodes;                  //!< The amount of vertices of the graph;
+            vector<char> dictionary;       //!< The list that keeps the name of each vertex;
+            map<int, vector<int>> adjList; //!< The adjacency list that represents the graph;
+            vector<vector<int>> adjMatrix; //!< The adjacency matrix that represents the graph;
+            vector<vector<int>> incMatrix; //!< The incidence matrix that represents the graph;
 
-        //Printing functions
-        void printAdjList();
-        void printAdjMatrix();
-        void printIncMatrix();
-
-        //Modification functions
-        void addVertex(int x);
-        void addEdge(pair<int, int> x);
-
-        void removeVertex(int x);
-        void removeEdge(pair<int,int> x);
-
-        int manageVertex();
-        pair<int,int> manageEdge();
-
-        //Menu
-        void pause();
-        void displayMenu();
-
-    public:
-        //Contructors
-        Graph();
-        Graph(int numNodes);
-
-        //Get methods
-        map<int,vector<int>> getAdjList();
-        vector<vector<int>> getAdjMatrix();
-        vector<vector<int>> getIncMatrix();
-        int getNumNodes();
-        
-        //Update(set) methods
-        void updateAdjList(map<int, vector<int>> adjList);
-        void updateAdjMatrix(vector<vector<int>> adjMatrix);
-        void updateIncMatrix(vector<vector<int>> incMatrix);
-        
-        //Menu
-        void runMenu();
+        //== Public Membes
+        public:
+            Graph(void);
+            Graph(int numNodes);
+            int getNumNodes(void);
+            vector<char> getDictionary(void);
+            map<int,vector<int>> getAdjList(void);
+            vector<vector<int>> getAdjMatrix(void);
+            vector<vector<int>> getIncMatrix(void);
+            void updateDictionary(vector<char> dictionary);
+            void updateAdjList(map<int, vector<int>> adjList);
+            void updateAdjMatrix(vector<vector<int>> adjMatrix);
+            void updateIncMatrix(vector<vector<int>> incMatrix);
+            void runMenu(void);
+    
+        //== Aux Methods
+        private:
+            void pause(void);
+            void displayMenu(void);
+            void printAdjList(void);
+            void printAdjMatrix(void);
+            void printIncMatrix(void);
+            void addVertex(int x);
+            void addEdge(pair<int, int> x);
+            void removeVertex(int x);
+            void removeEdge(pair<int,int> x);
+            int manageVertex(void);
+            pair<int,int> manageEdge(void);
     };    
 }
 

@@ -6,7 +6,7 @@ using namespace sml;
 /**!
  * Constructor default of the graph class
  */
-Graph::Graph(){/*EMPTY*/}
+Graph::Graph(void){/*EMPTY*/}
 
 /**!
  * Constructor of the graph class that initializes the
@@ -38,7 +38,7 @@ Graph::Graph(int numNodes){
 /**!
  *  This function prints the adjacency list.
 */   
-void Graph::printAdjList(){
+void Graph::printAdjList(void){
     cout << endl;
     cout << "============================================" << endl;
     cout << "               ADJACENCY LIST                " << endl;
@@ -59,7 +59,7 @@ void Graph::printAdjList(){
 /**!
  *  This function prints the adjacency matrix.
 */  
-void Graph::printAdjMatrix(){
+void Graph::printAdjMatrix(void){
     cout << endl;
     cout << "============================================" << endl;
     cout << "              ADJACENCY MATRIX              " << endl;
@@ -91,7 +91,7 @@ void Graph::printAdjMatrix(){
 /**!
  *  This function prints the incidence matrix.
 */        
-void Graph::printIncMatrix(){
+void Graph::printIncMatrix(void){
     cout << endl;
     cout << "============================================" << endl;
     cout << "              INCIDENCE MATRIX              " << endl;
@@ -127,8 +127,17 @@ void Graph::printIncMatrix(){
   * @return Number of nodes
  */
 
-int Graph::getNumNodes(){
+int Graph::getNumNodes(void){
     return numNodes;
+}
+
+/**!
+ *  This function returns the dictionary list.
+ *
+ *  @return The dictionary list.
+*/
+vector<char> Graph::getDictionary(void){
+    return dictionary;
 }
 
 /**!
@@ -136,7 +145,7 @@ int Graph::getNumNodes(){
  *
  *  @return The adjacency list.
 */
-map<int,vector<int>> Graph::getAdjList(){
+map<int,vector<int>> Graph::getAdjList(void){
     return adjList;
 }
 
@@ -145,7 +154,7 @@ map<int,vector<int>> Graph::getAdjList(){
  *
  *  @return The adjacency matrix.
 */
-vector<vector<int>> Graph::getAdjMatrix(){
+vector<vector<int>> Graph::getAdjMatrix(void){
     return adjMatrix;
 }
 
@@ -154,8 +163,19 @@ vector<vector<int>> Graph::getAdjMatrix(){
  *
  *  @return The incidence matrix.
 */
-vector<vector<int>> Graph::getIncMatrix(){
+vector<vector<int>> Graph::getIncMatrix(void){
     return incMatrix;
+}
+
+/**!
+ * This function updates the dictionary list by replacing the 
+ * actual one with the one passed as parameter.
+ *
+ *  @param adjList The new version of the dictionary list to be
+ * updated
+*/
+void Graph::updateDictionary(vector<char> dictionary){
+    this->dictionary = dictionary;
 }
 
 /**!
@@ -194,7 +214,7 @@ void Graph::updateIncMatrix(vector<vector<int>> incMatrix){
 /**!
  * This function waits for any entry from the terminal to end.
  */
-void Graph::pause() {
+void Graph::pause(void) {
   cout << "To return to the main menu, press Enter...";
   cin.get(); // Waits an entry
   cout << endl;
@@ -206,7 +226,7 @@ void Graph::pause() {
  * caller.
  * @return An integer indication the index of the vertex
  */
-int Graph::manageVertex(){
+int Graph::manageVertex(void){
     int x;
     string str;
 
@@ -229,7 +249,7 @@ int Graph::manageVertex(){
  * caller.
  * @return A pair of integers indication the indexes of the edge
  */
-pair<int,int> Graph::manageEdge(){
+pair<int,int> Graph::manageEdge(void){
     int x, y;
     string str;
 
@@ -255,7 +275,7 @@ pair<int,int> Graph::manageEdge(){
  * functions related to them, until the user chooses to return
  * to the main menu.
  */
-void Graph::runMenu() {
+void Graph::runMenu(void) {
   int opt = -1;
   string str;
 
@@ -306,7 +326,7 @@ void Graph::runMenu() {
  * This function displays the graph menu of the
  * simulation.
  */
-void Graph::displayMenu() {
+void Graph::displayMenu(void) {
   cout << "============================================" << endl;
   cout << "               GRAPH MENU                 " << endl;
   cout << "============================================" << endl;
