@@ -469,6 +469,7 @@ void Operations::dfs(Graph g, string v)
   }
   vector<bool> visited = vector(numNodes + 1, false);
   vector<int> pred = vector(numNodes + 1, -1);
+  vector<pair<int,int>> backEdges;
   stack<int> s;
 
   visited[idxV] = true;
@@ -486,14 +487,23 @@ void Operations::dfs(Graph g, string v)
         visited[adj] = true;
         pred[adj] = curr;
         s.push(adj);
-      }
+      } else if (pred[curr] != adj){
+				// the current node (`curr`) has been previously visited
+				// but is being visited again since its adjacent to `adj`
+				// so we generate a back edge to it
+				
+				// back edge from `curr` to `adj`
+				backEdges.push_back({curr, adj});
+			}
     }
   }
 
-  SearchResult result = SearchResult{.numNodes = numNodes,
-                                     .initialNode = idxV,
-                                     .predecessors = pred,
-                                     .visited = visited};
+  SearchResult result = SearchResult{
+		.numNodes = numNodes,
+		.initialNode = idxV,
+		.visited = visited,
+		.backEdges = backEdges
+	};
 
   cout << result;
 }

@@ -38,13 +38,14 @@ namespace sml {
     int initialNode;
     vector<int> predecessors;
     vector<bool> visited;
+		vector<pair<int, int>> backEdges;
 
     friend ostream &operator<<(ostream &os, const SearchResult &result) {
       os << left; // Align to the left
 
       // Print header
       os << setw(15) << "Node" << setw(15) << "Visited" << setw(15)
-        << "Predecessor" << '\n';
+        << "Predecessor" <<  "Backedge (From -> To)" <<'\n';
 
       // Print separator
       os << setfill('-') << setw(45) << "" << setfill(' ') << '\n';
@@ -54,6 +55,7 @@ namespace sml {
         os << setw(15) << i                      // Node number
           << setw(15) << result.visited[i]      // Visited status
           << setw(15) << result.predecessors[i] // Predecessor
+          << setw(15) << result.backEdges[i].first << "->" << result.backEdges[i].second
           << '\n';
       }
 
