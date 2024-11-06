@@ -1,5 +1,6 @@
 #include "graph.hpp"
 
+
 using namespace sml;
 
 
@@ -345,8 +346,28 @@ void Graph::displayMenu(void) {
  * This function adds a new vertex to the graph along with its edges.
  * @param v The index of the vertex to be added
 */
-void Graph::addVertex(int v){
-    /*TO-DO*/
+void Graph::addVertex(int v) {
+    if (adjList.find(v) != adjList.end()) {
+        cout << "Vertex " << v << " already exists." << endl;
+        return;
+    }
+
+    adjList[v]; 
+
+    for (auto &row : adjMatrix) {
+        row.push_back(0); 
+    }
+    adjMatrix.push_back(vector<int>(numNodes + 1, 0)); 
+
+       for (auto &row : incMatrix) {
+        row.push_back(0); 
+    }
+    incMatrix.push_back(vector<int>(incMatrix[0].size(), 0));
+
+    numNodes++;
+    cout << "Vertex " << v << " added successfully." << endl;
+
+    printAdjMatrix();
 }
 
 
@@ -363,8 +384,44 @@ void Graph::addEdge(pair<int,int> v){
  * This function removes a vertex to the graph along with its edges
  * @param v The index of the vertex to be removed
 */
-void Graph::removeVertex(int v){
-    /*TO-DO*/
+void Graph::removeVertex(int v) {
+    if (adjList.find(v) == adjList.end()) {
+        cout << "Vertex " << v << " does not exist." << endl;
+        return;
+    }
+
+    adjList.erase(v);
+
+    for (auto &pair : adjList) {
+    auto &neighbors = pair.second;
+
+    for (auto it = neighbors.begin(); it != neighbors.end(); ) {
+        if (*it == v) {
+            it = neighbors.erase(it);
+        } else {
+            ++it;
+        }
+    }
+}
+    
+    if (v <= adjMatrix.size()) {
+        adjMatrix.erase(adjMatrix.begin() + (v - 1));  
+        for (auto &row : adjMatrix) {
+            row.erase(row.begin() + (v - 1)); 
+        }
+    }
+
+    
+    if (!incMatrix.empty()) {
+        incMatrix.erase(incMatrix.begin() + (v - 1)); 
+        for (auto &row : incMatrix) {
+            if (v - 1 < row.size()) row.erase(row.begin() + (v - 1)); 
+        }
+    }
+
+    numNodes--;
+
+    cout << "Vertex " << v << " removed successfully from the adjacency list, adjacency matrix, and incidence matrix." << endl;
 }
 
 /**!
