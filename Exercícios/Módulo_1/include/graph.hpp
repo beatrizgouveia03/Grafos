@@ -49,6 +49,7 @@ namespace sml {
             Graph(void);
             Graph(int numNodes);
             int getNumNodes(void);
+            void printGraph(void);
             void printAdjList(void);
             void printAdjMatrix(void);
             void printIncMatrix(void);

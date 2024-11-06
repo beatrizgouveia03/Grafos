@@ -37,6 +37,15 @@ Graph::Graph(int numNodes){
 }
 
 /**!
+ *  This function calls all the printing functions of the graph.
+*/ 
+void Graph::printGraph(void){
+    printAdjList();
+    printAdjMatrix();
+    printIncMatrix();
+}
+
+/**!
  *  This function prints the adjacency list.
 */   
 void Graph::printAdjList(void){
@@ -392,9 +401,7 @@ void Graph::addVertex(string v) {
 
     cout << "Vertex " << v << " added successfully." << endl;
 
-    printAdjList();
-    printAdjMatrix();
-    printIncMatrix();
+    printGraph();
 }
 
 
@@ -438,9 +445,7 @@ void Graph::addEdge(pair<string,string> vs){
 
    cout << "Edge added sucessfully on the graph." << endl;
 
-   printAdjList();
-   printAdjMatrix();
-   printIncMatrix();
+   printGraph();
 }
 
 /**!
@@ -484,9 +489,7 @@ void Graph::removeVertex(string v) {
     
     cout << "Vertex " << v << " removed successfully from the graph." << endl;
 
-    printAdjList();
-    printAdjMatrix();
-    printIncMatrix();
+    printGraph();
 }
 
 /**!
@@ -528,7 +531,5 @@ void Graph::removeEdge(pair<string,string> vs){
 
    cout << "Edge removed sucessfully from the graph." << endl;
 
-   printAdjList();
-   printAdjMatrix();
-   printIncMatrix();
+   printGraph();
 }
