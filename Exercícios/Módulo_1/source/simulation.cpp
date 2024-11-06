@@ -6,7 +6,7 @@ using namespace sml;
 /**!
  * Constructor default of the simulation class
  */
-Simulation::Simulation() {
+Simulation::Simulation(void) {
   // Initialize the simulation
   this->graph = Graph();
   this->digraph = Digraph();
@@ -14,10 +14,19 @@ Simulation::Simulation() {
 }
 
 /**!
+ * This function waits for any entry from the terminal to end.
+ */
+void Simulation::pause(void){
+  cout << "To return to the main menu, press Enter...";
+  cin.get(); // Waits an entry
+  cout << endl;
+}
+
+/**!
  * This function displays the main menu of the
  * simulation.
  */
-void Simulation::displayMainMenu() {
+void Simulation::displayMainMenu(void) {
   cout << "============================================" << endl;
   cout << "                MAIN MENU                   " << endl;
   cout << "============================================" << endl;
@@ -33,9 +42,11 @@ void Simulation::displayMainMenu() {
  * This function loops around the main menu calling the
  * functions related to them, until the user chooses to end the program.
  */
-void Simulation::run() {
+void Simulation::run(void) {
   int opt = -1;
   string str;
+
+  cout << "Initializing simulation..." << endl;
 
   while (opt != 0) {
     displayMainMenu();
@@ -70,13 +81,13 @@ void Simulation::run() {
  * @param argc An integer indicating the amount of arguments passed on the
  * terminal
  * @param argv The list of the arguments passed on the terminal
+ * @return  A struct indicating if was successful the initialization
  */
-void Simulation::initialize(int argc, char *argv[]) {
+SimulationResult Simulation::initialize(int argc, char *argv[]) {
   // Initialize the simulation
   // Process command line arguments
   if (argc <= 1) {
-    cerr << "Error: Missing filename" << endl;
-    return;
+    return usage("Error: Missing filename");
   } else {
     string filename = argv[1];
     ifstream file(filename);
@@ -84,12 +95,11 @@ void Simulation::initialize(int argc, char *argv[]) {
     cout << "Initializing the simulation..." << endl;
 
     if (!file.is_open()) {
-      cerr << "Error: unable to open file " << filename << endl;
-      return;
+      return usage("Error: unable to open file");
     } else {
 
       // Read the graph from the file
-      int x, y;
+      string v1, v2;
       int numNodes, numConnection = 0;
 
       string line;
@@ -104,9 +114,15 @@ void Simulation::initialize(int argc, char *argv[]) {
       this->graph = Graph(numNodes);
       this->digraph = Digraph(numNodes);
 
+      map<int, string> dictionary = graph.getDictionary();
       map<int, vector<int>> adjList = graph.getAdjList();
       vector<vector<int>> adjMatrix = graph.getAdjMatrix();
       vector<vector<int>> incMatrix = graph.getIncMatrix();
+
+      map<int, string> diDictionary = digraph.getDictionary();
+      map<int, vector<int>> diAdjList = digraph.getAdjList();
+      vector<vector<int>> diAdjMatrix = digraph.getAdjMatrix();
+      vector<vector<int>> diIncMatrix = digraph.getIncMatrix();
 
       // Read the connections from the file
       while (getline(file, line)) {
@@ -114,32 +130,61 @@ void Simulation::initialize(int argc, char *argv[]) {
           continue;
 
         istringstream ss(line);
-        ss >> x >> trash >> y;
+        getline(ss, v1, ',');
+        getline(ss, v2);
 
-        cout << "Reading connection " << x << " " << y << endl;
 
-        if (x <= 0 | x > numNodes | y <= 0 | y > numNodes) {
-          cerr << "Error: Node out-of-index" << endl;
-          return;
+        cout << "Reading connection " << v1 << " " << v2 << endl;
+        
+        int x = -1, y = -1;
+
+        //Update the dictionary
+        for(auto i{0}; i<dictionary.size();++i){
+          if(dictionary[i] == v1){
+            x = i;
+          }
+          else if(dictionary[i] == v2){
+            y = i;
+          }
+        }
+        
+        if(x == -1){
+          x = dictionary.size();
+          dictionary[x] = v1;
+        }
+        cout << x << " " << dictionary[x] << endl;
+        
+        if(y == -1){
+          y = dictionary.size();
+          dictionary[y] = v2;
+        }
+        cout << y << " " << dictionary[y] << endl;
+
+        if (dictionary.size() > numNodes) {
+          return usage("Error: Node out-of-index");
         }
 
         // Update the adjacency list
-        adjList[x].push_back(y);
-        adjList[y].push_back(x);
+        adjList[x+1].push_back(y+1);
+        adjList[y+1].push_back(x+1);
+				
+				diAdjList[x+1].push_back(y+1);
 
         cout << "Sucessfully addded connection in the adjacency list" << endl;
 
         // Update the adjancency matrix
-        adjMatrix[x - 1][y - 1] = 1;
-        adjMatrix[y - 1][x - 1] = 1;
+        adjMatrix[x][y] = 1;
+        adjMatrix[y][x] = 1;
+
+				diAdjMatrix[x][y] = 1;
 
         cout << "Sucessfully addded connection in the adjacency matrix" << endl;
 
         // Update the incidence matrix
         incMatrix.push_back(vector<int>(numNodes, 0));
 
-        incMatrix[numConnection][x - 1] = 1;
-        incMatrix[numConnection][y - 1] = 1;
+        incMatrix[numConnection][x] = 1;
+        incMatrix[numConnection][y] = 1;
 
         cout << "Sucessfully addded connection in the incidence matrix" << endl;
 
@@ -150,10 +195,36 @@ void Simulation::initialize(int argc, char *argv[]) {
       graph.updateAdjList(adjList);
       graph.updateAdjMatrix(adjMatrix);
       graph.updateIncMatrix(incMatrix);
+      graph.updateDictionary(dictionary);
+
+
+      digraph.updateAdjList(diAdjList);
+      digraph.updateAdjMatrix(diAdjMatrix);
+      digraph.updateIncMatrix(diIncMatrix);
+      digraph.updateDictionary(diDictionary);
 
       operations = Operations(graph, digraph);
 
-      cout << "Sucessfully updated all the graph" << endl;
+      cout << "Sucessfully initialized" << endl;
+
+      return SimulationResult("", simulation_result_e(0));
     }
   }
+}
+
+/**!
+ *  This function shows in the terminal the usage options.
+ *
+ * @param message The usage error description message to be display 
+ * @return  A struct indicating that the reading failed and the error message
+ */
+SimulationResult Simulation::usage(string message){
+  if(message == "")
+  {
+    string usage = ">>> Usage: graph <input_entry_file>";
+
+    return SimulationResult(usage, simulation_result_e(1));
+  }
+
+  return SimulationResult(">>> "+ message + "\n", simulation_result_e(1));
 }

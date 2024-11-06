@@ -35,27 +35,41 @@ using std::vector;
 #include "operations.hpp"
 
 namespace sml {
-class Simulation {
-private:
-  Graph graph;
-  Digraph digraph;
-  Operations operations;
+  /// Simulation result machine
+  enum simulation_result_e
+  {
+    OK = 0,     //!< All the entries are as expect.
+    ERROR       //!< Some entry is missing something.
+  };
 
-  void pause();
-  void manageDigraph();
-  void manageOperations();
+  /// Game result machine
+  struct SimulationResult
+  {
+    string msg;                 //!< The message to be printed
+    simulation_result_e type;   //!< The simulation result
 
-  void displayMainMenu();
-  void displayDigraphMenu();
-  void displayOperationsMenu();
+    SimulationResult(string msg, simulation_result_e state): msg(msg), type(state){};
+  };
 
-public:
-  // Contructors and Destructors
-  Simulation();
+  class Simulation {
+    //== Private Members
+    private:
+      Graph graph;            //!< The graph of the simulation
+      Digraph digraph;        //!< The digraph of the simulation
+      Operations operations;  //!< The operations of the simulation
 
-  void run();
-  void initialize(int argc, char *argv[]);
-};
+    //=== Public Members
+    public:
+      Simulation(void);
+      void run(void);
+      SimulationResult initialize(int argc, char *argv[]);
+
+    //=== Aux methods
+    private:
+      void pause(void);
+      SimulationResult usage(string = "");
+      void displayMainMenu(void);      
+  };
 } // namespace sml
 
 #endif // SIMULATION_H
