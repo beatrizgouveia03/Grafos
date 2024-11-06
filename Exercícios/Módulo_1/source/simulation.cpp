@@ -119,6 +119,11 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
       vector<vector<int>> adjMatrix = graph.getAdjMatrix();
       vector<vector<int>> incMatrix = graph.getIncMatrix();
 
+      map<int, string> diDictionary = digraph.getDictionary();
+      map<int, vector<int>> diAdjList = digraph.getAdjList();
+      vector<vector<int>> diAdjMatrix = digraph.getAdjMatrix();
+      vector<vector<int>> diIncMatrix = digraph.getIncMatrix();
+
       // Read the connections from the file
       while (getline(file, line)) {
         if (line == string())
@@ -162,12 +167,16 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
         // Update the adjacency list
         adjList[x+1].push_back(y+1);
         adjList[y+1].push_back(x+1);
+				
+				diAdjList[x+1].push_back(y+1);
 
         cout << "Sucessfully addded connection in the adjacency list" << endl;
 
         // Update the adjancency matrix
         adjMatrix[x][y] = 1;
         adjMatrix[y][x] = 1;
+
+				diAdjMatrix[x][y] = 1;
 
         cout << "Sucessfully addded connection in the adjacency matrix" << endl;
 
@@ -187,6 +196,12 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
       graph.updateAdjMatrix(adjMatrix);
       graph.updateIncMatrix(incMatrix);
       graph.updateDictionary(dictionary);
+
+
+      digraph.updateAdjList(diAdjList);
+      digraph.updateAdjMatrix(diAdjMatrix);
+      digraph.updateIncMatrix(diIncMatrix);
+      digraph.updateDictionary(diDictionary);
 
       operations = Operations(graph, digraph);
 

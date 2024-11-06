@@ -50,6 +50,8 @@ namespace sml {
       // Print separator
       os << setfill('-') << setw(45) << "" << setfill(' ') << '\n';
 
+			
+		cout << result.numNodes << endl;
       // Print each node's information
       for (int i = 1; i <= result.numNodes; ++i) {
         os << setw(15) << i                      // Node number
