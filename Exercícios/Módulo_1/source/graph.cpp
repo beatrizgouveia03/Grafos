@@ -432,6 +432,7 @@ void Graph::removeVertex(string v) {
    for(int i{0}; i<incMatrix.size();++i){
         if(incMatrix[i][idxV] == 1){
             incMatrix.erase(incMatrix.begin()+i);
+            i--;
         }
    }
    
