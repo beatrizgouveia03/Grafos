@@ -31,6 +31,9 @@ using std::string;
 #include <utility>
 using std::pair;
 using std::make_pair;
+
+#include <algorithm>
+using std::remove;
 namespace sml {
     class Graph {
         //== Private Members

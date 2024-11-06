@@ -367,9 +367,9 @@ void Operations::adjacentsVertex(Graph g, pair<string, string> vs)
 
   for(int i{0}; i<g.getNumNodes(); ++i){
     if(dictionary[i] == vsu){
-      u = i;
+      u = i+1;
     } else if( dictionary[i] == vsv){
-      v = i;
+      v = i+1;
     }
   }
 
@@ -381,7 +381,7 @@ void Operations::adjacentsVertex(Graph g, pair<string, string> vs)
   if ((uAdj != adjList.end() && find(uAdj->second.begin(), uAdj->second.end(), v) != uAdj->second.end()) ||
       (vAdj != adjList.end() && find(vAdj->second.begin(), vAdj->second.end(), u) != vAdj->second.end()))
   {
-    cout << v << " e " << u << " are adjacents." << endl;
+    cout << vsu << " e " << vsv << " are adjacents." << endl;
   }
 }
 

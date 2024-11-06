@@ -416,47 +416,25 @@ void Graph::removeVertex(string v) {
         cout << "Vertex " << v << " does not exist." << endl;
         return;
     }
-    
-    cout << idxV << endl;
 
+
+    for(int i{0}; i<numNodes; ++i){
+        //Removed edges from de adjList
+        auto &aux = adjList[i];
+        aux.erase(remove(aux.begin(), aux.end(), idxV+1), aux.end());
+
+        //Remove the edge from the adjMatrix
+        adjMatrix[idxV][i] = -1;
+        adjMatrix[i][idxV] = -1;
+    }
     adjList[idxV+1] = {0};
 
-    for(auto i{0}; i<numNodes; ++i){
-        for(auto j{0}; j<adjList[i].size();++j){
-            if(adjList[i][j] == idxV){
-               
-            }
+   for(int i{0}; i<incMatrix.size();++i){
+        if(incMatrix[i][idxV] == 1){
+            incMatrix.erase(incMatrix.begin()+i);
         }
-    }
-
-    //for (auto &pair : adjList) {
-   //    auto &neighbors = pair.second;
-
-   //    for (auto it = neighbors.begin(); it != neighbors.end(); ) {
-   //        if (*it == idxV) {
-   //            it = neighbors.erase(it);
-   //        } else {
-   //            ++it;
-   //        }
-   //    }
-   //}
-   //
-   //if (idxV <= adjMatrix.size()) {
-   //    adjMatrix.erase(adjMatrix.begin() + (idxV - 1));  
-   //    for (auto &row : adjMatrix) {
-   //        row.erase(row.begin() + (idxV - 1)); 
-   //    }
-   //}
-
-   //
-   //if (!incMatrix.empty()) {
-   //    incMatrix.erase(incMatrix.begin() + (idxV - 1)); 
-   //    for (auto &row : incMatrix) {
-   //        if (idxV - 1 < row.size()) {
-   //            row.erase(row.begin() + (idxV - 1));
-   //        }
-   //    }
-   //}
+   }
+   
     dictionary[-1] = "Deleted";
     
     cout << "Vertex " << v << " removed successfully from the adjacency list, adjacency matrix, and incidence matrix." << endl;
@@ -472,5 +450,4 @@ void Graph::removeVertex(string v) {
  * of the vertices to be disconnected
 */
 void Graph::removeEdge(pair<string,string> vs){
-    /*TO-DO*/
 }
