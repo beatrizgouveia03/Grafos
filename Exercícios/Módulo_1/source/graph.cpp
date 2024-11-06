@@ -222,20 +222,22 @@ void Graph::pause(void) {
 }
 
 /**!
- * This function collects the index of the vertex that is 
+ * This function collects the "name" of the vertex that is 
  * wanted to be removed/inserted and returns it to the
  * caller.
- * @return An integer indication the index of the vertex
+ * @return A string indication the "name" of the vertex
  */
-int Graph::manageVertex(void){
-    int x;
-    string str;
+string Graph::manageVertex(void){
+    string str, x;
 
     cout << "Insert the index of the vertex: " << endl;
     getline(cin, str);
-    x = stoi(str);
+    
+    istringstream ss(str);
+    getline(ss, x);
 
-    if( x<=0 ) {
+     if (x == " ")
+    {
         cout << "Insert a valid index." << endl;
         return manageVertex();
     }
@@ -245,23 +247,28 @@ int Graph::manageVertex(void){
 }
 
 /**!
- * This function collects the index of the vertices of the edge
+ * This function collects the "names" of the vertices of the edge
  * that is wanted to be removed/inserted and returns it to the
  * caller.
- * @return A pair of integers indication the indexes of the edge
+ * @return A pair of strings indication the "names" of the vertices
  */
-pair<int,int> Graph::manageEdge(void){
-    int x, y;
-    string str;
+pair<string,string> Graph::manageEdge(void){
+    string str, x, y;
 
     cout << "Insert the index of the first vertex: " << endl;
     getline(cin, str);
-    x = stoi(str);
+    
+    istringstream ss(str);
+    getline(ss, x);
+    
     cout << "Insert the index of the second vertex: " << endl;
     getline(cin, str);
-    y = stoi(str);
+    
+    istringstream ss2(str);
+    getline(ss2, y);
 
-    if( x<=0 || y<=0 ) {
+    if (x == " " || y == " ")
+    {
         cout << "Insert a valid index." << endl;
         return manageEdge();
     }
@@ -344,91 +351,118 @@ void Graph::displayMenu(void) {
 
 /**!
  * This function adds a new vertex to the graph along with its edges.
- * @param v The index of the vertex to be added
+ * @param v The "name" of the vertex to be added
 */
-void Graph::addVertex(int v) {
-    if (adjList.find(v) != adjList.end()) {
+void Graph::addVertex(string v) {
+    int idxV = -1;
+    for(int i{0}; i<numNodes; ++i){
+        if(dictionary[i] == v){
+            idxV = i;
+            break;
+        }
+    }
+
+    if (idxV != -1) {
         cout << "Vertex " << v << " already exists." << endl;
         return;
     }
 
-    adjList[v]; 
+    adjList[idxV]; 
 
     for (auto &row : adjMatrix) {
         row.push_back(0); 
     }
     adjMatrix.push_back(vector<int>(numNodes + 1, 0)); 
 
-       for (auto &row : incMatrix) {
+    for (auto &row : incMatrix) {
         row.push_back(0); 
     }
     incMatrix.push_back(vector<int>(incMatrix[0].size(), 0));
 
+    dictionary[numNodes] = v;
     numNodes++;
+
     cout << "Vertex " << v << " added successfully." << endl;
 
+    printAdjList();
     printAdjMatrix();
+    printIncMatrix();
 }
 
 
 /**!
  * This function adds a new edge to the graph.
- * @param v A pair of integers representing the indexes
+ * @param vs A pair of strings representing the "names"
  * of the vertices to be connected
 */
-void Graph::addEdge(pair<int,int> v){
+void Graph::addEdge(pair<string,string> vs){
     /*TO-DO*/
 }
 
 /**!
  * This function removes a vertex to the graph along with its edges
- * @param v The index of the vertex to be removed
+ * @param v The "name" of the vertex to be removed
 */
-void Graph::removeVertex(int v) {
-    if (adjList.find(v) == adjList.end()) {
+void Graph::removeVertex(string v) {
+    int idxV = -1;
+    for(int i{0}; i<numNodes; ++i){
+        if(dictionary[i] == v){
+            idxV = i;
+            break;
+        }
+    }
+
+    if (idxV == -1) {
         cout << "Vertex " << v << " does not exist." << endl;
         return;
     }
 
-    adjList.erase(v);
+    adjList.erase(idxV);
 
     for (auto &pair : adjList) {
-    auto &neighbors = pair.second;
+        auto &neighbors = pair.second;
 
-    for (auto it = neighbors.begin(); it != neighbors.end(); ) {
-        if (*it == v) {
-            it = neighbors.erase(it);
-        } else {
-            ++it;
+        for (auto it = neighbors.begin(); it != neighbors.end(); ) {
+            if (*it == idxV) {
+                it = neighbors.erase(it);
+            } else {
+                ++it;
+            }
         }
     }
-}
     
-    if (v <= adjMatrix.size()) {
-        adjMatrix.erase(adjMatrix.begin() + (v - 1));  
+    if (idxV <= adjMatrix.size()) {
+        adjMatrix.erase(adjMatrix.begin() + (idxV - 1));  
         for (auto &row : adjMatrix) {
-            row.erase(row.begin() + (v - 1)); 
+            row.erase(row.begin() + (idxV - 1)); 
         }
     }
 
     
     if (!incMatrix.empty()) {
-        incMatrix.erase(incMatrix.begin() + (v - 1)); 
+        incMatrix.erase(incMatrix.begin() + (idxV - 1)); 
         for (auto &row : incMatrix) {
-            if (v - 1 < row.size()) row.erase(row.begin() + (v - 1)); 
+            if (idxV - 1 < row.size()) {
+                row.erase(row.begin() + (idxV - 1));
+            }
         }
     }
 
+    dictionary[idxV] = "-1";
     numNodes--;
 
     cout << "Vertex " << v << " removed successfully from the adjacency list, adjacency matrix, and incidence matrix." << endl;
+
+    printAdjList();
+    printAdjMatrix();
+    printIncMatrix();
 }
 
 /**!
  * This function removes an edge to the graph.
- * @param v  A pair of integers representing the indexes
+ * @param vs  A pair of strins representing the "names"
  * of the vertices to be disconnected
 */
-void Graph::removeEdge(pair<int,int> v){
+void Graph::removeEdge(pair<string,string> vs){
     /*TO-DO*/
 }

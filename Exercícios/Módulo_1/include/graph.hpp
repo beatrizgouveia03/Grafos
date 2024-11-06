@@ -21,6 +21,9 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+#include <sstream>
+using std::istringstream;
+
 #include <string>
 using std::stoi;
 using std::string;
@@ -60,12 +63,12 @@ namespace sml {
         private:
             void pause(void);
             void displayMenu(void);
-            void addVertex(int x);
-            void addEdge(pair<int, int> x);
-            void removeVertex(int x);
-            void removeEdge(pair<int,int> x);
-            int manageVertex(void);
-            pair<int,int> manageEdge(void);
+            void addVertex(string v);
+            void addEdge(pair<string, string> vs);
+            void removeVertex(string v);
+            void removeEdge(pair<string,string> vs);
+            string manageVertex(void);
+            pair<string,string> manageEdge(void);
     };    
 }
 
