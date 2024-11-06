@@ -396,7 +396,43 @@ void Graph::addVertex(string v) {
  * of the vertices to be connected
 */
 void Graph::addEdge(pair<string,string> vs){
-    /*TO-DO*/
+    int idxV = -1, idxU = -1;
+    for(int i{0}; i<numNodes; ++i){
+        if(dictionary[i] == vs.first){
+            idxV = i;
+        } 
+        if(dictionary[i] == vs.second){
+            idxU = i;
+        }
+    }
+
+    if (idxV == -1 || idxU == -1) {
+        cout << "One of the vertices does not exist." << endl;
+        return;
+    }
+
+    if(adjMatrix[idxV][idxU] == 1){
+        cout << "Edge already exists." << endl;
+        return;
+    }
+
+    int idx = incMatrix.size();
+
+    adjList[idxV+1].push_back(idxU+1);
+    adjList[idxU+1].push_back(idxV+1);
+
+    adjMatrix[idxV][idxU] = 1;
+    adjMatrix[idxU][idxV] = 1;
+
+    incMatrix.push_back(vector<int>(idx, 0));
+    incMatrix[idx][idxV] = 1;
+    incMatrix[idx][idxU] = 1;
+
+   cout << "Edge added sucessfully on the graph." << endl;
+
+   printAdjList();
+   printAdjMatrix();
+   printIncMatrix();
 }
 
 /**!
@@ -487,5 +523,4 @@ void Graph::removeEdge(pair<string,string> vs){
    printAdjList();
    printAdjMatrix();
    printIncMatrix();
-
 }
