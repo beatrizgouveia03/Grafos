@@ -416,41 +416,49 @@ void Graph::removeVertex(string v) {
         cout << "Vertex " << v << " does not exist." << endl;
         return;
     }
-
-    adjList.erase(idxV);
-
-    for (auto &pair : adjList) {
-        auto &neighbors = pair.second;
-
-        for (auto it = neighbors.begin(); it != neighbors.end(); ) {
-            if (*it == idxV) {
-                it = neighbors.erase(it);
-            } else {
-                ++it;
-            }
-        }
-    }
     
-    if (idxV <= adjMatrix.size()) {
-        adjMatrix.erase(adjMatrix.begin() + (idxV - 1));  
-        for (auto &row : adjMatrix) {
-            row.erase(row.begin() + (idxV - 1)); 
-        }
-    }
+    cout << idxV << endl;
 
-    
-    if (!incMatrix.empty()) {
-        incMatrix.erase(incMatrix.begin() + (idxV - 1)); 
-        for (auto &row : incMatrix) {
-            if (idxV - 1 < row.size()) {
-                row.erase(row.begin() + (idxV - 1));
+    adjList[idxV+1] = {0};
+
+    for(auto i{0}; i<numNodes; ++i){
+        for(auto j{0}; j<adjList[i].size();++j){
+            if(adjList[i][j] == idxV){
+               
             }
         }
     }
 
-    dictionary[idxV] = "-1";
-    numNodes--;
+    //for (auto &pair : adjList) {
+   //    auto &neighbors = pair.second;
 
+   //    for (auto it = neighbors.begin(); it != neighbors.end(); ) {
+   //        if (*it == idxV) {
+   //            it = neighbors.erase(it);
+   //        } else {
+   //            ++it;
+   //        }
+   //    }
+   //}
+   //
+   //if (idxV <= adjMatrix.size()) {
+   //    adjMatrix.erase(adjMatrix.begin() + (idxV - 1));  
+   //    for (auto &row : adjMatrix) {
+   //        row.erase(row.begin() + (idxV - 1)); 
+   //    }
+   //}
+
+   //
+   //if (!incMatrix.empty()) {
+   //    incMatrix.erase(incMatrix.begin() + (idxV - 1)); 
+   //    for (auto &row : incMatrix) {
+   //        if (idxV - 1 < row.size()) {
+   //            row.erase(row.begin() + (idxV - 1));
+   //        }
+   //    }
+   //}
+    dictionary[-1] = "Deleted";
+    
     cout << "Vertex " << v << " removed successfully from the adjacency list, adjacency matrix, and incidence matrix." << endl;
 
     printAdjList();
