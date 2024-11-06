@@ -438,7 +438,7 @@ void Graph::removeVertex(string v) {
    
     dictionary[-1] = "Deleted";
     
-    cout << "Vertex " << v << " removed successfully from the adjacency list, adjacency matrix, and incidence matrix." << endl;
+    cout << "Vertex " << v << " removed successfully from the graph." << endl;
 
     printAdjList();
     printAdjMatrix();
@@ -447,8 +447,45 @@ void Graph::removeVertex(string v) {
 
 /**!
  * This function removes an edge to the graph.
- * @param vs  A pair of strins representing the "names"
+ * @param vs  A pair of strings representing the "names"
  * of the vertices to be disconnected
 */
 void Graph::removeEdge(pair<string,string> vs){
+    int idxV = -1, idxU = -1;
+    for(int i{0}; i<numNodes; ++i){
+        if(dictionary[i] == vs.first){
+            idxV = i;
+        } 
+        if(dictionary[i] == vs.second){
+            idxU = i;
+        }
+    }
+
+    if (idxV == -1 || idxU == -1) {
+        cout << "One of the vertices does not exist." << endl;
+        return;
+    }
+
+    auto &aux = adjList[idxV+1];
+    auto &aux2 = adjList[idxU+1];
+
+    aux.erase(remove(aux.begin(), aux.end(), idxU+1), aux.end());
+    aux2.erase(remove(aux2.begin(), aux.end(), idxV+1), aux.end());
+
+    adjMatrix[idxV][idxU] = 0;
+    adjMatrix[idxU][idxV] = 0;
+
+    for(int i{0}; i<incMatrix.size();++i){
+      if(incMatrix[i][idxV] == 1 && incMatrix[i][idxU] == 1){
+          incMatrix.erase(incMatrix.begin()+i);
+          i--;
+      }
+   }
+
+   cout << "Edge removed sucessfully from the graph." << endl;
+
+   printAdjList();
+   printAdjMatrix();
+   printIncMatrix();
+
 }
