@@ -338,10 +338,10 @@ void Graph::displayMenu(void) {
   cout << "============================================" << endl;
   cout << "               GRAPH MENU                 " << endl;
   cout << "============================================" << endl;
-  cout << "1. Add edge." << endl;
+  cout << "1. Add edge" << endl;
   cout << "2. Add vertex" << endl;
-  cout << "3. Remove edge." << endl;
-  cout << "4. Remove vertex." << endl;
+  cout << "3. Remove edge" << endl;
+  cout << "4. Remove vertex" << endl;
   cout << "5. Display as adjacency list" << endl;
   cout << "6. Display as adjacency matrix" << endl;
   cout << "7. Display as incidence matrix" << endl;
@@ -362,25 +362,33 @@ void Graph::addVertex(string v) {
         }
     }
 
-    if (idxV != -1) {
+    if (idxV != -1 && adjMatrix[idxV][0] != -1 ) {
         cout << "Vertex " << v << " already exists." << endl;
         return;
     }
 
-    adjList[idxV]; 
+    if(idxV == -1){
+        adjList[idxV]; 
 
-    for (auto &row : adjMatrix) {
-        row.push_back(0); 
+        for (auto &row : adjMatrix) {
+            row.push_back(0); 
+        }
+        adjMatrix.push_back(vector<int>(numNodes + 1, 0)); 
+
+        for (auto &row : incMatrix) {
+            row.push_back(0); 
+        }
+        incMatrix.push_back(vector<int>(incMatrix[0].size(), 0));
+
+        dictionary[numNodes] = v;
+        numNodes++;
+    } else{
+        adjList[idxV+1].clear();
+        for(int i{0}; i<numNodes; ++i){
+            adjMatrix[idxV][i] = 0;
+            adjMatrix[i][idxV] = 0;
+        }
     }
-    adjMatrix.push_back(vector<int>(numNodes + 1, 0)); 
-
-    for (auto &row : incMatrix) {
-        row.push_back(0); 
-    }
-    incMatrix.push_back(vector<int>(incMatrix[0].size(), 0));
-
-    dictionary[numNodes] = v;
-    numNodes++;
 
     cout << "Vertex " << v << " added successfully." << endl;
 
