@@ -359,7 +359,7 @@ void Graph::displayMenu(void) {
 }
 
 /**!
- * This function adds a new vertex to the graph along with its edges.
+ * This function adds a new vertex to the graph.
  * @param v The "name" of the vertex to be added
 */
 void Graph::addVertex(string v) {
