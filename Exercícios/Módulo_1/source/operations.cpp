@@ -506,7 +506,8 @@ void Operations::dfs(Graph g, string v)
       .initialNode = idxV,
       .predecessors = pred,
       .visited = visited,
-      .backEdges = backEdges};
+      .backEdges = backEdges,
+      .dictionary = g.getDictionary()};
 
   cout << result;
 }
@@ -562,7 +563,8 @@ void Operations::bfs(Graph g, string v)
       .initialNode = idxV,
       .predecessors = pred,
       .visited = visited,
-      .backEdges = backEdges};
+      .backEdges = backEdges,
+      .dictionary = g.getDictionary()};
 
   cout << result;
 }
@@ -687,7 +689,8 @@ void Operations::dfs(Digraph d, string v)
       .initialNode = idxV,
       .predecessors = pred,
       .visited = visited,
-      .backEdges = backEdges};
+      .backEdges = backEdges,
+      .dictionary = d.getDictionary()};
 
   cout << result;
 }

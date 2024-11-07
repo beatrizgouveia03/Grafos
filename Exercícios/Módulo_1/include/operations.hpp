@@ -39,9 +39,12 @@ namespace sml {
     vector<int> predecessors;
     vector<bool> visited;
 		vector<vector<int>> backEdges;
+    map<int, string> dictionary; 
 
 	friend ostream &operator<<(ostream &os, const SearchResult &result) {
-			os << left; // Align to the left
+			map<int,string> dic = result.dictionary;
+
+      os << left; // Align to the left
 
 			// Print header
 			os << setw(15) << "Node" << setw(15) << "Visited" << setw(15)
@@ -52,9 +55,9 @@ namespace sml {
 
 			// Print each node's information
 			for (int i = 1; i <= result.numNodes; ++i) {
-					os << setw(15) << i                       // Node number
-						 << setw(15) << result.visited[i]       // Visited status
-						 << setw(15) << result.predecessors[i]; // Predecessor
+					os << setw(15) << dic[i-1]                        // Node number
+						 << setw(15) << result.visited[i]               // Visited status
+						 << setw(15) << dic[result.predecessors[i]-1];  // Predecessor
 
 					if (!result.backEdges[i].empty()) {
 							os << setw(30);
@@ -69,7 +72,7 @@ namespace sml {
 			}
 
 			return os;
-	}
+  	}
   };
 
 class Operations {
