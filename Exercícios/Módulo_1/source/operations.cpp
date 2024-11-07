@@ -435,10 +435,55 @@ void Operations::countEdges(Graph g)
  * in the terminal
  * @param g The graph to be checked
  */
-void Operations::connected(Graph g)
-{
-  /*TO-DO*/
-  cout << "To be implemented" << endl;
+void Operations::connected(Graph g){
+
+  auto adjList = g.getAdjList();
+  int numNodes = g.getNumNodes();
+
+  int startVertexIdx = -1;
+  for (auto it = adjList.begin(); it != adjList.end(); ++it) {
+    startVertexIdx = it->first;
+    break;
+  }
+
+  if (startVertexIdx == -1) {
+    cout << "O grafo está vazio." << endl;
+    return;
+  }
+
+  vector<bool> visited(numNodes + 1, false);
+
+  std::queue<int> q;
+  visited[startVertexIdx] = true;
+  q.push(startVertexIdx);
+
+  while (!q.empty()) {
+    int curr = q.front();
+    q.pop();
+
+    for (int adj : adjList[curr]) {
+      if (!visited[adj]) {
+        visited[adj] = true;
+        q.push(adj);
+      }
+    }
+  }
+
+  bool isConnected = true;
+    for (int i = 1; i <= numNodes; ++i) {
+      if (!visited[i] && adjList.find(i) != adjList.end()) {
+        isConnected = false;
+        break;
+      }
+    }
+
+  if (isConnected) {
+    cout << "O grafo é conexo." << endl;
+  } 
+  else {
+    cout << "O grafo é desconexo." << endl;
+  }
+
 }
 
 /**!
