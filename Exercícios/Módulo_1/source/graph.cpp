@@ -532,3 +532,67 @@ void Graph::removeEdge(pair<string,string> vs){
 
    printGraph();
 }
+
+/**!
+ * This function locates on the dictionary of the graph
+ * the vertex with the index passed as argument and returns its name.
+ * @param idxV The index of the vertex to be located
+*/
+string Graph::getVertexName(int idxV){
+    if(idxV < numNodes){
+        return dictionary[idxV];
+    } else{
+        cout << "Node out-of-index" << endl;
+        return " ";
+    }
+}
+
+
+/**!
+ * This function locates on the dictionary of the graph
+ * the vertex with the name  passed as argument and returns its index.
+ * @param v The "name" of the vertex to be located
+*/
+int Graph::getVertexIdx(string v){
+    int idxV = -1;
+
+    for(int i{0}; i<numNodes; ++i){
+        if(dictionary[i] == v){
+            idxV = i;
+        }
+    }
+
+    if(idxV == -1){
+        cout << "Vertex " << v << " does not exist." << endl;
+    }
+
+    return idxV;
+}
+
+
+/**!
+ * This function locates on the dictionary of the graph the 
+ * vertices with the names passed as argument and returns their indexes.
+ * @param vs A pair of strings representing the "names"
+ * of the vertices to be located
+*/
+pair<int,int> Graph::getVerticesIdx(pair<string,string> vs){
+    int idxV = -1, idxU = -1;
+
+    
+    for(int i{0}; i<numNodes; ++i){
+        if(dictionary[i] == vs.first){
+            idxV = i;
+        }
+        if(dictionary[i] == vs.second){
+            idxU = i;
+        }
+    }
+
+    if (idxV == -1 || idxU == -1) {
+        cout << "One of the vertices does not exist." << endl;
+    }
+
+    return make_pair(idxV, idxU);
+
+}
