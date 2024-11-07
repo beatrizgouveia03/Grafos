@@ -245,7 +245,7 @@ string Graph::manageVertex(void){
     istringstream ss(str);
     getline(ss, x);
 
-     if (x == " ")
+    if (x == " ")
     {
         cout << "Insert a valid index." << endl;
         return manageVertex();
@@ -363,13 +363,7 @@ void Graph::displayMenu(void) {
  * @param v The "name" of the vertex to be added
 */
 void Graph::addVertex(string v) {
-    int idxV = -1;
-    for(int i{0}; i<numNodes; ++i){
-        if(dictionary[i] == v){
-            idxV = i;
-            break;
-        }
-    }
+    int idxV = getVertexIdx(v);
 
     if (idxV != -1 && adjMatrix[idxV][0] != -1 ) {
         cout << "Vertex " << v << " already exists." << endl;
@@ -410,15 +404,7 @@ void Graph::addVertex(string v) {
  * of the vertices to be connected
 */
 void Graph::addEdge(pair<string,string> vs){
-    int idxV = -1, idxU = -1;
-    for(int i{0}; i<numNodes; ++i){
-        if(dictionary[i] == vs.first){
-            idxV = i;
-        } 
-        if(dictionary[i] == vs.second){
-            idxU = i;
-        }
-    }
+    int idxV = getVertexIdx(vs.first), idxU = getVertexIdx(vs.second);
 
     if (idxV == -1 || idxU == -1) {
         cout << "One of the vertices does not exist." << endl;
@@ -452,13 +438,7 @@ void Graph::addEdge(pair<string,string> vs){
  * @param v The "name" of the vertex to be removed
 */
 void Graph::removeVertex(string v) {
-    int idxV = -1;
-    for(int i{0}; i<numNodes; ++i){
-        if(dictionary[i] == v){
-            idxV = i;
-            break;
-        }
-    }
+    int idxV = getVertexIdx(v);
 
     if (idxV == -1) {
         cout << "Vertex " << v << " does not exist." << endl;
@@ -497,7 +477,7 @@ void Graph::removeVertex(string v) {
  * of the vertices to be disconnected
 */
 void Graph::removeEdge(pair<string,string> vs){
-    int idxV = -1, idxU = -1;
+    int idxV = getVertexIdx(vs.first), idxU = getVertexIdx(vs.second);
     for(int i{0}; i<numNodes; ++i){
         if(dictionary[i] == vs.first){
             idxV = i;
@@ -542,7 +522,6 @@ string Graph::getVertexName(int idxV){
     if(idxV < numNodes){
         return dictionary[idxV];
     } else{
-        cout << "Node out-of-index" << endl;
         return " ";
     }
 }
@@ -559,40 +538,9 @@ int Graph::getVertexIdx(string v){
     for(int i{0}; i<numNodes; ++i){
         if(dictionary[i] == v){
             idxV = i;
+            break;
         }
-    }
-
-    if(idxV == -1){
-        cout << "Vertex " << v << " does not exist." << endl;
     }
 
     return idxV;
-}
-
-
-/**!
- * This function locates on the dictionary of the graph the 
- * vertices with the names passed as argument and returns their indexes.
- * @param vs A pair of strings representing the "names"
- * of the vertices to be located
-*/
-pair<int,int> Graph::getVerticesIdx(pair<string,string> vs){
-    int idxV = -1, idxU = -1;
-
-    
-    for(int i{0}; i<numNodes; ++i){
-        if(dictionary[i] == vs.first){
-            idxV = i;
-        }
-        if(dictionary[i] == vs.second){
-            idxU = i;
-        }
-    }
-
-    if (idxV == -1 || idxU == -1) {
-        cout << "One of the vertices does not exist." << endl;
-    }
-
-    return make_pair(idxV, idxU);
-
 }

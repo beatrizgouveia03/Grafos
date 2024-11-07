@@ -50,9 +50,8 @@ namespace sml {
             void printAdjList(void);
             void printAdjMatrix(void);
             void printIncMatrix(void);
-            string getVertexName(int idxV);
             int getVertexIdx(string v);
-            pair<int,int> getVerticesIdx(pair<string,string> vs);
+            string getVertexName(int idxV);
             map<int, string> getDictionary(void);
             map<int,vector<int>> getAdjList(void);
             vector<vector<int>> getAdjMatrix(void);
