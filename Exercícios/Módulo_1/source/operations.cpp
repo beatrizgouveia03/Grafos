@@ -430,6 +430,7 @@ void Operations::countEdges(Graph g)
 void Operations::connected(Graph g)
 {
   /*TO-DO*/
+  cout << "To be implemented" << endl;
 }
 
 /**!
@@ -440,6 +441,7 @@ void Operations::connected(Graph g)
 void Operations::bipartite(Graph g)
 {
   /*TO-DO*/
+  cout << "To be implemented" << endl;
 }
 
 /**!
@@ -451,19 +453,11 @@ void Operations::bipartite(Graph g)
  */
 void Operations::dfs(Graph g, string v)
 {
-  int idxV;
-  map<int,string> dictionary = g.getDictionary();
+  int idxV = g.getVertexIdx(v)+1;
 
   auto numNodes = g.getNumNodes();
 
   auto adjList = g.getAdjList();
-
-  for(int i{0}; i<numNodes; ++i){
-    if(dictionary[i] == v){
-      idxV = i;
-			break;
-    }
-  }
 
   vector<bool> visited = vector(numNodes + 1, false);
   vector<int> pred = vector(numNodes + 1, -1);
@@ -515,26 +509,20 @@ void Operations::dfs(Graph g, string v)
  * @param v The "name" of the initial search vertex
  */
 void Operations::bfs(Graph g, string v) {
-    int idxV = -1;
-    auto dictionary = g.getDictionary();
+    int idxV = g.getVertexIdx(v)+1;
+
     auto numNodes = g.getNumNodes();
+
     auto adjList = g.getAdjList();
 
-    for (int i = 0; i < numNodes; ++i) {
-        if (dictionary[i] == v) {
-            idxV = i;
-            break;
-        }
-    }
-
     if (idxV == -1) {
-        cout << "Vértice " << v << " não encontrado no grafo." << endl;
-        return;
+      cout << "Vertice " << v << " does not exist." << endl;
+      return;
     }
 
     vector<bool> visited(numNodes + 1, false);
     vector<int> pred(numNodes + 1, -1);
-    vector<vector<int>> backEdges;
+    vector<vector<int>> backEdges(numNodes + 1) ;
 
     std::queue<int> q;
     visited[idxV] = true;
@@ -544,7 +532,7 @@ void Operations::bfs(Graph g, string v) {
         int curr = q.front();
         q.pop();
 
-        cout << "Visitando vértice " << dictionary[curr] << endl;
+        cout << "Visiting vertex " << g.getVertexName(curr-1) << endl;
 
         for (int adj : adjList[curr]) {
             if (!visited[adj]) {
@@ -555,7 +543,13 @@ void Operations::bfs(Graph g, string v) {
         }
     }
 
-    SearchResult result = { numNodes, idxV, pred, visited, backEdges };
+    SearchResult result = SearchResult{
+      .numNodes = numNodes,
+      .initialNode = idxV,
+      .predecessors = pred,
+      .visited = visited,
+      .backEdges = backEdges
+    };
 
     cout << result;
 }
@@ -565,7 +559,10 @@ void Operations::bfs(Graph g, string v) {
  * and displays in the terminal
  * @param g The graph to be checked
  */
-void Operations::articulationsAndBlocks(Graph g) { /*TO-DO*/ }
+void Operations::articulationsAndBlocks(Graph g) { 
+  /*TO-DO*/
+  cout << "To be implemented" << endl;
+}
 
 // THE MATH AND SEARCH OPERATIONS FROM DIGRAPHS
 
@@ -573,7 +570,10 @@ void Operations::articulationsAndBlocks(Graph g) { /*TO-DO*/ }
  * This function determinates the subjacent graph of the digraph
  * @param d The digraph to be used
  */
-void Operations::subjacentGraph(Digraph d) { /*TO-DO*/ }
+void Operations::subjacentGraph(Digraph d) { 
+  /*TO-DO*/
+  cout << "To be implemented" << endl;
+}
 
 /**!
  * This function converts the incidence matrix of the digraph to an
@@ -583,6 +583,7 @@ void Operations::subjacentGraph(Digraph d) { /*TO-DO*/ }
 void Operations::incMatrixToDirectStar(Digraph d)
 {
   /*TO-DO*/
+  cout << "To be implemented" << endl;
 }
 
 /**!
@@ -593,6 +594,7 @@ void Operations::incMatrixToDirectStar(Digraph d)
 void Operations::directStarToIncMatrix(/*Dont know*/)
 {
   /*TO-DO*/
+  cout << "To be implemented" << endl;
 }
 
 /**!
@@ -603,6 +605,7 @@ void Operations::directStarToIncMatrix(/*Dont know*/)
 void Operations::adjMatrixToIndirectStar(Digraph d)
 {
   /*TO-DO*/
+  cout << "To be implemented" << endl;
 }
 
 /**!
@@ -613,6 +616,7 @@ void Operations::adjMatrixToIndirectStar(Digraph d)
 void Operations::indirectStarToAdjMatrix(/*Dont know*/)
 {
   /*TO-DO*/
+  cout << "To be implemented" << endl;
 }
 
 /**!
@@ -621,6 +625,12 @@ void Operations::indirectStarToAdjMatrix(/*Dont know*/)
  * @param d The digraph to be checked
  * @param v The index of the initial search vertex
  */
-void Operations::dfs(Digraph d, string v) { /*TO-DO*/ }
+void Operations::dfs(Digraph d, string v) { 
+  /*TO-DO*/
+  cout << "To be implemented" << endl;  
+}
 
-void Operations::application() { /*TO-DO*/ }
+void Operations::application() { 
+  //*TO-DO*/
+  cout << "To be implemented" << endl; 
+}
