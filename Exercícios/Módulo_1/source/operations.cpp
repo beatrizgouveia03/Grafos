@@ -127,7 +127,7 @@ void Operations::runMenu()
       pause();
       break;
     case 9:
-      articulationsAndBlocks(graph);
+      articulationsAndBlocks(graph, handleSearch(string()));
       pause();
       break;
     case 10:
@@ -569,15 +569,197 @@ void Operations::bfs(Graph g, string v)
   cout << result;
 }
 
+// auxiliary function to calculate minimum between two integers
+int min(int a, int b)
+{
+  return (a < b) ? a : b;
+}
+
+// auxiliary function to verify if a subtree have a articulation(used to identify blocks)
+bool hasArticulationInSubtree(int node, const SearchResult &result, const map<int, vector<int>> &adjList, vector<bool> articulations)
+{
+  stack<int> dfsStack;
+  vector<bool> visitedSubtree(result.numNodes + 1, false);
+  dfsStack.push(node);
+  visitedSubtree[node] = true;
+
+  while (!dfsStack.empty())
+  {
+    int v = dfsStack.top();
+    dfsStack.pop();
+
+    // if `v` its a articulation and is not the root node of the subtree
+    if (articulations[v] && v != node)
+    {
+      return true;
+    }
+    // iterate the elements of subtree
+    for (int w : adjList.at(v))
+    {
+      if (!visitedSubtree[w] && result.predecessors[w] == v)
+      {
+        visitedSubtree[w] = true;
+        dfsStack.push(w);
+      }
+    }
+  }
+
+  return false;
+}
+
+// function to identify the blocks according to demarcators and articulations vectors
+vector<vector<int>> identifyBlocks(const SearchResult &result, const map<int, vector<int>> &adjList, vector<bool> demarcators, vector<bool> articulations)
+{
+  vector<vector<int>> blocks;
+  vector<bool> visited(result.numNodes + 1, false);
+
+  for (int v = 1; v <= result.numNodes; ++v)
+  {
+    if (demarcators[v] && !visited[v])
+    {
+      vector<int> currentBlock;
+      stack<int> stack;
+      bool hasArticulation = false;
+
+      // verify if the subtree has articulations
+      hasArticulation = hasArticulationInSubtree(v, result, adjList, articulations);
+
+      if (!hasArticulation)
+      {
+        stack.push(v);
+        visited[v] = true;
+
+        while (!stack.empty())
+        {
+          int u = stack.top();
+          stack.pop();
+          currentBlock.push_back(u);
+
+          // mark u how visited and explore the neighbors
+          for (int w : adjList.at(u))
+          {
+            if (!visited[w] && result.predecessors[w] == u)
+            {
+              visited[w] = true;
+              stack.push(w);
+            }
+          }
+        }
+        blocks.push_back(currentBlock);
+      }
+    }
+  }
+
+  return blocks;
+}
+
 /**!
  * This function determinates the articulations and the blocks of the graph
  * and displays in the terminal
  * @param g The graph to be checked
+ * @param v The vertex to create the tree depth
  */
-void Operations::articulationsAndBlocks(Graph g)
+void Operations::articulationsAndBlocks(Graph g, string v)
 {
-  /*TO-DO*/
-  cout << "To be implemented" << endl;
+
+  int idxV = g.getVertexIdx(v) + 1;
+  auto numNodes = g.getNumNodes();
+  auto adjList = g.getAdjList();
+
+  // its necessary calculate a dfs search
+  vector<bool> visited = vector(numNodes + 1, false);
+  vector<int> pred = vector(numNodes + 1, -1);
+  vector<vector<int>> backEdges(numNodes + 1);
+  vector<int> lowpt = vector(numNodes + 1, -1);
+  vector<bool> demarcators = vector(numNodes + 1, false);
+  vector<bool> articulations = vector(numNodes + 1, false);
+  vector<bool> inStack(numNodes + 1, false);
+  vector<int> discoveryTime = vector(numNodes + 1, -1);
+  stack<int> q;
+
+  SearchResult dfsResult;
+
+  q.push(idxV);
+  visited[idxV] = true;
+  inStack[idxV] = true;
+  discoveryTime[idxV] = lowpt[idxV] = 1;
+
+  while (!q.empty())
+  {
+    int v = q.top();
+    bool backtracked = true;
+
+    for (int w : adjList[v])
+    {
+      if (!visited[w])
+      {
+        // found new node not visited, updates predecessors and continue DFS
+        visited[w] = true;
+        pred[w] = v;
+        discoveryTime[w] = lowpt[w] = w;
+
+        q.push(w);
+        inStack[w] = true;
+        backtracked = false;
+        break;
+      }
+      else if (w != pred[v] && inStack[w])
+      {
+        // found backedge, updates lowpt
+        backEdges[v].push_back(w);
+        lowpt[v] = min(lowpt[v], discoveryTime[w]);
+      }
+    }
+
+    if (backtracked)
+    {
+      // backtracking process. Here we updates the lowpt of parent according to backEdges
+      q.pop();
+      inStack[v] = false;
+
+      int parent = pred[v];
+      if (parent != -1)
+      {
+        // updates lowpt from parent considering the lowpt of the son
+        lowpt[parent] = min(lowpt[parent], lowpt[v]);
+
+        // verify conditions of demarcator
+        if (lowpt[v] == v || lowpt[v] == parent)
+        {
+          demarcators[v] = true;
+        }
+        // verify conditions of articulation
+        if (demarcators[v])
+        {
+          articulations[parent] = true;
+        }
+      }
+    }
+  }
+
+  SearchResult result = SearchResult{
+      .numNodes = numNodes,
+      .initialNode = idxV,
+      .predecessors = pred,
+      .visited = visited,
+      .backEdges = backEdges,
+      .dictionary = g.getDictionary(),
+      .lowpt = lowpt,
+      .demarcators = demarcators,
+      .articulations = articulations};
+
+    vector<vector<int>> blocks = identifyBlocks(result, adjList, demarcators, articulations);
+  cout << result;
+  cout << "Blocos:" << endl;
+  for (const auto &block : blocks)
+  {
+    cout << "{ ";
+    for (int v : block)
+    {
+      cout << v << " ";
+    }
+    cout << "}" << endl;
+  }
 }
 
 // THE MATH AND SEARCH OPERATIONS FROM DIGRAPHS
