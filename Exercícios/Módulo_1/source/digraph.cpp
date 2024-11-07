@@ -35,6 +35,15 @@ Digraph::Digraph(int numNodes){
 }
 
 /**!
+ *  This function calls all the printing functions of the digraph.
+*/ 
+void Digraph::printDigraph(void){
+    printAdjList();
+    printAdjMatrix();
+    printIncMatrix();
+}
+
+/**!
  *  This function prints the adjacency list.
 */   
 void Digraph::printAdjList(void){
@@ -220,20 +229,22 @@ void Digraph::pause(void) {
 }
 
 /**!
- * This function collects the index of the vertex that is 
+ * This function collects the "name" of the vertex that is 
  * wanted to be removed/inserted and returns it to the
  * caller.
- * @return An integer indication the index of the vertex
+ * @return An integer indication the "name" of the vertex
  */
-int Digraph::manageVertex(void){
-    int x;
-    string str;
+string Digraph::manageVertex(void){
+    string str, x;
 
     cout << "Insert the index of the vertex: " << endl;
     getline(cin, str);
-    x = stoi(str);
+    
+    istringstream ss(str);
+    getline(ss, x);
 
-    if( x<=0 ) {
+     if (x == " ")
+    {
         cout << "Insert a valid index." << endl;
         return manageVertex();
     }
@@ -243,23 +254,28 @@ int Digraph::manageVertex(void){
 }
 
 /**!
- * This function collects the index of the vertices of the edge
+ * This function collects the "names" of the vertices of the edge
  * that is wanted to be removed/inserted and returns it to the
  * caller.
- * @return A pair of integers indication the indexes of the edge
+ * @return A pair of strings indication the "names" of the edge
  */
-pair<int,int> Digraph::manageEdge(void){
-    int x, y;
-    string str;
+pair<string,string> Digraph::manageEdge(void){
+   string str, x, y;
 
     cout << "Insert the index of the first vertex: " << endl;
     getline(cin, str);
-    x = stoi(str);
+    
+    istringstream ss(str);
+    getline(ss, x);
+    
     cout << "Insert the index of the second vertex: " << endl;
     getline(cin, str);
-    y = stoi(str);
+    
+    istringstream ss2(str);
+    getline(ss2, y);
 
-    if( x<=0 || y<=0 ) {
+    if (x == " " || y == " ")
+    {
         cout << "Insert a valid index." << endl;
         return manageEdge();
     }
@@ -341,35 +357,178 @@ void Digraph::displayMenu(void) {
 }
 
 /**!
- * This function adds a new vertex to the digraph along with its edges.
- * @param v The index of the vertex to be added
+ * This function adds a new vertex to the digraph.
+ * @param v The "name" of the vertex to be added
 */
-void Digraph::addVertex(int v){
-    /*TO-DO*/
+void Digraph::addVertex(string v){
+    int idxV = -1;
+    for(int i{0}; i<numNodes; ++i){
+        if(dictionary[i] == v){
+            idxV = i;
+            break;
+        }
+    }
+
+    if (idxV != -1 && adjMatrix[idxV][0] != -1 ) {
+        cout << "Vertex " << v << " already exists." << endl;
+        return;
+    }
+
+    if(idxV == -1){
+        adjList[idxV]; 
+
+        for (auto &row : adjMatrix) {
+            row.push_back(0); 
+        }
+        adjMatrix.push_back(vector<int>(numNodes + 1, 0)); 
+
+        for (auto &row : incMatrix) {
+            row.push_back(0); 
+        }
+        incMatrix.push_back(vector<int>(incMatrix[0].size(), 0));
+
+        dictionary[numNodes] = v;
+        numNodes++;
+    } else{
+        adjList[idxV+1].clear();
+        for(int i{0}; i<numNodes; ++i){
+            adjMatrix[idxV][i] = 0;
+            adjMatrix[i][idxV] = 0;
+        }
+    }
+
+    cout << "Vertex " << v << " added successfully." << endl;
+
+    printDigraph();
 }
 
 /**!
  * This function adds a new edge to the digraph.
- * @param v A pair of integers representing the indexes
+ * @param vs A pair of strings representing the "names"
  * of the vertices to be connected
 */
-void Digraph::addEdge(pair<int,int> v){
-    /*TO-DO*/
+void Digraph::addEdge(pair<string,string> vs){
+    int idxV = -1, idxU = -1;
+    for(int i{0}; i<numNodes; ++i){
+        if(dictionary[i] == vs.first){
+            idxV = i;
+        } 
+        if(dictionary[i] == vs.second){
+            idxU = i;
+        }
+    }
+
+    if (idxV == -1 || idxU == -1) {
+        cout << "One of the vertices does not exist." << endl;
+        return;
+    }
+
+    if(adjMatrix[idxV][idxU] == 1){
+        cout << "Edge already exists." << endl;
+        return;
+    }
+
+    int idx = incMatrix.size();
+
+    adjList[idxV+1].push_back(idxU+1);
+
+    adjMatrix[idxV][idxU] = 1;
+
+    incMatrix.push_back(vector<int>(idx, 0));
+    incMatrix[idx][idxV] = 1;
+    incMatrix[idx][idxU] = 1;
+
+   cout << "Edge added sucessfully on the digraph." << endl;
+
+   printDigraph();
 }
+
 
 /**!
  * This function removes a vertex to the digraph along with its edges
- * @param v The index of the vertex to be removed
+ * @param v The "name" of the vertex to be removed
 */
-void Digraph::removeVertex(int v){
-    /*TO-DO*/
+void Digraph::removeVertex(string v) {
+    int idxV = -1;
+    for(int i{0}; i<numNodes; ++i){
+        if(dictionary[i] == v){
+            idxV = i;
+            break;
+        }
+    }
+
+    if (idxV == -1) {
+        cout << "Vertex " << v << " does not exist." << endl;
+        return;
+    }
+
+
+    for(int i{0}; i<numNodes; ++i){
+        //Removed edges from de adjList
+        auto &aux = adjList[i];
+        aux.erase(remove(aux.begin(), aux.end(), idxV+1), aux.end());
+
+        //Remove the edge from the adjMatrix
+        adjMatrix[idxV][i] = -1;
+        adjMatrix[i][idxV] = -1;
+    }
+    adjList[idxV+1] = {0};
+
+   for(int i{0}; i<incMatrix.size();++i){
+        if(incMatrix[i][idxV] == 1){
+            incMatrix.erase(incMatrix.begin()+i);
+            i--;
+        }
+   }
+   
+    dictionary[-1] = "Deleted";
+    
+    cout << "Vertex " << v << " removed successfully from the graph." << endl;
+
+    printDigraph();
 }
 
 /**!
- * This function removes an edge to the digraph.
- * @param v  A pair of integers representing the indexes
+ * This function removes an edge to the graph.
+ * @param vs  A pair of strings representing the "names"
  * of the vertices to be disconnected
 */
-void Digraph::removeEdge(pair<int,int> v){
-    /*TO-DO*/
+void Digraph::removeEdge(pair<string,string> vs){
+    int idxV = -1, idxU = -1;
+    for(int i{0}; i<numNodes; ++i){
+        if(dictionary[i] == vs.first){
+            idxV = i;
+        } 
+        if(dictionary[i] == vs.second){
+            idxU = i;
+        }
+    }
+
+    if (idxV == -1 || idxU == -1) {
+        cout << "One of the vertices does not exist." << endl;
+        return;
+    }
+
+    if(adjMatrix[idxV][idxU] != 1){
+        cout << "Edge does not exist." << endl;
+        return;
+    }
+
+
+    auto &aux = adjList[idxV+1];
+
+    aux.erase(remove(aux.begin(), aux.end(), idxU+1), aux.end());
+
+    adjMatrix[idxV][idxU] = 0;
+
+    for(int i{0}; i<incMatrix.size();++i){
+      if(incMatrix[i][idxV] == 1 && incMatrix[i][idxU] == 1){
+          incMatrix.erase(incMatrix.begin()+i);
+          i--;
+      }
+   }
+
+   cout << "Edge removed sucessfully from the graph." << endl;
+
+   printDigraph();
 }

@@ -18,6 +18,9 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+#include <sstream>
+using std::istringstream;
+
 #include <string>
 using std::stoi;
 using std::string;
@@ -26,13 +29,16 @@ using std::string;
 using std::pair;
 using std::make_pair;
 
+#include <algorithm>
+using std::remove;
+
 namespace sml {
     class Digraph
     {
         //== Private Members
         private:
             int numNodes;                  //!< The amount of vertices of the digraph;
-            map<int, string> dictionary;     //!< The list that keeps the name of each vertex;
+            map<int, string> dictionary;   //!< The list that keeps the name of each vertex;
             map<int, vector<int>> adjList; //!< The adjacency list that represents the digraph;
             vector<vector<int>> adjMatrix; //!< The adjacency matrix that represents the digraph;
             vector<vector<int>> incMatrix; //!< The incidence matrix that represents the digraph;
@@ -42,6 +48,10 @@ namespace sml {
             Digraph(void);
             Digraph(int numNodes);
             int getNumNodes(void);
+            void printDigraph(void);
+            void printAdjList(void);
+            void printAdjMatrix(void);
+            void printIncMatrix(void);
             map<int, string> getDictionary(void);
             map<int,vector<int>> getAdjList(void);
             vector<vector<int>> getAdjMatrix(void);
@@ -56,15 +66,12 @@ namespace sml {
         private:
             void pause(void);
             void displayMenu(void);
-            void printAdjList(void);
-            void printAdjMatrix(void);
-            void printIncMatrix(void);
-            void addVertex(int x);
-            void addEdge(pair<int,int> x);
-            void removeVertex(int x);
-            void removeEdge(pair<int,int> x);
-            int manageVertex(void);
-            pair<int,int> manageEdge(void);
+            void addVertex(string x);
+            void addEdge(pair<string,string> x);
+            void removeVertex(string x);
+            void removeEdge(pair<string,string> x);
+            string manageVertex(void);
+            pair<string,string> manageEdge(void);
     };    
 }
 
