@@ -1,4 +1,5 @@
 #include "operations.hpp"
+#include <queue>
 
 using namespace sml;
 
@@ -514,7 +515,51 @@ void Operations::dfs(Graph g, string v)
  * @param g The graph to be checked
  * @param v The "name" of the initial search vertex
  */
-void Operations::bfs(Graph g, string v) { /*TO-DO*/ }
+void Operations::bfs(Graph g, string v) {
+    int idxV = -1;
+    auto dictionary = g.getDictionary();
+    auto numNodes = g.getNumNodes();
+    auto adjList = g.getAdjList();
+
+    for (int i = 0; i < numNodes; ++i) {
+        if (dictionary[i] == v) {
+            idxV = i;
+            break;
+        }
+    }
+
+    if (idxV == -1) {
+        cout << "Vértice " << v << " não encontrado no grafo." << endl;
+        return;
+    }
+
+    vector<bool> visited(numNodes + 1, false);
+    vector<int> pred(numNodes + 1, -1);
+    vector<std::pair<int, int>> backEdges;
+
+    std::queue<int> q;
+    visited[idxV] = true;
+    q.push(idxV);
+
+    while (!q.empty()) {
+        int curr = q.front();
+        q.pop();
+
+        cout << "Visitando vértice " << dictionary[curr] << endl;
+
+        for (int adj : adjList[curr]) {
+            if (!visited[adj]) {
+                visited[adj] = true;
+                pred[adj] = curr;
+                q.push(adj);
+            }
+        }
+    }
+
+    SearchResult result = { numNodes, idxV, pred, visited, backEdges };
+
+    cout << result;
+}
 
 /**!
  * This function determinates the articulations and the blocks of the graph
