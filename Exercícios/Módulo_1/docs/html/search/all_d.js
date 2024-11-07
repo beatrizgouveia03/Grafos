@@ -1,11 +1,6 @@
 var searchData=
 [
-  ['searchresult_0',['SearchResult',['../structsml_1_1SearchResult.html',1,'sml']]],
-  ['simulation_1',['simulation',['../classsml_1_1Simulation.html',1,'sml::Simulation'],['../classsml_1_1Simulation.html#a2b1441297b295aaa2a7601d42da4c96a',1,'sml::Simulation::Simulation()']]],
-  ['simulation_20project_2',['Graphs Simulation Project',['../index.html',1,'']]],
-  ['simulation_2ecpp_3',['simulation.cpp',['../simulation_8cpp.html',1,'']]],
-  ['simulation_2ehpp_4',['simulation.hpp',['../simulation_8hpp.html',1,'']]],
-  ['simulation_5fresult_5fe_5',['simulation_result_e',['../namespacesml.html#a0a2ccab3865e2f3ab9ef38e346454618',1,'sml']]],
-  ['simulationresult_6',['simulationresult',['../structsml_1_1SimulationResult.html',1,'sml::SimulationResult'],['../structsml_1_1SimulationResult.html#aca0e29bf490f32023fe6ed3152954653',1,'sml::SimulationResult::SimulationResult()']]],
-  ['sml_7',['sml',['../namespacesml.html',1,'']]]
+  ['readme_2emd_0',['README.md',['../README_8md.html',1,'']]],
+  ['run_1',['run',['../classsml_1_1Simulation.html#a27ac754f033f7838d95e981d96181bb4',1,'sml::Simulation']]],
+  ['runmenu_2',['runmenu',['../classsml_1_1Digraph.html#a65273e89644862f16fafd3a2d29a43fe',1,'sml::Digraph::runMenu()'],['../classsml_1_1Graph.html#a923c2cf9d27d09a043cbe27387b810c5',1,'sml::Graph::runMenu()'],['../classsml_1_1Operations.html#a9dc8167507e50693ce6b05190f3c345f',1,'sml::Operations::runMenu()']]]
 ];

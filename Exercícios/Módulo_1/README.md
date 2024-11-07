@@ -6,9 +6,9 @@ Welcome to the Graphs Simulation project! This project provides a collection of 
 
 1. [Introduction](#introduction)
 2. [Algorithms](#algorithms)
-2. [Usage](#usage)
-3. [Compiling Methods](#compiling-methods)
-4. [Contributing](#contributing)
+3. [Usage](#usage)
+4. [Compiling Methods](#compiling-methods)
+5. [Contributing](#contributing)
 
 ## Introduction
 
@@ -30,13 +30,13 @@ Each function and algorithm in this project aims to build a strong foundation in
    - [x] (8)  Função que determina o número total de arestas[Anny]
    - [x] (9)  Inclusão de um novo vértice[Davi]
    - [x] (10) Exclusão de um vértice existente[Davi]
-   - [ ] (11) Função que determina se um grafo é conexo ou não[Davi]
+   - [x] (11) Função que determina se um grafo é conexo ou não[Davi]
    - [ ] (12) Determinar se um grafo é bipartido (OPC = 1,0 ponto)[Alisson]
    - [ ] (13) Dada uma representação de uma árvore por matriz de adjacência, faça um algoritmo que
    produza o código de Prüffer e vice versa. (OPC= 1,0 ponto)[Alisson]
    - [x] (14) Busca em Largura, a partir de um vértice específico[Davi]
    - [x] (15) Busca em Profundidade, a partir de um vértice em específico. [José]
-   - [ ] (16) Determinação de articulações e blocos (biconectividade), utilizando obrigatoriamente a
+   - [x] (16) Determinação de articulações e blocos (biconectividade), utilizando obrigatoriamente a
 fu ão lowpt[Alisson]
    - B. Para DIGRAFOS (as opcionais possuem a sigla OPC ao final da função)
    - [x] (17)  Representação do Digrafo a partir da Matriz de Adjacências [José]

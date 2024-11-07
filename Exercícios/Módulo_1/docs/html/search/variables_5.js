@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['predecessors_0',['predecessors',['../structsml_1_1SearchResult.html#ad7ab84aec1673e5e69f8478562304ea8',1,'sml::SearchResult']]]
+  ['msg_0',['msg',['../structsml_1_1SimulationResult.html#a9c6f84abe2f0cbe0d56f9a62d9a81cbb',1,'sml::SimulationResult']]]
 ];

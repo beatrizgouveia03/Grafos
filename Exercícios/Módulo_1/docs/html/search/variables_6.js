@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['type_0',['type',['../structsml_1_1SimulationResult.html#a323b1137f56eb0d42d13d15156576124',1,'sml::SimulationResult']]]
+  ['numnodes_0',['numNodes',['../structsml_1_1SearchResult.html#a7232a22d3425dba45d0896a07b9b21e5',1,'sml::SearchResult']]]
 ];
