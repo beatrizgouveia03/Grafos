@@ -40,38 +40,36 @@ namespace sml {
     vector<bool> visited;
 		vector<vector<int>> backEdges;
 
-    friend ostream &operator<<(ostream &os, const SearchResult &result) {
-      os << left; // Align to the left
+	friend ostream &operator<<(ostream &os, const SearchResult &result) {
+			os << left; // Align to the left
 
-      // Print header
-      os << setw(15) << "Node" << setw(15) << "Visited" << setw(15)
-        << "Predecessor" <<  "Backedges" <<'\n';
+			// Print header
+			os << setw(15) << "Node" << setw(15) << "Visited" << setw(15)
+				 << "Predecessor" << "Backedges" << '\n';
 
-      // Print separator
-      os << setfill('-') << setw(45) << "" << setfill(' ') << '\n';
+			// Print separator
+			os << setfill('-') << setw(45) << "" << setfill(' ') << '\n';
 
-			
-		cout << result.numNodes << endl;
-      // Print each node's information
-      for (int i = 1; i <= result.numNodes; ++i) {
-        os << setw(15) << i                      // Node number
-          << setw(15) << result.visited[i]      // Visited status
-          << setw(15) << result.predecessors[i]; // Predecessor
+			// Print each node's information
+			for (int i = 1; i <= result.numNodes; ++i) {
+					os << setw(15) << i                       // Node number
+						 << setw(15) << result.visited[i]       // Visited status
+						 << setw(15) << result.predecessors[i]; // Predecessor
 
-            if (!result.backEdges[i].empty()) {
-                os << setw(30);
-                for (const auto &edge : result.backEdges[i]) {
-                    os << edge << " ";
-                }
-            } else {
-                os << setw(30) << "No backedges";
-            }
-					
-          os << setw(15)<< '\n';
-      }
+					if (!result.backEdges[i].empty()) {
+							os << setw(30);
+							for (const auto &edge : result.backEdges[i]) {
+									os << edge << " ";
+							}
+					} else {
+							os << setw(30) << "No backedges";
+					}
 
-      return os;
-    }
+					os << '\n'; // Ensure that each node's info starts on a new line
+			}
+
+			return os;
+	}
   };
 
 class Operations {
