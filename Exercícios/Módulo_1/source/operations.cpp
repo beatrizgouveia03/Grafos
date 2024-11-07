@@ -342,7 +342,7 @@ void Operations::calculateDegrees(Graph g)
 
   for (it = adjList.begin(); it != adjList.end(); ++it)
   {
-    cout << "vertex " << it->first << " has ";
+    cout << "Vertex " << it->first << " has ";
 
     int current_vertex_degree = 0;
 
@@ -351,7 +351,7 @@ void Operations::calculateDegrees(Graph g)
       current_vertex_degree++;
     }
 
-    cout << current_vertex_degree << "degrees" << endl;
+    cout << current_vertex_degree << " degrees" << endl;
   }
 }
 
@@ -363,7 +363,7 @@ void Operations::calculateDegrees(Graph g)
 void Operations::adjacentsVertex(Graph g, pair<string, string> vs)
 {
   string vsu = vs.first, vsv = vs.second;
-  int u, v;
+  int u = -1, v = -1;
   map<int, string> dictionary = g.getDictionary();
 
   for(int i{0}; i<g.getNumNodes(); ++i){
@@ -374,6 +374,11 @@ void Operations::adjacentsVertex(Graph g, pair<string, string> vs)
     }
   }
 
+  if(u == -1 || v == -1){
+    cout << "One of the vertices does not exist." << endl;
+    return;
+  }
+
   const auto &adjList = g.getAdjList();
 
   auto uAdj = adjList.find(u);
@@ -382,7 +387,9 @@ void Operations::adjacentsVertex(Graph g, pair<string, string> vs)
   if ((uAdj != adjList.end() && find(uAdj->second.begin(), uAdj->second.end(), v) != uAdj->second.end()) ||
       (vAdj != adjList.end() && find(vAdj->second.begin(), vAdj->second.end(), u) != vAdj->second.end()))
   {
-    cout << vsu << " e " << vsv << " are adjacents." << endl;
+    cout << vsu << " and " << vsv << " are adjacents." << endl;
+  } else {
+    cout << vsu << " and " << vsv << " are not adjacents." << endl;
   }
 }
 
@@ -398,7 +405,7 @@ void Operations::countVertices(Graph g)
 
   int totalVertices = adjList.size();
 
-  cout << "The amount of vertces of the graph is " << totalVertices << endl;
+  cout << "The amount of vertices of the graph is " << totalVertices << endl;
 }
 
 /**!
@@ -409,21 +416,10 @@ void Operations::countVertices(Graph g)
  */
 void Operations::countEdges(Graph g)
 {
-  auto adjList = g.getAdjList();
+  auto incMatrix = g.getIncMatrix();
 
-  map<int, vector<int>>::iterator it;
 
-  int totalEdges;
-
-  for (it = adjList.begin(); it != adjList.end(); ++it)
-  {
-    for (const int &edge : it->second)
-    {
-      totalEdges++;
-    }
-  }
-
-  cout << "The total amount of edged is " << totalEdges << endl;
+  cout << "The total amount of edges is " << incMatrix.size() << endl;
 }
 
 /**!

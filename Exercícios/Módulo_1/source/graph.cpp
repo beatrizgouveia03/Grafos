@@ -387,7 +387,6 @@ void Graph::addVertex(string v) {
         for (auto &row : incMatrix) {
             row.push_back(0); 
         }
-        incMatrix.push_back(vector<int>(incMatrix[0].size(), 0));
 
         dictionary[numNodes] = v;
         numNodes++;
