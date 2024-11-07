@@ -5,6 +5,7 @@ Welcome to the Graphs Simulation project! This project provides a collection of 
 ## Table of Contents
 
 1. [Introduction](#introduction)
+2. [Algorithms](#algorithms)
 2. [Usage](#usage)
 3. [Compiling Methods](#compiling-methods)
 4. [Contributing](#contributing)
@@ -16,6 +17,36 @@ This project delves into the implementation of various graph algorithms, serving
 The exercises cover a wide range of topics, from basic representations like adjacency lists and matrices to more advanced concepts such as Prüffer codes, articulation points, and bipartiteness. Additionally, we implement essential algorithms for digraphs, including conversions between incidence and adjacency matrices and in-depth search techniques.
 
 Each function and algorithm in this project aims to build a strong foundation in graph theory, helping to understand the relationships between vertices and edges, both in theoretical contexts and practical applications. 
+
+## Algorithms
+   - A. Para GRAFOS (as opcionais possuem a sigla OPC ao final da função)
+   - [x] (1)  Representação do Grafo a partir da Lista de Adjacências.[Beatriz]
+   - [x] (2)  Representação do Grafo a partir da Matriz de Adjacências.[Beatriz]
+   - [x] (3)  Representação do Grafo a partir da Matriz de Incidência.[Beatriz]
+   - [x] (4)  Conversão de matriz de adjacência para lista de Adjacências e vice-versa.[Beatriz]
+   - [x] (5)  Função que calcula o grau de cada vértice.[Anny]
+   - [x] (6)  Função que determina se dois vértices são adjacentes.[Anny]
+   - [x] (7)  Função que determina o número total de vértices[Anny]
+   - [x] (8)  Função que determina o número total de arestas[Anny]
+   - [x] (9)  Inclusão de um novo vértice[Davi]
+   - [x] (10) Exclusão de um vértice existente[Davi]
+   - [ ] (11) Função que determina se um grafo é conexo ou não[Davi]
+   - [ ] (12) Determinar se um grafo é bipartido (OPC = 1,0 ponto)[Alisson]
+   - [ ] (13) Dada uma representação de uma árvore por matriz de adjacência, faça um algoritmo que
+   produza o código de Prüffer e vice versa. (OPC= 1,0 ponto)[Alisson]
+   - [x] (14) Busca em Largura, a partir de um vértice específico[Davi]
+   - [x] (15) Busca em Profundidade, a partir de um vértice em específico. [José]
+   - [ ] (16) Determinação de articulações e blocos (biconectividade), utilizando obrigatoriamente a
+fu ão lowpt[Alisson]
+   - B. Para DIGRAFOS (as opcionais possuem a sigla OPC ao final da função)
+   - [x] (17)  Representação do Digrafo a partir da Matriz de Adjacências [José]
+   - [x] (18)  Representação do Digrafo a partir da Matriz de Incidência [José]
+   - [ ] (19)  Determinação do Grafo subjacente (OPC= 0,5 ponto)
+   - [ ] (20)  Conversão de matriz de incidência para estrela direta e vice versa(OPC= 0,5 ponto).
+   - [ ] (21)  Conversão de matriz de adjacência para estrela reversa e vice-versa (OPC= 0,5 ponto).
+   - [x] (22)  Busca em profundidade, com determinação de profundidade de entrada e de saída de cada [José]
+   - vértice.
+   - [ ] (23) Pesquisar e implementar uma aplicação, usando busca em profundidade (OPC= 1,0 ponto). [José]
 
 ## Usage
 
