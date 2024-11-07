@@ -458,6 +458,11 @@ void Operations::dfs(Graph g, string v)
   int idxV;
   map<int,string> dictionary = g.getDictionary();
 
+
+for (auto it = dictionary.begin(); it != dictionary.end(); it++)
+      cout << it->first << ": " << it->second << "dudu "<< endl;
+
+
   auto numNodes = g.getNumNodes();
 
   auto adjList = g.getAdjList();
@@ -465,12 +470,13 @@ void Operations::dfs(Graph g, string v)
   for(int i{0}; i<numNodes; ++i){
     if(dictionary[i] == v){
       idxV = i;
-      return;
+			break;
     }
   }
+
   vector<bool> visited = vector(numNodes + 1, false);
   vector<int> pred = vector(numNodes + 1, -1);
-  vector<pair<int,int>> backEdges;
+  vector<vector<int>> backEdges(numNodes + 1);
   stack<int> s;
 
   visited[idxV] = true;
@@ -494,7 +500,8 @@ void Operations::dfs(Graph g, string v)
 				// so we generate a back edge to it
 				
 				// back edge from `curr` to `adj`
-				backEdges.push_back({curr, adj});
+				// backEdges.push_back({curr, adj});
+				backEdges[curr].push_back(adj);
 			}
     }
   }
@@ -502,6 +509,7 @@ void Operations::dfs(Graph g, string v)
   SearchResult result = SearchResult{
 		.numNodes = numNodes,
 		.initialNode = idxV,
+		.predecessors = pred,
 		.visited = visited,
 		.backEdges = backEdges
 	};
