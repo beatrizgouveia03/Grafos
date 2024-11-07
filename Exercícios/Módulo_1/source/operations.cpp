@@ -139,7 +139,7 @@ void Operations::runMenu()
       pause();
       break;
     case 12:
-      dfs(digraph, handleSearch(int()));
+      dfs(digraph, handleSearch(string()));
       pause();
       break;
     case 13:
@@ -625,9 +625,55 @@ void Operations::indirectStarToAdjMatrix(/*Dont know*/)
  * @param d The digraph to be checked
  * @param v The index of the initial search vertex
  */
-void Operations::dfs(Digraph d, string v) { 
-  /*TO-DO*/
-  cout << "To be implemented" << endl;  
+void Operations::dfs(Digraph d, string v) 
+{
+  int idxV = d.getVertexIdx(v)+1;
+
+  auto numNodes = d.getNumNodes();
+
+  auto adjList = d.getAdjList();
+
+  vector<bool> visited = vector(numNodes + 1, false);
+  vector<int> pred = vector(numNodes + 1, -1);
+  vector<vector<int>> backEdges(numNodes + 1);
+  stack<int> s;
+
+  visited[idxV] = true;
+  s.push(idxV);
+
+  while (!s.empty())
+  {
+    int curr = s.top();
+    s.pop();
+
+    for (auto adj : adjList[curr])
+    {
+      if (!visited[adj])
+      {
+        visited[adj] = true;
+        pred[adj] = curr;
+        s.push(adj);
+      } else if (pred[curr] != adj){
+				// the current node (`curr`) has been previously visited
+				// but is being visited again since its adjacent to `adj`
+				// so we generate a back edge to it
+				
+				// back edge from `curr` to `adj`
+				// backEdges.push_back({curr, adj});
+				backEdges[curr].push_back(adj);
+			}
+    }
+  }
+
+  SearchResult result = SearchResult{
+		.numNodes = numNodes,
+		.initialNode = idxV,
+		.predecessors = pred,
+		.visited = visited,
+		.backEdges = backEdges
+	};
+
+  cout << result;
 }
 
 void Operations::application() { 
