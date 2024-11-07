@@ -458,11 +458,6 @@ void Operations::dfs(Graph g, string v)
   int idxV;
   map<int,string> dictionary = g.getDictionary();
 
-
-for (auto it = dictionary.begin(); it != dictionary.end(); it++)
-      cout << it->first << ": " << it->second << "dudu "<< endl;
-
-
   auto numNodes = g.getNumNodes();
 
   auto adjList = g.getAdjList();
