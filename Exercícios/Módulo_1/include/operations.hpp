@@ -107,9 +107,9 @@ class Operations {
 
     // THE MATH AND SEARCH OPERATIONS FROM DIGRAPHS
     void subjacentGraph(Digraph d);
-    void incMatrixToDirectStar(vector<vector<int>> incMatrix);
+    void incMatrixToDirectStar(Digraph d);
     void directStarToIncMatrix(/*Dont know*/);
-    void adjMatrixToIndirectStar(vector<vector<int>> adjMatrix);
+    void adjMatrixToIndirectStar(Digraph d);
     void indirectStarToAdjMatrix(/*Dont know*/);
     void dfs(Digraph d, string v);
     void application();

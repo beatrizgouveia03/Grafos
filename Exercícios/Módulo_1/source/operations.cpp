@@ -150,7 +150,7 @@ void Operations::runMenu()
       pause();
       break;
     case 15:
-      incMatrixToDirectStar(digraph.getIncMatrix());
+      incMatrixToDirectStar(digraph);
       pause();
       break;
     case 16:
@@ -158,7 +158,7 @@ void Operations::runMenu()
       pause();
       break;
     case 17:
-      adjMatrixToIndirectStar(digraph.getAdjMatrix());
+      adjMatrixToIndirectStar(digraph);
       pause();
       break;
     case 18:
@@ -536,7 +536,7 @@ void Operations::subjacentGraph(Digraph d) { /*TO-DO*/ }
  * direct star and displays the list resultant in the terminal
  * @param adjMatrix The incidence matrix to be converted
  */
-void Operations::incMatrixToDirectStar(vector<vector<int>> incMatrix)
+void Operations::incMatrixToDirectStar(Digraph d)
 {
   /*TO-DO*/
 }
@@ -556,7 +556,7 @@ void Operations::directStarToIncMatrix(/*Dont know*/)
  * indirect star and displays the list resultant in the terminal
  * @param adjMatrix The adjacency matrix to be converted
  */
-void Operations::adjMatrixToIndirectStar(vector<vector<int>> adjMatrix)
+void Operations::adjMatrixToIndirectStar(Digraph d)
 {
   /*TO-DO*/
 }

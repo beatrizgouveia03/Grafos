@@ -41,8 +41,7 @@ namespace sml {
             map<int, string> dictionary;   //!< The list that keeps the name of each vertex;
             map<int, vector<int>> adjList; //!< The adjacency list that represents the digraph;
             vector<vector<int>> adjMatrix; //!< The adjacency matrix that represents the digraph;
-            vector<vector<int>> incMatrix; //!< The incidence matrix that represents the digraph;
-
+            
         //== Public Members
         public:
             Digraph(void);
@@ -51,15 +50,12 @@ namespace sml {
             void printDigraph(void);
             void printAdjList(void);
             void printAdjMatrix(void);
-            void printIncMatrix(void);
             map<int, string> getDictionary(void);
             map<int,vector<int>> getAdjList(void);
             vector<vector<int>> getAdjMatrix(void);
-            vector<vector<int>> getIncMatrix(void);
             void updateDictionary(map<int, string> dictionary);
             void updateAdjList(map<int, vector<int>> adjList);
             void updateAdjMatrix(vector<vector<int>> adjMatrix);
-            void updateIncMatrix(vector<vector<int>> incMatrix);
             void runMenu(void);
 
         //== Aux Members

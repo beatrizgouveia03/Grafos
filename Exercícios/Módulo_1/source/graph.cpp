@@ -70,7 +70,7 @@ void Graph::printAdjList(void){
  *  This function prints the adjacency matrix.
 */  
 void Graph::printAdjMatrix(void){
-     cout << endl;
+    cout << endl;
     cout << "============================================" << endl;
     cout << "              ADJACENCY MATRIX              " << endl;
     cout << "============================================" << endl;

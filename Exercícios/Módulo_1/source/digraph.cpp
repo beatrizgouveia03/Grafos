@@ -40,7 +40,6 @@ Digraph::Digraph(int numNodes){
 void Digraph::printDigraph(void){
     printAdjList();
     printAdjMatrix();
-    printIncMatrix();
 }
 
 /**!
@@ -49,13 +48,13 @@ void Digraph::printDigraph(void){
 void Digraph::printAdjList(void){
     cout << endl;
     cout << "============================================" << endl;
-    cout << "               ADJACENCY LIST               " << endl;
+    cout << "               ADJACENCY LIST                " << endl;
     cout << "============================================" << endl;
-    for(int i = 1; i <= numNodes; i++){
+    for(int i = 0; i < numNodes; i++){
         
-        cout << "Adjacency list of node " << i << " : ";
-        for(int j = 0; j < adjList[i].size(); j++){
-            cout << adjList[i][j] << " ";
+        cout << "Adjacency list of node " << dictionary[i] << " : ";
+        for(int j = 0; j < adjList[i+1].size(); j++){
+            cout << dictionary[adjList[i+1][j]-1] << " ";
         }
         cout << endl;
     }
@@ -73,8 +72,8 @@ void Digraph::printAdjMatrix(void){
     cout << "              ADJACENCY MATRIX              " << endl;
     cout << "============================================" << endl;
     cout << "\\ ";
-    for(int j = 0; j < numNodes; j++){
-        cout << " " << j+1;
+    for(int i = 0; i < numNodes; i++){
+        cout << " " << dictionary[i];
     }
     cout << endl;
 
@@ -85,41 +84,9 @@ void Digraph::printAdjMatrix(void){
     cout << endl;
 
     for(int i = 0; i < numNodes; i++){
-        cout << i+1 << "| ";
+        cout << dictionary[i] << "| ";
         for(int j = 0; j < numNodes; j++){
             cout << adjMatrix[i][j] << " ";
-        }
-        cout << endl;
-    }
-    cout << endl;
-
-    cout << "============================================" << endl;
-}
-
-/**!
- *  This function prints the incidence matrix.
-*/        
-void Digraph::printIncMatrix(void){
-   cout << endl;
-    cout << "============================================" << endl;
-    cout << "              INCIDENCE MATRIX              " << endl;
-    cout << "============================================" << endl;
-    cout << "\\ ";
-    for(int j = 0; j < numNodes; j++){
-        cout << " " << j+1;
-    }
-    cout << endl;
-
-    cout << "  ";
-    for(int j = 0; j < numNodes; j++){
-        cout << "--";
-    }
-    cout << endl;
-
-    for(int i = 0; i < incMatrix.size(); i++){
-        cout << i+1 << "| ";
-        for(int j = 0; j < numNodes; j++){
-            cout << incMatrix[i][j] << " ";
         }
         cout << endl;
     }
@@ -166,14 +133,6 @@ vector<vector<int>> Digraph::getAdjMatrix(void){
     return adjMatrix;
 }
 
-/**!
- *  This function returns the incidence matrix.
- *
- *  @return The incidence matrix.
-*/
-vector<vector<int>> Digraph::getIncMatrix(void){
-    return incMatrix;
-}
 
 /**!
  * This function updates the dictionary map by replacing the 
@@ -206,17 +165,6 @@ void Digraph::updateAdjList(map<int, vector<int>> adjList){
 */
 void Digraph::updateAdjMatrix(vector<vector<int>> adjMatrix){
     this->adjMatrix = adjMatrix;
-}
-
-/**!
- * This function updates the incidence matrix by replacing the 
- * actual one with the one passed as parameter.
- *
- *  @param incMatrix The new version of the incidence matrix to be
- * updated
-*/
-void Digraph::updateIncMatrix(vector<vector<int>> incMatrix){
-    this->incMatrix = incMatrix;
 }
 
 /**!
@@ -326,10 +274,6 @@ void Digraph::runMenu(void) {
             printAdjMatrix();
             pause();
             break;
-        case 7:
-            printIncMatrix();
-            pause();
-            break;
         default:
         cout << "Select a valid option." << endl;
         break;
@@ -345,13 +289,12 @@ void Digraph::displayMenu(void) {
   cout << "============================================" << endl;
   cout << "               DIGRAPH MENU                 " << endl;
   cout << "============================================" << endl;
-  cout << "1. Add edge." << endl;
+  cout << "1. Add edge" << endl;
   cout << "2. Add vertex" << endl;
-  cout << "3. Remove edge." << endl;
-  cout << "4. Remove vertex." << endl;
+  cout << "3. Remove edge" << endl;
+  cout << "4. Remove vertex" << endl;
   cout << "5. Display as adjacency list" << endl;
   cout << "6. Display as adjacency matrix" << endl;
-  cout << "7. Display as incidence matrix" << endl;
   cout << "0. Exit to the main menu" << endl;
   cout << "============================================" << endl;
 }
@@ -381,11 +324,6 @@ void Digraph::addVertex(string v){
             row.push_back(0); 
         }
         adjMatrix.push_back(vector<int>(numNodes + 1, 0)); 
-
-        for (auto &row : incMatrix) {
-            row.push_back(0); 
-        }
-        incMatrix.push_back(vector<int>(incMatrix[0].size(), 0));
 
         dictionary[numNodes] = v;
         numNodes++;
@@ -428,15 +366,9 @@ void Digraph::addEdge(pair<string,string> vs){
         return;
     }
 
-    int idx = incMatrix.size();
-
     adjList[idxV+1].push_back(idxU+1);
 
     adjMatrix[idxV][idxU] = 1;
-
-    incMatrix.push_back(vector<int>(idx, 0));
-    incMatrix[idx][idxV] = 1;
-    incMatrix[idx][idxU] = 1;
 
    cout << "Edge added sucessfully on the digraph." << endl;
 
@@ -473,13 +405,6 @@ void Digraph::removeVertex(string v) {
         adjMatrix[i][idxV] = -1;
     }
     adjList[idxV+1] = {0};
-
-   for(int i{0}; i<incMatrix.size();++i){
-        if(incMatrix[i][idxV] == 1){
-            incMatrix.erase(incMatrix.begin()+i);
-            i--;
-        }
-   }
    
     dictionary[-1] = "Deleted";
     
@@ -520,13 +445,6 @@ void Digraph::removeEdge(pair<string,string> vs){
     aux.erase(remove(aux.begin(), aux.end(), idxU+1), aux.end());
 
     adjMatrix[idxV][idxU] = 0;
-
-    for(int i{0}; i<incMatrix.size();++i){
-      if(incMatrix[i][idxV] == 1 && incMatrix[i][idxU] == 1){
-          incMatrix.erase(incMatrix.begin()+i);
-          i--;
-      }
-   }
 
    cout << "Edge removed sucessfully from the graph." << endl;
 

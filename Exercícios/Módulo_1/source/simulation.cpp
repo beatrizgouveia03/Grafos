@@ -119,10 +119,8 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
       vector<vector<int>> adjMatrix = graph.getAdjMatrix();
       vector<vector<int>> incMatrix = graph.getIncMatrix();
 
-      map<int, string> diDictionary = digraph.getDictionary();
       map<int, vector<int>> diAdjList = digraph.getAdjList();
       vector<vector<int>> diAdjMatrix = digraph.getAdjMatrix();
-      vector<vector<int>> diIncMatrix = digraph.getIncMatrix();
 
       // Read the connections from the file
       while (getline(file, line)) {
@@ -200,8 +198,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
 
       digraph.updateAdjList(diAdjList);
       digraph.updateAdjMatrix(diAdjMatrix);
-      digraph.updateIncMatrix(diIncMatrix);
-      digraph.updateDictionary(diDictionary);
+      digraph.updateDictionary(dictionary);
 
       operations = Operations(graph, digraph);
 
