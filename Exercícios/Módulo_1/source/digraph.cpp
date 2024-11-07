@@ -304,13 +304,7 @@ void Digraph::displayMenu(void) {
  * @param v The "name" of the vertex to be added
 */
 void Digraph::addVertex(string v){
-    int idxV = -1;
-    for(int i{0}; i<numNodes; ++i){
-        if(dictionary[i] == v){
-            idxV = i;
-            break;
-        }
-    }
+    int idxV = getVertexIdx(v);
 
     if (idxV != -1 && adjMatrix[idxV][0] != -1 ) {
         cout << "Vertex " << v << " already exists." << endl;
@@ -346,15 +340,7 @@ void Digraph::addVertex(string v){
  * of the vertices to be connected
 */
 void Digraph::addEdge(pair<string,string> vs){
-    int idxV = -1, idxU = -1;
-    for(int i{0}; i<numNodes; ++i){
-        if(dictionary[i] == vs.first){
-            idxV = i;
-        } 
-        if(dictionary[i] == vs.second){
-            idxU = i;
-        }
-    }
+    int idxV = getVertexIdx(vs.first), idxU = getVertexIdx(vs.second);
 
     if (idxV == -1 || idxU == -1) {
         cout << "One of the vertices does not exist." << endl;
@@ -381,13 +367,7 @@ void Digraph::addEdge(pair<string,string> vs){
  * @param v The "name" of the vertex to be removed
 */
 void Digraph::removeVertex(string v) {
-    int idxV = -1;
-    for(int i{0}; i<numNodes; ++i){
-        if(dictionary[i] == v){
-            idxV = i;
-            break;
-        }
-    }
+    int idxV = getVertexIdx(v);
 
     if (idxV == -1) {
         cout << "Vertex " << v << " does not exist." << endl;
@@ -419,15 +399,7 @@ void Digraph::removeVertex(string v) {
  * of the vertices to be disconnected
 */
 void Digraph::removeEdge(pair<string,string> vs){
-    int idxV = -1, idxU = -1;
-    for(int i{0}; i<numNodes; ++i){
-        if(dictionary[i] == vs.first){
-            idxV = i;
-        } 
-        if(dictionary[i] == vs.second){
-            idxU = i;
-        }
-    }
+    int idxV = getVertexIdx(vs.first), idxU = getVertexIdx(vs.second);
 
     if (idxV == -1 || idxU == -1) {
         cout << "One of the vertices does not exist." << endl;
@@ -449,4 +421,36 @@ void Digraph::removeEdge(pair<string,string> vs){
    cout << "Edge removed sucessfully from the graph." << endl;
 
    printDigraph();
+}
+
+/**!
+ * This function locates on the dictionary of the digraph
+ * the vertex with the index passed as argument and returns its name.
+ * @param idxV The index of the vertex to be located
+*/
+string Digraph::getVertexName(int idxV){
+    if(idxV < numNodes){
+        return dictionary[idxV];
+    } else{
+        return " ";
+    }
+}
+
+
+/**!
+ * This function locates on the dictionary of the digraph
+ * the vertex with the name  passed as argument and returns its index.
+ * @param v The "name" of the vertex to be located
+*/
+int Digraph::getVertexIdx(string v){
+    int idxV = -1;
+
+    for(int i{0}; i<numNodes; ++i){
+        if(dictionary[i] == v){
+            idxV = i;
+            break;
+        }
+    }
+
+    return idxV;
 }

@@ -50,6 +50,8 @@ namespace sml {
             void printDigraph(void);
             void printAdjList(void);
             void printAdjMatrix(void);
+            int getVertexIdx(string v);
+            string getVertexName(int idxV);
             map<int, string> getDictionary(void);
             map<int,vector<int>> getAdjList(void);
             vector<vector<int>> getAdjMatrix(void);
