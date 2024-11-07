@@ -53,7 +53,7 @@ pair<string, string> Operations::handleSearch(pair<string, string> v)
 
   cout << "Insert the index of the first vertex: " << endl;
   getline(cin, str);
-  
+
   istringstream ss(str);
   getline(ss, x);
 
@@ -223,8 +223,8 @@ void Operations::displayMenu()
  */
 void Operations::adjListToAdjMatrix(Graph g)
 {
-  
-  map<int,string> dictionary = g.getDictionary();
+
+  map<int, string> dictionary = g.getDictionary();
   map<int, vector<int>> adjList = g.getAdjList();
 
   // Initialize the adjacency matrix
@@ -251,7 +251,7 @@ void Operations::adjListToAdjMatrix(Graph g)
     }
   }
 
-  //Create a aux graph o print the sides of the conversion
+  // Create a aux graph o print the sides of the conversion
   Graph aux = Graph(g.getNumNodes());
 
   aux.updateAdjList(adjList);
@@ -269,9 +269,9 @@ void Operations::adjListToAdjMatrix(Graph g)
  */
 void Operations::adjMatrixToAdjList(Graph g)
 {
-  map<int,string> dictionary = g.getDictionary();
+  map<int, string> dictionary = g.getDictionary();
   vector<vector<int>> adjMatrix = g.getAdjMatrix();
-  
+
   // Initialize the adjacency list
   int numNodes = adjMatrix.size();
   map<int, vector<int>> adjList;
@@ -317,7 +317,7 @@ void Operations::adjMatrixToAdjList(Graph g)
     }
   }
 
-  //Create a aux graph o print the sides of the conversion
+  // Create a aux graph o print the sides of the conversion
   Graph aux = Graph(g.getNumNodes());
 
   aux.updateAdjList(adjList);
@@ -338,11 +338,13 @@ void Operations::calculateDegrees(Graph g)
   // acessa a lista de adjacência que representa o grafo
   auto adjList = g.getAdjList();
 
+  map<int, string> dictionary = g.getDictionary();
+
   map<int, vector<int>>::iterator it;
 
   for (it = adjList.begin(); it != adjList.end(); ++it)
   {
-    cout << "Vertex " << it->first << " has ";
+    cout << "Vertex " << dictionary[it->first] << " has ";
 
     int current_vertex_degree = 0;
 
@@ -366,15 +368,20 @@ void Operations::adjacentsVertex(Graph g, pair<string, string> vs)
   int u = -1, v = -1;
   map<int, string> dictionary = g.getDictionary();
 
-  for(int i{0}; i<g.getNumNodes(); ++i){
-    if(dictionary[i] == vsu){
-      u = i+1;
-    } else if( dictionary[i] == vsv){
-      v = i+1;
+  for (int i{0}; i < g.getNumNodes(); ++i)
+  {
+    if (dictionary[i] == vsu)
+    {
+      u = i + 1;
+    }
+    else if (dictionary[i] == vsv)
+    {
+      v = i + 1;
     }
   }
 
-  if(u == -1 || v == -1){
+  if (u == -1 || v == -1)
+  {
     cout << "One of the vertices does not exist." << endl;
     return;
   }
@@ -388,7 +395,9 @@ void Operations::adjacentsVertex(Graph g, pair<string, string> vs)
       (vAdj != adjList.end() && find(vAdj->second.begin(), vAdj->second.end(), u) != vAdj->second.end()))
   {
     cout << vsu << " and " << vsv << " are adjacents." << endl;
-  } else {
+  }
+  else
+  {
     cout << vsu << " and " << vsv << " are not adjacents." << endl;
   }
 }
@@ -417,7 +426,6 @@ void Operations::countVertices(Graph g)
 void Operations::countEdges(Graph g)
 {
   auto incMatrix = g.getIncMatrix();
-
 
   cout << "The total amount of edges is " << incMatrix.size() << endl;
 }
@@ -453,7 +461,7 @@ void Operations::bipartite(Graph g)
  */
 void Operations::dfs(Graph g, string v)
 {
-  int idxV = g.getVertexIdx(v)+1;
+  int idxV = g.getVertexIdx(v) + 1;
 
   auto numNodes = g.getNumNodes();
 
@@ -479,25 +487,26 @@ void Operations::dfs(Graph g, string v)
         visited[adj] = true;
         pred[adj] = curr;
         s.push(adj);
-      } else if (pred[curr] != adj){
-				// the current node (`curr`) has been previously visited
-				// but is being visited again since its adjacent to `adj`
-				// so we generate a back edge to it
-				
-				// back edge from `curr` to `adj`
-				// backEdges.push_back({curr, adj});
-				backEdges[curr].push_back(adj);
-			}
+      }
+      else if (pred[curr] != adj)
+      {
+        // the current node (`curr`) has been previously visited
+        // but is being visited again since its adjacent to `adj`
+        // so we generate a back edge to it
+
+        // back edge from `curr` to `adj`
+        // backEdges.push_back({curr, adj});
+        backEdges[curr].push_back(adj);
+      }
     }
   }
 
   SearchResult result = SearchResult{
-		.numNodes = numNodes,
-		.initialNode = idxV,
-		.predecessors = pred,
-		.visited = visited,
-		.backEdges = backEdges
-	};
+      .numNodes = numNodes,
+      .initialNode = idxV,
+      .predecessors = pred,
+      .visited = visited,
+      .backEdges = backEdges};
 
   cout << result;
 }
@@ -508,50 +517,54 @@ void Operations::dfs(Graph g, string v)
  * @param g The graph to be checked
  * @param v The "name" of the initial search vertex
  */
-void Operations::bfs(Graph g, string v) {
-    int idxV = g.getVertexIdx(v)+1;
+void Operations::bfs(Graph g, string v)
+{
+  int idxV = g.getVertexIdx(v) + 1;
 
-    auto numNodes = g.getNumNodes();
+  auto numNodes = g.getNumNodes();
 
-    auto adjList = g.getAdjList();
+  auto adjList = g.getAdjList();
 
-    if (idxV == -1) {
-      cout << "Vertice " << v << " does not exist." << endl;
-      return;
+  if (idxV == -1)
+  {
+    cout << "Vertice " << v << " does not exist." << endl;
+    return;
+  }
+
+  vector<bool> visited(numNodes + 1, false);
+  vector<int> pred(numNodes + 1, -1);
+  vector<vector<int>> backEdges(numNodes + 1);
+
+  std::queue<int> q;
+  visited[idxV] = true;
+  q.push(idxV);
+
+  while (!q.empty())
+  {
+    int curr = q.front();
+    q.pop();
+
+    cout << "Visiting vertex " << g.getVertexName(curr - 1) << endl;
+
+    for (int adj : adjList[curr])
+    {
+      if (!visited[adj])
+      {
+        visited[adj] = true;
+        pred[adj] = curr;
+        q.push(adj);
+      }
     }
+  }
 
-    vector<bool> visited(numNodes + 1, false);
-    vector<int> pred(numNodes + 1, -1);
-    vector<vector<int>> backEdges(numNodes + 1) ;
-
-    std::queue<int> q;
-    visited[idxV] = true;
-    q.push(idxV);
-
-    while (!q.empty()) {
-        int curr = q.front();
-        q.pop();
-
-        cout << "Visiting vertex " << g.getVertexName(curr-1) << endl;
-
-        for (int adj : adjList[curr]) {
-            if (!visited[adj]) {
-                visited[adj] = true;
-                pred[adj] = curr;
-                q.push(adj);
-            }
-        }
-    }
-
-    SearchResult result = SearchResult{
+  SearchResult result = SearchResult{
       .numNodes = numNodes,
       .initialNode = idxV,
       .predecessors = pred,
       .visited = visited,
-      .backEdges = backEdges
-    };
+      .backEdges = backEdges};
 
-    cout << result;
+  cout << result;
 }
 
 /**!
@@ -559,7 +572,8 @@ void Operations::bfs(Graph g, string v) {
  * and displays in the terminal
  * @param g The graph to be checked
  */
-void Operations::articulationsAndBlocks(Graph g) { 
+void Operations::articulationsAndBlocks(Graph g)
+{
   /*TO-DO*/
   cout << "To be implemented" << endl;
 }
@@ -570,7 +584,8 @@ void Operations::articulationsAndBlocks(Graph g) {
  * This function determinates the subjacent graph of the digraph
  * @param d The digraph to be used
  */
-void Operations::subjacentGraph(Digraph d) { 
+void Operations::subjacentGraph(Digraph d)
+{
   /*TO-DO*/
   cout << "To be implemented" << endl;
 }
@@ -625,9 +640,9 @@ void Operations::indirectStarToAdjMatrix(/*Dont know*/)
  * @param d The digraph to be checked
  * @param v The index of the initial search vertex
  */
-void Operations::dfs(Digraph d, string v) 
+void Operations::dfs(Digraph d, string v)
 {
-  int idxV = d.getVertexIdx(v)+1;
+  int idxV = d.getVertexIdx(v) + 1;
 
   auto numNodes = d.getNumNodes();
 
@@ -653,30 +668,32 @@ void Operations::dfs(Digraph d, string v)
         visited[adj] = true;
         pred[adj] = curr;
         s.push(adj);
-      } else if (pred[curr] != adj){
-				// the current node (`curr`) has been previously visited
-				// but is being visited again since its adjacent to `adj`
-				// so we generate a back edge to it
-				
-				// back edge from `curr` to `adj`
-				// backEdges.push_back({curr, adj});
-				backEdges[curr].push_back(adj);
-			}
+      }
+      else if (pred[curr] != adj)
+      {
+        // the current node (`curr`) has been previously visited
+        // but is being visited again since its adjacent to `adj`
+        // so we generate a back edge to it
+
+        // back edge from `curr` to `adj`
+        // backEdges.push_back({curr, adj});
+        backEdges[curr].push_back(adj);
+      }
     }
   }
 
   SearchResult result = SearchResult{
-		.numNodes = numNodes,
-		.initialNode = idxV,
-		.predecessors = pred,
-		.visited = visited,
-		.backEdges = backEdges
-	};
+      .numNodes = numNodes,
+      .initialNode = idxV,
+      .predecessors = pred,
+      .visited = visited,
+      .backEdges = backEdges};
 
   cout << result;
 }
 
-void Operations::application() { 
+void Operations::application()
+{
   //*TO-DO*/
-  cout << "To be implemented" << endl; 
+  cout << "To be implemented" << endl;
 }
