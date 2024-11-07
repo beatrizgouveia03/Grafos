@@ -543,7 +543,7 @@ void Operations::bfs(Graph g, string v) {
 
     vector<bool> visited(numNodes + 1, false);
     vector<int> pred(numNodes + 1, -1);
-    vector<std::pair<int, int>> backEdges;
+    vector<vector<int>> backEdges;
 
     std::queue<int> q;
     visited[idxV] = true;
