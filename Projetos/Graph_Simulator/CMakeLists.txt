@@ -4,7 +4,7 @@ project(snaze VERSION 1.0 LANGUAGES CXX)
 
 include_directories ( include )
 
-add_executable( graph
+add_executable( Simulation
                 source/main.cpp
                 source/graph.cpp
                 source/digraph.cpp

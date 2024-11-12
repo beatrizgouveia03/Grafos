@@ -9,6 +9,8 @@ Welcome to the Graphs Simulation project! This project provides a collection of 
 3. [Usage](#usage)
 4. [Compiling Methods](#compiling-methods)
 5. [Contributing](#contributing)
+6. [Documentation](#documentation)
+7. [License](#license)
 
 ## Introduction
 
@@ -19,34 +21,34 @@ The exercises cover a wide range of topics, from basic representations like adja
 Each function and algorithm in this project aims to build a strong foundation in graph theory, helping to understand the relationships between vertices and edges, both in theoretical contexts and practical applications. 
 
 ## Algorithms
-   - A. Para GRAFOS (as opcionais possuem a sigla OPC ao final da função)
-   - [x] (1)  Representação do Grafo a partir da Lista de Adjacências.[Beatriz]
-   - [x] (2)  Representação do Grafo a partir da Matriz de Adjacências.[Beatriz]
-   - [x] (3)  Representação do Grafo a partir da Matriz de Incidência.[Beatriz]
-   - [x] (4)  Conversão de matriz de adjacência para lista de Adjacências e vice-versa.[Beatriz]
-   - [x] (5)  Função que calcula o grau de cada vértice.[Anny]
-   - [x] (6)  Função que determina se dois vértices são adjacentes.[Anny]
-   - [x] (7)  Função que determina o número total de vértices[Anny]
-   - [x] (8)  Função que determina o número total de arestas[Anny]
-   - [x] (9)  Inclusão de um novo vértice[Davi]
-   - [x] (10) Exclusão de um vértice existente[Davi]
-   - [x] (11) Função que determina se um grafo é conexo ou não[Davi]
-   - [ ] (12) Determinar se um grafo é bipartido (OPC = 1,0 ponto)[Alisson]
-   - [ ] (13) Dada uma representação de uma árvore por matriz de adjacência, faça um algoritmo que
-   produza o código de Prüffer e vice versa. (OPC= 1,0 ponto)[Alisson]
-   - [x] (14) Busca em Largura, a partir de um vértice específico[Davi]
-   - [x] (15) Busca em Profundidade, a partir de um vértice em específico. [José]
-   - [x] (16) Determinação de articulações e blocos (biconectividade), utilizando obrigatoriamente a
-fu ão lowpt[Alisson]
-   - B. Para DIGRAFOS (as opcionais possuem a sigla OPC ao final da função)
-   - [x] (17)  Representação do Digrafo a partir da Matriz de Adjacências [José]
-   - [x] (18)  Representação do Digrafo a partir da Matriz de Incidência [José]
-   - [ ] (19)  Determinação do Grafo subjacente (OPC= 0,5 ponto)
-   - [ ] (20)  Conversão de matriz de incidência para estrela direta e vice versa(OPC= 0,5 ponto).
-   - [ ] (21)  Conversão de matriz de adjacência para estrela reversa e vice-versa (OPC= 0,5 ponto).
-   - [x] (22)  Busca em profundidade, com determinação de profundidade de entrada e de saída de cada [José]
-   - vértice.
-   - [ ] (23) Pesquisar e implementar uma aplicação, usando busca em profundidade (OPC= 1,0 ponto). [José]
+  Here is the adapted text in English:
+
+ - **A. For GRAPHS** (optional functions are marked with the abbreviation "OPT" at the end of the function)
+   - [x] (1) Graph representation from the Adjacency List. [Beatriz]
+   - [x] (2) Graph representation from the Adjacency Matrix. [Beatriz]
+   - [x] (3) Graph representation from the Incidence Matrix. [Beatriz]
+   - [x] (4) Conversion from adjacency matrix to adjacency list and vice versa. [Beatriz]
+   - [x] (5) Function to calculate the degree of each vertex. [Anny]
+   - [x] (6) Function to determine if two vertices are adjacent. [Anny]
+   - [x] (7) Function to determine the total number of vertices. [Anny]
+   - [x] (8) Function to determine the total number of edges. [Anny]
+   - [x] (9) Addition of a new vertex. [Davi]
+   - [x] (10) Deletion of an existing vertex. [Davi]
+   - [x] (11) Function to determine if a graph is connected or not. [Davi]
+   - [ ] (12) Determine if a graph is bipartite (OPT = 1.0 point). [Alisson]
+   - [ ] (13) Given a tree representation by adjacency matrix, create an algorithm to generate the Prüffer code and vice versa. (OPT = 1.0 point) [Alisson]
+   - [x] (14) Breadth-First Search, starting from a specific vertex. [Davi]
+   - [x] (15) Depth-First Search, starting from a specific vertex. [José]
+   - [x] (16) Determination of articulations and blocks (biconnectivity), necessarily using the lowpt function. [Alisson]
+
+ - **B. For DIGRAPHS** (optional functions are marked with the abbreviation "OPT" at the end of the function)
+   - [x] (17) Digraph representation from the Adjacency Matrix. [José]
+   - [x] (18) Digraph representation from the Incidence Matrix. [José]
+   - [ ] (19) Determination of the underlying graph (OPT = 0.5 point).
+   - [ ] (20) Conversion from incidence matrix to direct star and vice versa (OPT = 0.5 point).
+   - [ ] (21) Conversion from adjacency matrix to reverse star and vice versa (OPT = 0.5 point).
+   - [x] (22) Depth-First Search, with entry and exit depths for each vertex. [José]
+   - [ ] (23) Research and implement an application using depth-first search (OPT = 1.0 point). [José]
 
 ## Usage
 
@@ -61,7 +63,7 @@ To use this project, follow the steps below:
 2. Navigate to the project directory:
 
    ```shell
-   cd Grafos/Exercícios/Módulo_1/
+   cd Grafos/Projetos/Graph_Simulation/
    ```
 
 3. Compile your project according to your preferred method (see [Compiling Methods](#compiling-methods) for more details).
@@ -79,7 +81,7 @@ This project uses CMake as the build system, which allows for easy and efficient
 2. Navigate to the project directory:
 
    ```shell
-   cd Grafos/Exercícios/Módulo_1/
+   cd Grafos/Projetos/Graph_Simulation/
    ```
 
 3. Create a build directory and generate an Unix Makefile based on the script found on the current level:
@@ -94,7 +96,7 @@ This project uses CMake as the build system, which allows for easy and efficient
    cmake --build build
    ```
 
-6. After successful compilation, you will find the executable files for each sorting algorithm in the build directory. Execute the desired program to see the algorithms in action with the selected scenarios.
+6. After successful compilation, you will find the executable file in the build directory, by the name 'Simulation'. Execute the program to see the algorithms in action with the selected entry.
 
 ## Contributing
 
@@ -123,3 +125,15 @@ Contributions to this project are welcome! If you'd like to improve an existing 
    ```
 
 6. Open a pull request, describing your changes and the rationale behind them.
+
+## Documentation
+The project uses Doxygen for documentation. To generate the documentation, navigate to the project directory and
+run the following command:
+
+```shell
+doxygen Doxyfile
+```
+This will create a docs folder (or another directory specified in the OUTPUT_DIRECTORY in Doxyfile) with the generated documentation files. You can view the documentation by opening the [index.html](/docs/html/index.html) file, located inside the html subfolder, in your web browser.
+
+##  License
+This project is licensed under the MIT License. See the [LICENSE](../../LICENSE.md) file for details.
