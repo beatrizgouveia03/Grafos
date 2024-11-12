@@ -10,4 +10,4 @@ add_executable( Simulation
                 source/digraph.cpp
                 source/operations.cpp
                 source/simulation.cpp)
-set_property(TARGET graph PROPERTY CXX_STANDARD 20)
+set_property(TARGET Simulation PROPERTY CXX_STANDARD 20)
