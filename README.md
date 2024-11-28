@@ -14,7 +14,7 @@
 O repositório ainda está em desenvolvimento, bem como esse README, e as próximas atualizações serão voltadas para as seguintes tarefas:
 
 - [ ] Modelos de implementações de grafos  
-- [ ] [Projeto 1ª Unidade](Exercícios/Módulo_1/README.md)
+- [ ] [Projeto 1ª Unidade](/Projetos/Graph_Simulator/README.md)
 
 ## 💻 Pré-requisitos
 
@@ -28,7 +28,7 @@ Este repositório está atualmente organizado em três pastas principais: Implem
 Para fins de adição de novos materiais, seguimos a seguinte divisão:
 - Implementações: qualquer implementação de pseudocódigo apresentado nos slides ou relacionados.
 - Slides-Aulas: slides disponibilizados pela turma virtual do SIGAA referentes a turma de Grafos - DIM0549.
-- Exercícios: exercícios passados nos slides das aulas que seram utilizados para fins avaliativos.
+- Projetos: projetos desenvolvidos para fins avaliativos da disciplina. 
 
 > Fique atento a organização interna da pasta, caso haja, antes de adicionar mais matérial a ela!
 
