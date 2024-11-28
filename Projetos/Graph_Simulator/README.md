@@ -63,7 +63,7 @@ To use this project, follow the steps below:
 2. Navigate to the project directory:
 
    ```shell
-   cd Grafos/Projetos/Graph_Simulation/
+   cd Grafos/Projetos/Graph_Simulator/
    ```
 
 3. Compile your project according to your preferred method (see [Compiling Methods](#compiling-methods) for more details).
@@ -81,7 +81,7 @@ This project uses CMake as the build system, which allows for easy and efficient
 2. Navigate to the project directory:
 
    ```shell
-   cd Grafos/Projetos/Graph_Simulation/
+   cd Grafos/Projetos/Graph_Simulator/
    ```
 
 3. Create a build directory and generate an Unix Makefile based on the script found on the current level:
@@ -136,4 +136,4 @@ doxygen Doxyfile
 This will create a docs folder (or another directory specified in the OUTPUT_DIRECTORY in Doxyfile) with the generated documentation files. You can view the documentation by opening the [index.html](/docs/html/index.html) file, located inside the html subfolder, in your web browser.
 
 ##  License
-This project is licensed under the MIT License. See the [LICENSE](../../LICENSE.md) file for details.
+This project is licensed under the MIT License. See the [LICENSE](/LICENSE.md) file for details.
