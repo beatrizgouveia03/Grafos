@@ -1,5 +1,5 @@
 /**!
- *  This program implements the Snaze simulation.
+ *  This program implements the Graphs Simulation.
  *
  *  @author Beatriz Gouveia
  *
