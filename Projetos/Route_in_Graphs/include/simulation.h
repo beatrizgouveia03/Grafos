@@ -7,7 +7,6 @@
  * @date Nov 29nd, 2024
  */
 
-
 #include <string>
 using std::stoi;
 using std::string;
@@ -30,52 +29,51 @@ using std::map;
 #include <vector>
 using std::vector;
 
-
 namespace sml {
-  /// Simulation Result Machine
+  /// Enum para representar o resultado da simulação
   enum simulation_result_e
   {
-    OK = 0,     //!< All the entries are as expect.
-    ERROR       //!< Some entry is missing something.
+    OK = 0,     //!< Todas as entradas estão como esperado.
+    ERROR       //!< Alguma entrada está faltando ou possui erro.
   };
 
-  /// Simulation Machine
+  /// Estrutura para armazenar o resultado da simulação
   struct SimulationResult
   {
-    string msg;                 //!< The message to be printed
-    simulation_result_e type;   //!< The simulation result
+    string msg;                 //!< Mensagem a ser exibida
+    simulation_result_e type;   //!< Tipo de resultado da simulação
 
     SimulationResult(string msg, simulation_result_e state): msg(msg), type(state){};
   };
 
-  ///Graph Type Machine
+  /// Enum para representar o tipo de grafo
   enum graph_type_e
   {
-    DIRECTED = 0,  //!< Directed graph
-    UNDIRECTED  //!< Undirected graph
+    DIRECTED = 0,  //!< Grafo direcionado
+    UNDIRECTED     //!< Grafo não direcionado
   };
 
-  /// Graph Struct Machine
+  /// Estrutura para representar um grafo
   struct Graph
   {
-    int n;                          //!< Number of vertices
-    graph_type_e type;              //!< Type of the graph
-    vector<vector<int> > adj;       //!< Adjacency matrix
-    map<int, string> dictionary;    //!< The list that keeps the name of each vertex;
+    int n;                          //!< Número de vértices
+    graph_type_e type;              //!< Tipo do grafo
+    vector<vector<int>> adj;        //!< Matriz de adjacência
+    map<int, string> dictionary;    //!< Lista que mantém o nome de cada vértice
   };
 
   class Simulation {
-    //== Private Members
+    //== Membros privados
     private:
-      Graph graph;            //!< The graph of the simulation
+      Graph graph;            //!< O grafo da simulação
 
-    //=== Public Members
+    //=== Membros públicos
     public:
       Simulation(void);
       void run(void);
       SimulationResult initialize(int argc, char *argv[]);
 
-    //=== Aux methods
+    //=== Métodos auxiliares
     private:
       void pause(void);
       SimulationResult usage(string = "");

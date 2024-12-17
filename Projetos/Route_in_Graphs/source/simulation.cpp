@@ -2,70 +2,66 @@
 
 using namespace sml;
 
-
 /**!
- * Constructor default of the simulation class
+ * Construtor padrão da classe Simulation
  */
 Simulation::Simulation(void) {
-  // Initialize the simulation
-  
+  // Inicializa a simulação
 }
 
 /**!
- * This function waits for any entry from the terminal to end.
+ * Esta função espera por uma entrada no terminal para finalizar.
  */
 void Simulation::pause(void){
-  cout << "To return to the main menu, press Enter...";
-  cin.get(); // Waits an entry
+  cout << "Para retornar ao menu principal, pressione Enter...";
+  cin.get(); // Aguarda uma entrada
   cout << endl;
 }
 
-
 /**!
- * This function loops around the main menu calling the
- * functions related to them, until the user chooses to end the program.
+ * Esta função percorre o menu principal chamando as
+ * funções relacionadas a ele, até que o usuário escolha encerrar o programa.
  */
 void Simulation::run(void) {
   int opt = -1;
   string str;
 
-  cout << "Initializing simulation..." << endl;
+  cout << "Inicializando a simulação..." << endl;
 }
 
 /**!
- *  This function initializes the simulation by reading the input
- * file and creating representations of the graph as an adjancency
- *  list, as an adjacency matrix and as an incidence matrix.
+ * Esta função inicializa a simulação lendo o arquivo de entrada
+ * e criando representações do grafo como lista de adjacência,
+ * matriz de adjacência e matriz de incidência.
  *
- * @param argc An integer indicating the amount of arguments passed on the
- * terminal
- * @param argv The list of the arguments passed on the terminal
- * @return  A struct indicating if was successful the initialization
+ * @param argc Um inteiro indicando a quantidade de argumentos passados no terminal
+ * @param argv A lista de argumentos passados no terminal
+ * @return Uma estrutura indicando se a inicialização foi bem-sucedida
  */
 SimulationResult Simulation::initialize(int argc, char *argv[]) {
-  // Initialize the simulation
-  // Process command line arguments
+  // Inicializa a simulação
+  // Processa os argumentos da linha de comando
   if (argc <= 1) {
-    return usage("Error: Missing filename");
+    return usage("Erro: Nome do arquivo ausente");
   } else {
     string filename = argv[1];
     ifstream file(filename);
 
-    cout << "Initializing the simulation..." << endl;
+    cout << "Inicializando a simulação..." << endl;
 
     if (!file.is_open()) {
-      return usage("Error: unable to open file");
+      return usage("Erro: Não foi possível abrir o arquivo");
     } else {
 
         /* TO - DO */
 
-      // 1.Read the graph from the file
+      // 1. Ler o grafo do arquivo
       
-      // 2.Read the connections from the file
+      // 2. Ler as conexões do arquivo
       
-      // 3.Update the dictionary
+      // 3. Atualizar o dicionário
 
-      cout << "Sucessfully initialized" << endl;
+      cout << "Inicialização concluída com sucesso" << endl;
 
       return SimulationResult("", simulation_result_e(0));
     }
@@ -73,15 +69,15 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
 }
 
 /**!
- *  This function shows in the terminal the usage options.
+ * Esta função exibe no terminal as opções de uso.
  *
- * @param message The usage error description message to be display 
- * @return  A struct indicating that the reading failed and the error message
+ * @param message A mensagem de descrição do erro de uso a ser exibida
+ * @return Uma estrutura indicando que a leitura falhou e a mensagem de erro
  */
 SimulationResult Simulation::usage(string message){
   if(message == "")
   {
-    string usage = ">>> Usage: graph <input_entry_file>";
+    string usage = ">>> Uso: graph <arquivo_de_entrada>";
 
     return SimulationResult(usage, simulation_result_e(1));
   }
