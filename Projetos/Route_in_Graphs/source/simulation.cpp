@@ -18,6 +18,32 @@ void Simulation::pause(void){
   cout << endl;
 }
 
+/**! 
+ * Essa função exibe o menu principal da simulação no terminal.
+ * 
+ * O menu principal serve como ponto de partida para o usuário
+ * interagir com as funcionalidades da simulação.
+ */
+void Simulation::showMenu(void){
+  cout << "============================================" << endl;
+  cout << "                Menu Principal              " << endl;
+  cout << "============================================" << endl;
+  cout << "-- Aŕvores Geradoras Minimas --" << endl;
+  cout << "1. Kruskal" << endl;
+  cout << "2. Prim" << endl;
+  cout << "3. Chu-Liu/Edmonds" << endl;
+  cout << "-- Caminho mais curto --" << endl;
+  cout << "4. Dijkstra" << endl;
+  cout << "5. Bellman-Ford" << endl;
+  cout << "6. Floyd-Warshall" << endl;
+  cout << "-- Grafos Eulerianos --" << endl;
+  cout << "7. Hierholzer (Ciclos)" << endl;
+  cout << "-- Fluxo em redes --" << endl;
+  cout << "8. Ford-Fulkerson" << endl;
+  cout << "9. Edmonds-Karp" << endl;
+}
+
+
 /**!
  * Esta função percorre o menu principal chamando as
  * funções relacionadas a ele, até que o usuário escolha encerrar o programa.
@@ -27,6 +53,47 @@ void Simulation::run(void) {
   string str;
 
   cout << "Inicializando a simulação..." << endl;
+
+  while(opt != 0){
+    showMenu();
+    cout << "Enter your option: " << endl;
+    getline(cin, str);
+    opt = stoi(str);
+
+    switch (opt) {
+      case 0:
+        break;
+      case 1:
+        kruskal();
+        break;
+      case 2:
+        prim();
+        break;
+      case 3:
+        chuLiuEdmonds();
+        break;
+      case 4:
+        dijkstra();
+        break;
+      case 5:
+        bellmanFord();
+        break;
+      case 6: 
+        floydWarshall();
+        break;
+      case7: 
+        hierholzer();
+        break;
+      case 8:
+        fordFulkerson();
+        break;
+      case 9: 
+        edmondsKarp();
+        break;
+      default:
+        break;
+    }
+  }
 }
 
 /**!

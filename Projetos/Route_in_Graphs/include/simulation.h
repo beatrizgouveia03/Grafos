@@ -76,7 +76,21 @@ namespace sml {
     //=== Métodos auxiliares
     private:
       void pause(void);
+      void showMenu(void);
       SimulationResult usage(string = "");
+      
+      //! Algoritmos de rotas em redes
+      void prim(void);
+      void kruskal(void);
+      void dijkstra(void);
+      void hierholzer(void);
+      void bellmanFord(void);
+      void edmondsKarp(void);
+      void floydWarshall(void);
+      void fordFulkerson(void);
+      void chuLiuEdmonds(void);
+
+
   };
 } // namespace sml
 
