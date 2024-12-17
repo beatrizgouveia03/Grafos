@@ -2,7 +2,7 @@
 
 using namespace sml;
 
-void floydWarshall (void){
+void Simulation::floydWarshall (void){
     /*TO-DO*/
     cout << "Floyd-Warshall" << endl;
 };

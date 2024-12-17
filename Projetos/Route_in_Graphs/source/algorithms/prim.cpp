@@ -2,7 +2,7 @@
 
 using namespace sml;
 
-void prim (void){
+void Simulation::prim (void){
     /*TO-DO*/
     cout << "Prim" << endl;
 };

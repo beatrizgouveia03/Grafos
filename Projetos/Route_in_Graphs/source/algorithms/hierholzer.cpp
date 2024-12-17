@@ -2,7 +2,7 @@
 
 using namespace sml;
 
-void hierholzer (void){
+void Simulation::hierholzer (void){
     /*TO-DO*/
     cout << "Hierholzer" << endl;
 };

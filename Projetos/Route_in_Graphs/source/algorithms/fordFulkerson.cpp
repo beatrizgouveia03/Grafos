@@ -2,7 +2,7 @@
 
 using namespace sml;
 
-void fordFulkerson (void){
+void Simulation::fordFulkerson (void){
     /*TO-DO*/
     cout << "Ford-Fulkerson" << endl;
 };

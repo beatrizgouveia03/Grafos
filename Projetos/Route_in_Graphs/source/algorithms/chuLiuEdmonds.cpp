@@ -2,7 +2,7 @@
 
 using namespace sml;
 
-void chuLiuEdmonds (void){
+void Simulation::chuLiuEdmonds (void){
     /*TO-DO*/
     cout << "Chu-Liu/Edmonds" << endl;
 };

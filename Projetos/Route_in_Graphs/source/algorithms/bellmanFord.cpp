@@ -2,7 +2,7 @@
 
 using namespace sml;
 
-void bellmanFord (void){
+void Simulation::bellmanFord (void){
     /*TO-DO*/
     cout << "Bellman-Ford" << endl;
 };

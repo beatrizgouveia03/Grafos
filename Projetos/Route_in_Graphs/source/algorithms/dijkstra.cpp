@@ -2,7 +2,7 @@
 
 using namespace sml;
 
-void dijkstra (void){
+void Simulation::dijkstra (void){
     /*TO-DO*/
     cout << "Dijkstra" << endl;
 };

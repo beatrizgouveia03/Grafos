@@ -2,7 +2,7 @@
 
 using namespace sml;
 
-void kruskal (void){
+void Simulation::kruskal (void){
     /*TO-DO*/
     cout << "Kruskal" << endl;
 };

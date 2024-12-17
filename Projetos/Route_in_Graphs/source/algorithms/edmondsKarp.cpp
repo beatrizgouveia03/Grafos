@@ -2,7 +2,7 @@
 
 using namespace sml;
 
-void edmondsKarp (void){
+void Simulation::edmondsKarp (void){
     /*TO-DO*/
     cout << "Edmonds-Karp" << endl;
 };
