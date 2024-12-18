@@ -41,6 +41,7 @@ void Simulation::showMenu(void){
   cout << "-- Fluxo em redes --" << endl;
   cout << "8. Ford-Fulkerson" << endl;
   cout << "9. Edmonds-Karp" << endl;
+  cout << "0. Encerrar programa" << endl;
 }
 
 
@@ -51,8 +52,6 @@ void Simulation::showMenu(void){
 void Simulation::run(void) {
   int opt = -1;
   string str;
-
-  cout << "Inicializando a simulação..." << endl;
 
   while(opt != 0){
     showMenu();
@@ -65,30 +64,39 @@ void Simulation::run(void) {
         break;
       case 1:
         kruskal();
+        pause();
         break;
       case 2:
         prim();
+        pause();
         break;
       case 3:
         chuLiuEdmonds();
+        pause();
         break;
       case 4:
         dijkstra();
+        pause();
         break;
       case 5:
         bellmanFord();
+        pause();
         break;
       case 6: 
         floydWarshall();
+        pause();
         break;
       case7: 
         hierholzer();
+        pause();
         break;
       case 8:
         fordFulkerson();
+        pause();
         break;
       case 9: 
         edmondsKarp();
+        pause();
         break;
       default:
         break;
@@ -110,29 +118,52 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
   // Processa os argumentos da linha de comando
   if (argc <= 1) {
     return usage("Erro: Nome do arquivo ausente");
-  } else {
-    string filename = argv[1];
-    ifstream file(filename);
+  }
+  if (argc <= 2){
+    return usage("Erro: Tipo de entrada não especificada");
+  } 
+  
+  string filename = argv[1];
+  ifstream file(filename);
 
-    cout << "Inicializando a simulação..." << endl;
+  cout << "Inicializando a simulação..." << endl;
 
-    if (!file.is_open()) {
-      return usage("Erro: Não foi possível abrir o arquivo");
-    } else {
+  if (!file.is_open()) {
+    return usage("Erro: Não foi possível abrir o arquivo");
+  }
 
-        /* TO - DO */
+  int entryType;
 
-      // 1. Ler o grafo do arquivo
-      
-      // 2. Ler as conexões do arquivo
-      
-      // 3. Atualizar o dicionário
+  try
+  {
+    entryType = stoi(argv[2]);
+  }
+  catch(exception e)
+  {
+    return usage("Erro: Tipo de entrada inválido");
+  }
+  
 
-      cout << "Inicialização concluída com sucesso" << endl;
+  int size, value;
+  vector<vector<int>> matrix;
 
-      return SimulationResult("", simulation_result_e(0));
+  file >> size;
+
+   // Leitura da entrada
+  while (!file.eof()) {
+    if(entryType == 1){
+        vector<int> line;
+        for (int i = 0; i < size; i++) {  
+            file >> value;
+            line.push_back(value);
+        }
+        matrix.push_back(line);
     }
   }
+
+  cout << "Inicialização concluída com sucesso" << endl;
+
+  return SimulationResult("", simulation_result_e(0));
 }
 
 /**!
@@ -142,12 +173,14 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
  * @return Uma estrutura indicando que a leitura falhou e a mensagem de erro
  */
 SimulationResult Simulation::usage(string message){
-  if(message == "")
-  {
-    string usage = ">>> Uso: graph <arquivo_de_entrada>";
+  string usage = ">>> Uso: Rotas_em_Redes <arquivo_de_entrada> <tipo_de_entrada>\n";
+  usage += ">>> Tipo de entrada:\n";
+  usage += ">>> 1 - Matriz de adjacência\n";
 
-    return SimulationResult(usage, simulation_result_e(1));
+  if(message != "")
+  {
+    usage = ">>> " + message + "\n" + usage;
   }
 
-  return SimulationResult(">>> "+ message + "\n", simulation_result_e(1));
+  return SimulationResult(usage, simulation_result_e(1));
 }

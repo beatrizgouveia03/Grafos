@@ -29,6 +29,10 @@ using std::map;
 #include <vector>
 using std::vector;
 
+#include <exception>
+using std::exception;
+
+
 namespace sml {
   /// Enum para representar o resultado da simulação
   enum simulation_result_e
