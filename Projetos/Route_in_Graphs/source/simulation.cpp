@@ -173,7 +173,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
  * @return Uma estrutura indicando que a leitura falhou e a mensagem de erro
  */
 SimulationResult Simulation::usage(string message){
-  string usage = ">>> Uso: Rotas_em_Redes <arquivo_de_entrada> <tipo_de_entrada>\n";
+  string usage = ">>> Uso: Route_in_Graphs <arquivo_de_entrada> <tipo_de_entrada>\n";
   usage += ">>> Tipo de entrada:\n";
   usage += ">>> 1 - Matriz de adjacência\n";
 

@@ -4,7 +4,7 @@ project(rotasEmGrafos VERSION 1.0 LANGUAGES CXX)
 
 include_directories ( include )
 
-add_executable( Simulation
+add_executable( Route_in_Graphs
                 source/main.cpp
                 source/simulation.cpp
                 source/algorithms/prim.cpp
@@ -17,4 +17,4 @@ add_executable( Simulation
                 source/algorithms/chuLiuEdmonds.cpp
                 source/algorithms/fordFulkerson.cpp )
 
-set_property(TARGET Simulation PROPERTY CXX_STANDARD 20)
+set_property(TARGET Route_in_Graphs PROPERTY CXX_STANDARD 20)
