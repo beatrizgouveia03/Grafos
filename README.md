@@ -15,7 +15,7 @@ O repositório ainda está em desenvolvimento, bem como esse README, e as próxi
 
 - [ ] Modelos de implementações de grafos  
 - [x] [Projeto 1ª Unidade](/Projetos/Graph_Simulator)
-- [ ] [Projeto 2ª Unidade](/Projeto/Route_in_Graphs)
+- [ ] [Projeto 2ª Unidade](/Projetos/Route_in_Graphs)
 
 ## 💻 Pré-requisitos
 
