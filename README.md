@@ -14,7 +14,8 @@
 O repositório ainda está em desenvolvimento, bem como esse README, e as próximas atualizações serão voltadas para as seguintes tarefas:
 
 - [ ] Modelos de implementações de grafos  
-- [ ] [Projeto 1ª Unidade](/Projetos/Graph_Simulator)
+- [x] [Projeto 1ª Unidade](/Projetos/Graph_Simulator)
+- [ ] [Projeto 2ª Unidade](/Projeto/Route_in_Graphs)
 
 ## 💻 Pré-requisitos
 
