@@ -102,12 +102,12 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
       string v1, v2;
       int numNodes, numConnection = 0;
 
-      string line;
-      char trash;
+        string line;
+        char trash;
 
-      cout << "Reading number of nodes..." << endl;
+        cout << "Reading number of nodes..." << endl;
 
-      file >> numNodes;
+        file >> numNodes;
 
       cout << "Numbers of nodes read: " << numNodes << endl;
 

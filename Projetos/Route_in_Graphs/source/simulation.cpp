@@ -118,9 +118,6 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
   // Processa os argumentos da linha de comando
   if (argc <= 1) {
     return usage("Erro: Nome do arquivo ausente");
-  }
-  if (argc <= 2){
-    return usage("Erro: Tipo de entrada não especificada");
   } 
   
   string filename = argv[1];
@@ -132,36 +129,77 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
     return usage("Erro: Não foi possível abrir o arquivo");
   }
 
-  int entryType;
-
-  try
-  {
-    entryType = stoi(argv[2]);
-  }
-  catch(exception e)
-  {
-    return usage("Erro: Tipo de entrada inválido");
-  }
-  
-
-  int size, value;
-  vector<vector<int>> matrix;
-
-  file >> size;
-
    // Leitura da entrada
   while (!file.eof()) {
-    if(entryType == 1){
-        vector<int> line;
-        for (int i = 0; i < size; i++) {  
-            file >> value;
-            line.push_back(value);
+   
+      // Read the graph from the file
+      string v1, v2, w;
+      int numNodes;
+
+      string line;
+      char trash, type;
+
+      cout << "Reading number of nodes..." << endl;
+
+      file >> type >> numNodes;
+
+      map<int, string> dictionary;    //!< Lista que mantém o nome de cada vértice
+      vector<vector<int>> adj = vector<vector<int>>(numNodes, vector<int>(numNodes, 0)); //!< Matriz de adjacência
+
+
+      // Read the connections from the file
+      while (getline(file, line)) {
+        if (line == string())
+          continue;
+
+        istringstream ss(line);
+        getline(ss, v1, ' ');
+        getline(ss, v2, ' ');
+        getline(ss, w);
+
+
+        cout << "Reading connection " << v1 << " " << v2 << " weighting " << w << endl;
+        
+        int x = -1, y = -1;
+
+        //Update the dictionary
+        for(auto i{0}; i<dictionary.size();++i){
+          if(dictionary[i] == v1){
+            x = i;
+          }
+          else if(dictionary[i] == v2){
+            y = i;
+          }
         }
-        matrix.push_back(line);
-    }
+        
+        if(x == -1){
+          x = dictionary.size();
+          dictionary[x] = v1;
+        }
+        
+        if(y == -1){
+          y = dictionary.size();
+          dictionary[y] = v2;
+        }
+
+        if (dictionary.size() > numNodes) {
+          return usage("Error: Node out-of-index");
+        }
+
+    
+        adj[x][y] = stoi(w);
+
+        (type == 'G') ? adj[y][x] = stoi(w) : 0;
+
+        this->graph.adj = adj;
+        this->graph.n = numNodes;
+        this->graph.dictionary = dictionary;
+        this->graph.type = (type == 'G')? DIRECTED : UNDIRECTED;
+      }
   }
 
   cout << "Inicialização concluída com sucesso" << endl;
+  cout << this->graph << endl;
 
   return SimulationResult("", simulation_result_e(0));
 }
@@ -173,9 +211,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
  * @return Uma estrutura indicando que a leitura falhou e a mensagem de erro
  */
 SimulationResult Simulation::usage(string message){
-  string usage = ">>> Uso: Route_in_Graphs <arquivo_de_entrada> <tipo_de_entrada>\n";
-  usage += ">>> Tipo de entrada:\n";
-  usage += ">>> 1 - Matriz de adjacência\n";
+  string usage = ">>> Uso: Route_in_Graphs <arquivo_de_entrada>\n";
 
   if(message != "")
   {
