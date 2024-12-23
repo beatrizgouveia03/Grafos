@@ -32,6 +32,9 @@ using std::vector;
 #include <exception>
 using std::exception;
 
+#include <ostream>
+using std::ostream;
+using std::operator<<;
 
 namespace sml {
   /// Enum para representar o resultado da simulação
@@ -64,6 +67,47 @@ namespace sml {
     graph_type_e type;              //!< Tipo do grafo
     vector<vector<int>> adj;        //!< Matriz de adjacência
     map<int, string> dictionary;    //!< Lista que mantém o nome de cada vértice
+
+
+    friend ostream &operator<<(ostream &cout, const Graph g)
+    {
+      int numNodes = g.n;
+      map<int, string> dic = g.dictionary;
+      vector<vector<int>> adj = g.adj;
+
+      cout << endl;
+      cout << "====================================================" << endl;
+      cout << "                MATRIZ DE ADJACÊNCIA                " << endl;
+      cout << "====================================================" << endl;
+      cout << "  \\  ";
+      
+      for (int i{0}; i<numNodes; ++i) {
+        if(dic[i].length() == 1) cout << "0";
+        cout << dic[i] <<"  ";
+      }
+      cout << endl;
+
+      cout << "    ";
+      for (int i{0}; i<numNodes; ++i) {
+        cout << "---";
+      }
+      cout << endl;
+
+      for(int i{0}; i<numNodes; ++i){
+        if(dic[i].length() == 1) cout << "0";
+        cout << dic[i] << "| ";
+        for(int j{0}; j<numNodes; ++j){
+          if(adj[i][j] < 10) cout << "  ";
+          else if(adj[i][j] < 100) cout << " ";
+          cout << adj[i][j] << " ";
+        }
+        cout << endl;
+      }
+      cout << endl;
+      cout << "====================================================" << endl;
+
+      return cout;
+    }
   };
 
   class Simulation {
