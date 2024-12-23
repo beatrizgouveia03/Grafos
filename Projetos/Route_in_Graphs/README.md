@@ -29,7 +29,7 @@ Em construção.
   - [ ] (8) Hierholzer (caminhos) [Beatriz]
 - **Fluxo em Redes:**
   - [ ] (9) Ford-Fulkerson [José]
-  - [ ] (10) Edmonds-Karp [Beatriz]
+  - [x] (10) Edmonds-Karp [Beatriz]
 
 ## Utilização
 
