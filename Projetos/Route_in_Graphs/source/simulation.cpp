@@ -157,6 +157,19 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
         getline(ss, v2, ' ');
         getline(ss, w);
 
+        if(dictionary.empty()){
+          if(v1 == "s"){
+            dictionary[0] = "s";
+            for(int i{1}; i<numNodes-1; ++i){
+              dictionary[i] = string(1, 'a' + (i-1));
+            }
+            dictionary[numNodes-1] = "t";
+          } else {
+            for(int i{0}; i<numNodes; ++i){
+              dictionary[i] = to_string(i+1);
+            }
+          }
+        }
 
         cout << "Reading connection " << v1 << " " << v2 << " weighting " << w << endl;
         

@@ -10,6 +10,7 @@
 #include <string>
 using std::stoi;
 using std::string;
+using std::to_string;
 
 #include <fstream>
 using std::ifstream;
@@ -82,19 +83,19 @@ namespace sml {
       cout << "  \\  ";
       
       for (int i{0}; i<numNodes; ++i) {
-        if(dic[i].length() == 1) cout << "0";
+        if(dic[i].length() == 1) cout << " ";
         cout << dic[i] <<"  ";
       }
       cout << endl;
 
       cout << "    ";
       for (int i{0}; i<numNodes; ++i) {
-        cout << "---";
+        cout << "____";
       }
       cout << endl;
 
       for(int i{0}; i<numNodes; ++i){
-        if(dic[i].length() == 1) cout << "0";
+        if(dic[i].length() == 1) cout << " ";
         cout << dic[i] << "| ";
         for(int j{0}; j<numNodes; ++j){
           if(adj[i][j] < 10) cout << "  ";
