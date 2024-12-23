@@ -24,11 +24,19 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+#include <algorithm>
+using std::min;
+
 #include <map>
 using std::map;
 
+#include <queue>
+using std::queue;
+
 #include <vector>
 using std::vector;
+
+#include <climits>
 
 #include <exception>
 using std::exception;
@@ -134,10 +142,13 @@ namespace sml {
       void dijkstra(void);
       void hierholzer(void);
       void bellmanFord(void);
-      void edmondsKarp(void);
+      int edmondsKarp(Graph g);
       void floydWarshall(void);
       void fordFulkerson(void);
       void chuLiuEdmonds(void);
+
+      //! Algoritmos auxiliares
+      bool bfs(vector<int> &parent, vector<vector<int>> residual, int src, int snk);
 
 
   };
