@@ -45,6 +45,11 @@ using std::exception;
 using std::ostream;
 using std::operator<<;
 
+#include <queue>
+using std::queue;
+
+#include <limits>
+
 namespace sml {
   /// Enum para representar o resultado da simulação
   enum simulation_result_e

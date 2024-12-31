@@ -2,6 +2,8 @@
 
 using namespace sml;
 
+const int INF = std::numeric_limits<int>::max();
+
 /**!
  * Construtor padrão da classe Simulation
  */
@@ -150,7 +152,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
       file >> type >> numNodes;
 
       map<int, string> dictionary;    //!< Lista que mantém o nome de cada vértice
-      vector<vector<int>> adj = vector<vector<int>>(numNodes, vector<int>(numNodes, 0)); //!< Matriz de adjacência
+      vector<vector<int>> adj = vector<vector<int>>(numNodes, vector<int>(numNodes, INF)); //!< Matriz de adjacência
 
 
       // Read the connections from the file
@@ -208,7 +210,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
     
         adj[x][y] = stoi(w);
 
-        (type == 'G') ? adj[y][x] = stoi(w) : 0;
+        (type == 'G') ? adj[y][x] = stoi(w) : INF;
 
         this->graph.adj = adj;
         this->graph.n = numNodes;
