@@ -97,15 +97,9 @@ void Simulation::run(void) {
         pause();
         break;
       case 9: 
-        { int maxFlow = edmondsKarp(this->graph);
-          cout << "====================================================" << endl;
-          cout << endl;
-          cout << "FLUXO MAXIMO DO GRAFO: " << maxFlow << endl;
-          cout << endl;
-          cout << "====================================================" << endl;
-          pause();
-          break;
-        }
+        edmondsKarp();
+        pause();
+        break;
       default:
         break;
     }

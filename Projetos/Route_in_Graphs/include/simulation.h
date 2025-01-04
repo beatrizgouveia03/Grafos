@@ -150,10 +150,11 @@ namespace sml {
       void dijkstra(void);
       void hierholzer(void);
       void bellmanFord(void);
-      int edmondsKarp(Graph g);
+      void edmondsKarp(void);
       void floydWarshall(void);
       void fordFulkerson(void);
       void chuLiuEdmonds(void);
+      void hierholzerPaths(Graph g);
 
       //! Algoritmos auxiliares
       bool bfs(vector<int> &parent, vector<vector<int>> residual, int src, int snk);

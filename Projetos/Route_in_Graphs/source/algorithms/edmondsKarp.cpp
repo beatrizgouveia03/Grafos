@@ -10,16 +10,15 @@ using namespace sml;
  * para achar o menor caminho entre a origem e o destino.
  * 
  * @param g Grafo no qual será calculado o fluxo máximo
- * @return Um inteiro indicando o valor de fluxo máximo calculado
  */
-int Simulation::edmondsKarp (Graph g){
-    vector<int> parent(g.n);    //!< Lista auxiliar para recuperar o caminho achado pela BFS
-    int source = 0, sink = g.n - 1; //!< Índices do nó origem e do nó destino.
-    vector<vector<int>> residual = g.adj; //!< Matriz residual
+void Simulation::edmondsKarp (void){
+    vector<int> parent(this->graph.n);    //!< Lista auxiliar para recuperar o caminho achado pela BFS
+    int source = 0, sink = this->graph.n - 1; //!< Índices do nó origem e do nó destino.
+    vector<vector<int>> residual = this->graph.adj; //!< Matriz residual
 
     Graph aux;
-    aux.n = g.n;
-    aux.dictionary = g.dictionary;
+    aux.n = this->graph.n;
+    aux.dictionary = this->graph.dictionary;
 
     int maxFlow = 0, count = 0;
 
@@ -50,7 +49,13 @@ int Simulation::edmondsKarp (Graph g){
         cout << "FLUXO MAXIMO DO CAMINHO: " << pathFlow << endl<< endl;
     }
 
-    return maxFlow;
+    cout << "====================================================" << endl;
+    cout << endl;
+    cout << "FLUXO MAXIMO DO GRAFO: " << maxFlow << endl;
+    cout << endl;
+    cout << "====================================================" << endl;
+
+    return;
 };
 
 /**!
