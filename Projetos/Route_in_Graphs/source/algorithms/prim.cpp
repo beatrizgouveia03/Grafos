@@ -1,9 +1,4 @@
 #include "simulation.h"
-#include <limits>
-#include <iostream>
-#include <vector>
-#include <map>
-#include <set>
 
 using namespace sml;
 
@@ -15,21 +10,21 @@ using namespace sml;
  * @param g Grafo no qual será calculada a Árvore Geradora Mínima
  */
 void Simulation::prim() {
-    const int INF = std::numeric_limits<int>::max();  // Define o valor de infinito
+    const int INF = numeric_limits<int>::max();  // Define o valor de infinito
 
     int n = this->graph.n;  // Número de vértices no grafo
-    std::vector<std::vector<int>> adj = this->graph.adj;  // Matriz de adjacência
-    std::map<int, std::string> dictionary = this->graph.dictionary;  // Mapeamento dos vértices
+    vector<vector<int>> adj = this->graph.adj;  // Matriz de adjacência
+    map<int, string> dictionary = this->graph.dictionary;  // Mapeamento dos vértices
 
-    std::set<int> Z;  // Conjunto de vértices já incluídos na AGM
-    std::set<int> V;  // Conjunto de vértices restantes
+    set<int> Z;  // Conjunto de vértices já incluídos na AGM
+    set<int> V;  // Conjunto de vértices restantes
 
     Z.insert(0);  // Escolhe o vértice inicial (índice 0)
     for (int i = 1; i < n; ++i) {
         V.insert(i);  // Inicializa o conjunto V
     }
 
-    std::vector<std::pair<int, int>> TMin;  // Conjunto das arestas da AGM
+    vector<pair<int, int>> TMin;  // Conjunto das arestas da AGM
 
     // Algoritmo de Prim
     while (Z.size() != n) {  // Enquanto nem todos os vértices forem incluídos
@@ -52,21 +47,21 @@ void Simulation::prim() {
             V.erase(k);   // Remove k de V
             TMin.push_back({j, k});  // Adiciona a aresta (j, k) à AGM
         } else {
-            std::cout << "Erro: Grafo desconexo." << std::endl;  // Caso o grafo seja desconexo
+            cout << "Erro: Grafo desconexo." << endl;  // Caso o grafo seja desconexo
             return;
         }
     }
 
     // Exibe as arestas da Árvore Geradora Mínima
-    std::cout << "Arestas da Árvore Geradora Mínima:" << std::endl;
+    cout << "Arestas da Árvore Geradora Mínima:" << endl;
     int totalWeight = 0;  // Peso total da árvore
     for (const auto &edge : TMin) {
         int j = edge.first;
         int k = edge.second;
-        std::cout << dictionary[j] << " - " << dictionary[k]
-                  << " (Peso: " << adj[j][k] << ")" << std::endl;
+        cout << dictionary[j] << " - " << dictionary[k]
+                  << " (Peso: " << adj[j][k] << ")" << endl;
         totalWeight += adj[j][k];  // Atualiza o peso total
     }
-    std::cout << "Peso total da AGM: " << totalWeight << std::endl;
+    cout << "Peso total da AGM: " << totalWeight << endl;
 }
 
