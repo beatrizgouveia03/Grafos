@@ -2,7 +2,7 @@
 
 using namespace sml;
 
-const int INF = std::numeric_limits<int>::max();
+const int INF = numeric_limits<int>::max();
 
 /**!
  * Construtor padrão da classe Simulation
@@ -30,7 +30,7 @@ void Simulation::showMenu(void){
   cout << "============================================" << endl;
   cout << "                Menu Principal              " << endl;
   cout << "============================================" << endl;
-  cout << "-- Aŕvores Geradoras Minimas --" << endl;
+  cout << "-- Arvores Geradoras Minimas --" << endl;
   cout << "1. Kruskal" << endl;
   cout << "2. Prim" << endl;
   cout << "3. Chu-Liu/Edmonds" << endl;
@@ -100,7 +100,7 @@ void Simulation::run(void) {
         { int maxFlow = edmondsKarp(this->graph);
           cout << "====================================================" << endl;
           cout << endl;
-          cout << "FLUXO MÁXIMO DO GRAFO: " << maxFlow << endl;
+          cout << "FLUXO MAXIMO DO GRAFO: " << maxFlow << endl;
           cout << endl;
           cout << "====================================================" << endl;
           pause();
@@ -131,10 +131,10 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
   string filename = argv[1];
   ifstream file(filename);
 
-  cout << "Inicializando a simulação..." << endl;
+  cout << "Inicializando a simulacao..." << endl;
 
   if (!file.is_open()) {
-    return usage("Erro: Não foi possível abrir o arquivo");
+    return usage("Erro: Nao foi possível abrir o arquivo");
   }
 
    // Leitura da entrada
@@ -152,7 +152,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
       file >> type >> numNodes;
 
       map<int, string> dictionary;    //!< Lista que mantém o nome de cada vértice
-      vector<vector<int>> adj = vector<vector<int>>(numNodes, vector<int>(numNodes, INF)); //!< Matriz de adjacência
+      vector<vector<int>> adj = vector<vector<int>>(numNodes, vector<int>(numNodes, 0)); //!< Matriz de adjacência
 
 
       // Read the connections from the file
@@ -210,7 +210,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
     
         adj[x][y] = stoi(w);
 
-        (type == 'G') ? adj[y][x] = stoi(w) : INF;
+        (type == 'G') ? adj[y][x] = stoi(w) : 0;
 
         this->graph.adj = adj;
         this->graph.n = numNodes;
@@ -219,7 +219,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
       }
   }
 
-  cout << "Inicialização concluída com sucesso" << endl;
+  cout << "Inicializacao concluida com sucesso" << endl;
   cout << this->graph << endl;
 
   return SimulationResult("", simulation_result_e(0));

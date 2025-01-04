@@ -2,7 +2,7 @@
 
 using namespace sml;
 
-const int INF = std::numeric_limits<int>::max();
+const int INF = numeric_limits<int>::max();
 
 bool _bfs(int n, vector<vector<int>> residualG, int s, int t, int parent[]){
 	vector<bool> visited(n);
@@ -53,7 +53,7 @@ void Simulation::fordFulkerson (void){
 
 			for(int i = t; i != s;i = parent[i]){
 				u = parent[i];
-				path_flow = std::min(path_flow, residualG[u][i]);
+				path_flow = min(path_flow, residualG[u][i]);
 			};
 
 			for(int i = t; i != s; i = parent[i]){
