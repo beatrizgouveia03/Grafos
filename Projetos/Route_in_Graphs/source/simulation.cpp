@@ -30,7 +30,7 @@ void Simulation::showMenu(void){
   cout << "============================================" << endl;
   cout << "                Menu Principal              " << endl;
   cout << "============================================" << endl;
-  cout << "-- Aŕvores Geradoras Minimas --" << endl;
+  cout << "-- Arvores Geradoras Minimas --" << endl;
   cout << "1. Kruskal" << endl;
   cout << "2. Prim" << endl;
   cout << "3. Chu-Liu/Edmonds" << endl;
@@ -152,7 +152,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
       file >> type >> numNodes;
 
       map<int, string> dictionary;    //!< Lista que mantém o nome de cada vértice
-      vector<vector<int>> adj = vector<vector<int>>(numNodes, vector<int>(numNodes, INF)); //!< Matriz de adjacência
+      vector<vector<int>> adj = vector<vector<int>>(numNodes, vector<int>(numNodes, 0)); //!< Matriz de adjacência
 
 
       // Read the connections from the file
@@ -210,7 +210,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
     
         adj[x][y] = stoi(w);
 
-        (type == 'G') ? adj[y][x] = stoi(w) : INF;
+        (type == 'G') ? adj[y][x] = stoi(w) : 0;
 
         this->graph.adj = adj;
         this->graph.n = numNodes;
