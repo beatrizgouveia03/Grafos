@@ -41,7 +41,7 @@ void Simulation::fordFulkerson (void){
 		vector<vector<int>> residualG = this->graph.adj;
 
 
-		int parent[numNodes];
+		int* parent = new int[numNodes];
 		int max_flow = 0;
 
 		int s = 0;
