@@ -154,11 +154,12 @@ namespace sml {
       void floydWarshall(void);
       void fordFulkerson(void);
       void chuLiuEdmonds(void);
-      void hierholzerPaths(Graph g);
+      void hierholzerPaths(void);
 
       //! Algoritmos auxiliares
+      bool isConnected(Graph graph);
+      void dfs(int src, vector<bool>& visited, vector<vector<int>> graphMatrix);
       bool bfs(vector<int> &parent, vector<vector<int>> residual, int src, int snk);
-
 
   };
 } // namespace sml
