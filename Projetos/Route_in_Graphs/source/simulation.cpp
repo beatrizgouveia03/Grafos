@@ -100,7 +100,7 @@ void Simulation::run(void) {
         { int maxFlow = edmondsKarp(this->graph);
           cout << "====================================================" << endl;
           cout << endl;
-          cout << "FLUXO MÁXIMO DO GRAFO: " << maxFlow << endl;
+          cout << "FLUXO MAXIMO DO GRAFO: " << maxFlow << endl;
           cout << endl;
           cout << "====================================================" << endl;
           pause();
@@ -131,10 +131,10 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
   string filename = argv[1];
   ifstream file(filename);
 
-  cout << "Inicializando a simulação..." << endl;
+  cout << "Inicializando a simulacao..." << endl;
 
   if (!file.is_open()) {
-    return usage("Erro: Não foi possível abrir o arquivo");
+    return usage("Erro: Nao foi possível abrir o arquivo");
   }
 
    // Leitura da entrada
@@ -219,7 +219,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
       }
   }
 
-  cout << "Inicialização concluída com sucesso" << endl;
+  cout << "Inicializacao concluida com sucesso" << endl;
   cout << this->graph << endl;
 
   return SimulationResult("", simulation_result_e(0));

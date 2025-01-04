@@ -45,9 +45,9 @@ int Simulation::edmondsKarp (Graph g){
         maxFlow += pathFlow;
 
         aux.adj = residual;
-        cout << "---------- " << ++count << "ª PASSAGEM: (FLUXO RESTANTE) ------------" << endl;
+        cout << "---------- " << ++count << "a PASSAGEM: (FLUXO RESTANTE) ------------" << endl;
         cout << aux << endl;
-        cout << "FLUXO MÁXIMO DO CAMINHO: " << pathFlow << endl<< endl;
+        cout << "FLUXO MAXIMO DO CAMINHO: " << pathFlow << endl<< endl;
     }
 
     return maxFlow;
