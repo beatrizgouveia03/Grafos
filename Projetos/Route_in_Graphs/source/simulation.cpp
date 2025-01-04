@@ -2,7 +2,7 @@
 
 using namespace sml;
 
-const int INF = std::numeric_limits<int>::max();
+const int INF = numeric_limits<int>::max();
 
 /**!
  * Construtor padrão da classe Simulation

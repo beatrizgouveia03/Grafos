@@ -49,6 +49,9 @@ using std::operator<<;
 using std::queue;
 
 #include <limits>
+using std::numeric_limits;
+
+
 
 namespace sml {
   /// Enum para representar o resultado da simulação
