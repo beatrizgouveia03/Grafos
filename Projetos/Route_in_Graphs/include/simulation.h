@@ -51,6 +51,13 @@ using std::queue;
 #include <limits>
 using std::numeric_limits;
 
+#include <set>
+using std::set;
+
+#include <utility>
+using std::pair;
+
+
 
 
 namespace sml {
