@@ -114,7 +114,7 @@ namespace sml {
         if(dic[i].length() == 1) cout << " ";
         cout << dic[i] << "| ";
         for(int j{0}; j<numNodes; ++j){
-          if(adj[i][j] < 10) cout << "  ";
+          if(adj[i][j] < 10 && adj[i][j] >= 0) cout << "  ";
           else if(adj[i][j] < 100) cout << " ";
           cout << adj[i][j] << " ";
         }
@@ -157,8 +157,6 @@ namespace sml {
       void hierholzerPaths(void);
 
       //! Algoritmos auxiliares
-      bool isConnected(Graph graph);
-      void dfs(int src, vector<bool>& visited, vector<vector<int>> graphMatrix);
       bool bfs(vector<int> &parent, vector<vector<int>> residual, int src, int snk);
 
   };
