@@ -133,7 +133,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
   cout << "Inicializando a simulacao..." << endl;
 
   if (!file.is_open()) {
-    return usage("Erro: Nao foi possível abrir o arquivo");
+    return usage("Erro: Nao foi possivel abrir o arquivo");
   }
 
    // Leitura da entrada
@@ -189,7 +189,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
           if(dictionary[i] == v1){
             x = size_t(i);
           }
-          else if(dictionary[i] == v2){
+          if(dictionary[i] == v2){
             y = size_t(i);
           }
         }
