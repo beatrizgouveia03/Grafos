@@ -99,7 +99,7 @@ namespace sml {
       cout << "  \\  ";
       
       for (int i{0}; i<numNodes; ++i) {
-        if(dic[i].length() == 1) cout << " ";
+        if(dic[i].length() == size_t(1)) cout << " ";
         cout << dic[i] <<"  ";
       }
       cout << endl;
