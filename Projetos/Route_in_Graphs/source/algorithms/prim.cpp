@@ -66,7 +66,7 @@ void Simulation::prim() {
     }
 
     // Exibe as arestas da Árvore Geradora Mínima
-    cout << "Arestas da Árvore Geradora Mínima:" << endl;
+    cout << "Arestas da Arvore Geradora Minima:" << endl;
     int totalWeight = 0;  // Peso total da árvore
     for (const auto &edge : TMin) {
         int j = edge.first;
