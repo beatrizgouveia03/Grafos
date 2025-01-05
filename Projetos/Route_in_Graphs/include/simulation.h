@@ -94,7 +94,7 @@ namespace sml {
 
       cout << endl;
       cout << "====================================================" << endl;
-      cout << "                MATRIZ DE ADJACÊNCIA                " << endl;
+      cout << "                MATRIZ DE ADJACENCIA                " << endl;
       cout << "====================================================" << endl;
       cout << "  \\  ";
       
