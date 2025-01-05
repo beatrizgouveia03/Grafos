@@ -51,6 +51,9 @@ using std::queue;
 #include <limits>
 using std::numeric_limits;
 
+#include <stack>
+using std::stack;
+
 
 
 namespace sml {
