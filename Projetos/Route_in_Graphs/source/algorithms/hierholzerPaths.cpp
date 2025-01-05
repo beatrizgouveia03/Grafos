@@ -47,5 +47,84 @@ void Simulation::hierholzerPaths (void){
     }
 
     // Inicializar pilha para armazenar caminho euleriano
+    //Ler G=(N,M)
+    vector<int> eulerianPath(n, 0);            //!< Vetor para armazenar o caminho euleriano
+    //1. Escolher um vértice v de G
+    int v = 0;                                  //!< Vértice inicial
+    eulerianPath.push_back(v);                  //!< Adiciona o vértice inicial ao caminho euleriano
+    //2. Construir uma cadeia fechada C, a partir de v, percorrendo as arestas de G
+    //aleatoriamente.
+    while (true) {
+        bool flag = false;
+        for (int i = 0; i < n; i++) {
+            if (aux[v][i] > 0) {
+                flag = true;
+                eulerianPath.push_back(i);
+                aux[v][i] = -1;
+                v = i;
+                break;
+            }
+        }
+        if (!flag) {
+            break;
+        }
+    }
+    //3. Remover de G as arestas de C
+    for (int i = 0; i < eulerianPath.size() - 1; i++) {
+        aux[eulerianPath[i]][eulerianPath[i + 1]] = 0;
+        degrees[eulerianPath[i]]--;
+        degrees[eulerianPath[i + 1]]++;
+    }
+    //4. Enquanto (M ≠ Ø) Fazer
+    while (true) {
+        bool flag = false;
+
+        //5. Escolher v tal que d(v) > 0 e v ∈ C
+        for (int i = 0; i < n; i++) {
+            if (degrees[i] > 0) {
+                v = i;
+                flag = true;
+                break;
+            }
+        }
+        if (!flag) {
+            break;
+        }
+
+        //6. Construir uma cadeia fechada H, a partir de v, percorrendo as arestas de G
+        vector<int> temp;
+        temp.push_back(v);
+        while (true) {
+            bool flag = false;
+            for (int i = 0; i < n; i++) {
+                if (aux[v][i] > 0) {
+                    flag = true;
+                    temp.push_back(i);
+                    aux[v][i] = -1;
+                    v = i;
+                    break;
+                }
+            }
+            if (!flag) {
+                break;
+            }
+        }
+        //7. Remover de G as arestas de H
+        for (int i = 0; i < temp.size() - 1; i++) {
+            aux[temp[i]][temp[i + 1]] = 0;
+            degrees[temp[i]]--;
+            degrees[temp[i + 1]]++;
+        }
+        //8. C ← H ∪ C
+        eulerianPath.insert(eulerianPath.begin() + 1, temp.begin(), temp.end());
+       
+        //9. H ← Ø
+    }   
+    //10. Fim_do_enquanto
+
+    //11. Imprimir C
+    for (int i = 0; i < eulerianPath.size(); i++) {
+        cout << eulerianPath[i] + 1 << " ";
+    };
 }   
 
