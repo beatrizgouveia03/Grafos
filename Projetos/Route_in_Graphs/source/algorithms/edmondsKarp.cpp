@@ -73,7 +73,7 @@ void Simulation::edmondsKarp (void){
  * @return Um booleano indicando se foi possível achar um caminho(TRUE) ou não(FALSE)
  */
 bool Simulation::bfs(vector<int> &parent, vector<vector<int>> residual, int src, int snk){
-    int n = residual.size();
+    size_t n = residual.size();
     vector<bool> visited(n, false); //!< Vetor que indica quais nós foram visitados
     queue<int> q;   //!< Fila de nós a serem visitados
     q.push(src);
