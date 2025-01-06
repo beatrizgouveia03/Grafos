@@ -88,7 +88,7 @@ void Simulation::run(void) {
         floydWarshall();
         pause();
         break;
-      case7: 
+      case 7: 
         hierholzer();
         pause();
         break;
