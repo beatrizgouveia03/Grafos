@@ -18,17 +18,17 @@ Em construção.
 
 - **Árvores Geradoras Mínimas:**
   - [ ] (1) Kruskal [Anny]
-  - [ ] (2) Prim [Davi]
+  - [x] (2) Prim [Davi]
   - [ ] (3) Chu-Liu/Edmonds [José]
 - **Caminho mais curto:**
   - [ ] (4) Dijkstra [Anny]
-  - [ ] (5) Bellman-Ford [Alisson]
-  - [ ] (6) Floyd-Warshall [Davi]
+  - [x] (5) Bellman-Ford [Alisson]
+  - [x] (6) Floyd-Warshall [Davi]
 - **Grafos Eulerianos:**
-  - [ ] (7) Hierholzer (ciclos) [Alisson]
-  - [ ] (8) Hierholzer (caminhos) [Beatriz]
+  - [ ] (7) Hierholzer (ciclos) [Alisson] (Em revisão)
+  - [x] (8) Hierholzer (caminhos) [Beatriz]
 - **Fluxo em Redes:**
-  - [ ] (9) Ford-Fulkerson [José]
+  - [ ] (9) Ford-Fulkerson [José] (Em revisão)
   - [x] (10) Edmonds-Karp [Beatriz]
 
 ## Utilização
