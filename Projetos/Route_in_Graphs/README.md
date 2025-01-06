@@ -12,7 +12,8 @@
 
 ## Introdução
 
-O Simulador de Rotas em Grafos é um projeto desenvolvido para demonstrar o funcionamento de diversos algoritmos clássicos em grafos e digrafos ponderados. O objetivo principal é fornecer uma ferramenta prática para visualizar, entender e aplicar conceitos fundamentais de teoria dos grafos, sendo eles a construção de árvores geradoras mínimas, o cálculo de caminhos mínimos, a análise de grafos Eulerianos e a resolução de problemas de fluxo em redes.
+O Simulador de Rotas em Grafos é um projeto desenvolvido para demonstrar o funcionamento de diversos algoritmos clássicos em grafos e digrafos ponderados. 
+O objetivo principal é fornecer uma ferramenta prática para visualizar, entender e aplicar conceitos fundamentais de teoria dos grafos, sendo eles a construção de árvores geradoras mínimas, o cálculo de caminhos mínimos, a análise de grafos Eulerianos e a resolução de problemas de fluxo em redes.
 
 
 ## Algoritmos
