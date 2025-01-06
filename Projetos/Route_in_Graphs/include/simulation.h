@@ -54,7 +54,8 @@ using std::numeric_limits;
 #include <stack>
 using std::stack;
 
-
+#include <utility>
+using std::pair;
 
 namespace sml {
   /// Enum para representar o resultado da simulação
