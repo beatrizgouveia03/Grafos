@@ -156,7 +156,7 @@ namespace sml {
       void kruskal(void);
       void dijkstra(void);
       void hierholzer(void);
-      void bellmanFord(Graph g, int inicio);
+      void bellmanFord(int inicio);
       int edmondsKarp(Graph g);
       void floydWarshall(void);
       void fordFulkerson(void);

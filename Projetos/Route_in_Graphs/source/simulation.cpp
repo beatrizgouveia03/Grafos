@@ -85,7 +85,7 @@ void Simulation::run(void) {
         cout << "Digite o vértice inicial: " << endl;
         getline(cin, str);
         initialVertex = stoi(str);
-        bellmanFord(this->graph, initialVertex);
+        bellmanFord(initialVertex);
         pause();
         break;
       case 6: 

@@ -2,9 +2,20 @@
 
 using namespace sml;
 
-void Simulation::bellmanFord (Graph g, int inicio){
+/**!
+ * Função que implementa o algoritmo de melhor caminho Bellman-Ford.
+ * Todas as distâncias iniciam de INFINITO(no nosso caso, o máximo valor inteiro), exceto o inicial que tem distância 0.
+ * Dado um grafo, é realizado o "relaxamento" das arestas, que é a verificação se a distância para um vértice 
+ * pode ser menor ou reduzida passando por outro vértice.
+ * Por último, é feito mais uma verificação nas arestas, caso exista uma opção de distância melhor
+ * então existe um ciclo negativo.
+ * 
+ * @param inicio Vértice inicial 
+ */
+void Simulation::bellmanFord(int inicio){
     cout << "Bellman-Ford" << endl;
 
+    Graph g = this->graph; // Variável do graph, apenas atalho para this->graph
     const int INF = numeric_limits<int>::max();  // Define o valor de infinito
     vector<int> dist(g.n, INF); //Distâncias iniciais
     vector<int> predecessor(g.n, -1); // Para armazenar o caminho
@@ -42,5 +53,4 @@ void Simulation::bellmanFord (Graph g, int inicio){
     for (int i = 0; i < g.n; i++) {
         cout << g.dictionary[i] << ": " << (dist[i] == INF ? "INF" : to_string(dist[i])) << endl;
     }
-
 };
