@@ -156,12 +156,12 @@ namespace sml {
       void kruskal(void);
       void dijkstra(void);
       void hierholzer(void);
-      void bellmanFord(void);
       void edmondsKarp(void);
       void floydWarshall(void);
       void fordFulkerson(void);
       void chuLiuEdmonds(void);
       void hierholzerPaths(void);
+      void bellmanFord(int inicio);
 
       //! Algoritmos auxiliares
       bool bfs(vector<int> &parent, vector<vector<int>> residual, int src, int snk);
