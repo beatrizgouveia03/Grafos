@@ -31,14 +31,14 @@ void Simulation::bellmanFord (Graph g, int inicio){
         for (int v = 0; v < g.n; v++) {
             if (g.adj[u][v] != 0 && g.adj[u][v] != -1) {
                 if (dist[u] != INF && dist[u] + g.adj[u][v] < dist[v]) {
-                    cout << "Há um ciclo negativo" << endl;
+                    cout << "Ha um ciclo negativo" << endl;
                     return;
                 }
             }
         }
     }
 
-    cout << "Distâncias a partir do vértice " << g.dictionary[inicio - 1] << ":" << endl;
+    cout << "Distancias a partir do vertice " << g.dictionary[inicio - 1] << ":" << endl;
     for (int i = 0; i < g.n; i++) {
         cout << g.dictionary[i] << ": " << (dist[i] == INF ? "INF" : to_string(dist[i])) << endl;
     }
