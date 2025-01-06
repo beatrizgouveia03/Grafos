@@ -20,7 +20,7 @@ void Simulation::hierholzerPaths (void){
         degrees[i] = out[i] - in[i];
     }
 
-    // Testando tabela de graus
+    // Printar tabela de graus
     cout << "Tabela de graus: " << endl;
     for(auto i{0}; i<n; ++i){
         cout << "Vértice" << i+1 << " : " << degrees[i] << endl; 
@@ -44,34 +44,39 @@ void Simulation::hierholzerPaths (void){
 
     // Inicializar pilha para armazenar caminho euleriano
     vector<int> eulerianPath;            //!< Vetor para armazenar o caminho euleriano
+    stack<int> currentPath;              //!< Pilha para armazenar o caminho atual
 
-    //1. Escolher um vértice v de G
+    //1. Escolher o vértice inicial v de G
     int v = 0;                                  //!< Vértice inicial
-    eulerianPath.push_back(v);                  //!< Adiciona o vértice inicial ao caminho euleriano
+    currentPath.push(v);                        //!< Adiciona o vértice inicial ao caminho em construção
 
     //2. Construir uma cadeia fechada C, a partir de v, percorrendo as arestas de G
     //aleatoriamente.
-    while (true) {
+    while (!currentPath.empty()) {
         bool flag = false;
+        int currVertex = currentPath.top();  //!< Vértice atual
+
         for (int i = 0; i < n; i++) {
-            if (aux[v][i] >= 0) {
+            if (aux[currVertex][i] >= 0) {
                 flag = true;
-                eulerianPath.push_back(i);
-                aux[v][i] = -1;
-                v = i;
+                // Adicionar a aresta ao caminho em construção
+                currentPath.push(i);
+                // Remover a aresta do grafo
+                aux[currVertex][i] = -1;
+                // Atualizar os graus
+                degrees[currVertex]--;
+                degrees[i]++;
+                // Atualizando o vértice atual
+                currVertex = i;
                 break;
             }
         }
         if (!flag) {
+            //3. Remover de G as arestas de C
+            eulerianPath.push_back(currVertex);
+            currentPath.pop();
             break;
         }
-    }
-
-    //3. Remover de G as arestas de C
-    for (int i = 0; i < eulerianPath.size() - 1; i++) {
-        aux[eulerianPath[i]][eulerianPath[i + 1]] = 0;
-        degrees[eulerianPath[i]]--;
-        degrees[eulerianPath[i + 1]]++;
     }
 
     //4. Enquanto (M ≠ Ø) Fazer
@@ -81,7 +86,7 @@ void Simulation::hierholzerPaths (void){
         //5. Escolher v tal que d(v) > 0 e v ∈ C
         for (int i = 0; i < n; i++) {
             if (degrees[i] > 0) {
-                v = i;
+                currentPath.push(i);
                 flag = true;
                 break;
             }
@@ -92,16 +97,24 @@ void Simulation::hierholzerPaths (void){
 
         //6. Construir uma cadeia fechada H, a partir de v, percorrendo as arestas de G
         vector<int> temp;
-        temp.push_back(v);
+        temp.push_back(currentPath.top());
 
         while (true) {
             bool flag = false;
+            int currVertex = currentPath.top();  //!< Vértice atual
+
             for (int i = 0; i < n; i++) {
-                if (aux[v][i] >= 0) {
+                if (aux[currVertex][i] >= 0) {
                     flag = true;
+                    // Adicionar a aresta ao caminho em construção
                     temp.push_back(i);
-                    aux[v][i] = -1;
-                    v = i;
+                    // Remover a aresta do grafo
+                    aux[currVertex][i] = -1;
+                    // Atualizar os graus
+                    degrees[currVertex]--;
+                    degrees[i]++;
+                    // Atualizando o vértice atual
+                    currVertex = i;
                     break;
                 }
             }
@@ -109,15 +122,15 @@ void Simulation::hierholzerPaths (void){
                 break;
             }
         }
+
         //7. Remover de G as arestas de H
-        for (int i = 0; i < temp.size() - 1; i++) {
-            aux[temp[i]][temp[i + 1]] = 0;
-            degrees[temp[i]]--;
-            degrees[temp[i + 1]]++;
-        }
+        // Já removidas no passo 6
+
         //8. C ← H ∪ C
         auto it = find(eulerianPath.begin(), eulerianPath.end(), v);
-        eulerianPath.insert(it + 1, temp.begin(), temp.end());
+        if(it != eulerianPath.end()){
+            eulerianPath.insert(it+1, temp.begin(), temp.end());
+        }
        
         //9. H ← Ø
     }   
