@@ -83,7 +83,7 @@ void Simulation::run(void) {
         break;
       case 5:
         int initialVertex; 
-        cout << "Digite o vértice inicial: " << endl;
+        cout << "Digite o vertice inicial: " << endl;
         getline(cin, str);
         initialVertex = stoi(str);
         bellmanFord(initialVertex);

@@ -27,7 +27,7 @@ void Simulation::bellmanFord(int inicio){
     for (int i = 1; i <= g.n - 1; i++) {
         for (int u = 0; u < g.n; u++) {
             for (int v = 0; v < g.n; v++) {
-                if (g.adj[u][v] != 0 && g.adj[u][v] != -1) { // Aresta existe
+                if (g.adj[u][v] != -1) { // Aresta existe
                     if (dist[u] != INF && dist[u] + g.adj[u][v] < dist[v]) {
                         dist[v] = dist[u] + g.adj[u][v];
                         predecessor[v] = u;
@@ -40,7 +40,7 @@ void Simulation::bellmanFord(int inicio){
     // Verificação da existência de ciclos negativos
     for (int u = 0; u < g.n; u++) {
         for (int v = 0; v < g.n; v++) {
-            if (g.adj[u][v] != 0 && g.adj[u][v] != -1) {
+            if (g.adj[u][v] != -1) {
                 if (dist[u] != INF && dist[u] + g.adj[u][v] < dist[v]) {
                     cout << "Ha um ciclo negativo" << endl;
                     return;

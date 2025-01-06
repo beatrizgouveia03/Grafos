@@ -24,7 +24,8 @@ void Simulation::edmondsKarp (void){
 
     //Enquanto houver caminho entre a origem e o destino
     while(bfs(parent, residual, source, sink)){
-        int pathFlow = INT_MAX;
+        const int INF = numeric_limits<int>::max();  // Define o valor de infinito
+        int pathFlow = INF;
         int s = sink;
 
         //Determina o gargalo desse caminho

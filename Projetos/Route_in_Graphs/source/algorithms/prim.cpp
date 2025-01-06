@@ -20,10 +20,10 @@ void Simulation::prim() {
     int N = this->graph.n;  // Número de vértices no grafo
     vector<vector<int>> D = this->graph.adj;  // Matriz de adjacência como matriz de distância
 
-    // Substituir valores 0 por INF, exceto na diagonal principal
+    // Substituir valores -1 por INF
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; ++j) {
-            if (i != j && D[i][j] == 0) {
+            if (D[i][j] == -1) {
                 D[i][j] = INF;
             }
         }
