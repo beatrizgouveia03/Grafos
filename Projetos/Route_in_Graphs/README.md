@@ -19,11 +19,11 @@ O objetivo principal é fornecer uma ferramenta prática para visualizar, entend
 ## Algoritmos
 
 - **Árvores Geradoras Mínimas:**
-  - [ ] (1) Kruskal [Anny]
+  - [x] (1) Kruskal [Anny]
   - [x] (2) Prim [Davi]
   - [ ] (3) Chu-Liu/Edmonds [José]
 - **Caminho mais curto:**
-  - [ ] (4) Dijkstra [Anny]
+  - [x] (4) Dijkstra [Anny]
   - [x] (5) Bellman-Ford [Alisson]
   - [x] (6) Floyd-Warshall [Davi]
 - **Grafos Eulerianos:**
