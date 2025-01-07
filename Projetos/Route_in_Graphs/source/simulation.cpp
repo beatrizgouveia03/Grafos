@@ -74,8 +74,6 @@ void Simulation::run(void) {
         break;
       case 3:
         chuLiuEdmonds();
-				cout << "Matriz de adjacencia pós Chu-Liu/Edmonds" << endl;
-				cout << this->graph << endl;
         pause();
         break;
       case 4:
