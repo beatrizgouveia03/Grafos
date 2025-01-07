@@ -5,8 +5,6 @@ using namespace sml;
 /**!
  * Esta função implementa o algoritmo de Floyd-Warshall para encontrar as distâncias mínimas entre todos os pares de vértices
  * de um grafo ponderado. O algoritmo atualiza a matriz de distâncias e a matriz de predecessores para reconstrução de caminhos.
- * 
- * @param g Grafo no qual serão calculadas as distâncias mínimas entre os vértices
  */
 void Simulation::floydWarshall() {
     const int INF = numeric_limits<int>::max();  // Define o valor de infinito

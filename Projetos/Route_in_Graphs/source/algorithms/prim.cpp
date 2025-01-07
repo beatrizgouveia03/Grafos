@@ -11,8 +11,6 @@ using namespace std;
  * Esta função implementa o algoritmo de Prim para encontrar a Árvore Geradora Mínima (AGM) de um grafo.
  * O algoritmo começa em um vértice e vai adicionando as arestas de menor peso que conectam o conjunto Z 
  * de vértices já incluídos à árvore, ao conjunto V de vértices restantes.
- * 
- * @param g Grafo no qual será calculada a Árvore Geradora Mínima
  */
 void Simulation::prim() {
     const int INF = numeric_limits<int>::max();  // Define o valor de infinito
