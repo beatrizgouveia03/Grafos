@@ -9,7 +9,6 @@ using namespace sml;
  * máximo possível,se utilizando de uma busca em largura(bfs) 
  * para achar o menor caminho entre a origem e o destino.
  * 
- * @param g Grafo no qual será calculado o fluxo máximo
  */
 void Simulation::edmondsKarp (void){
     vector<int> parent(this->graph.n);    //!< Lista auxiliar para recuperar o caminho achado pela BFS
