@@ -17,7 +17,7 @@ Em construção.
 ## Algoritmos
 
 - **Árvores Geradoras Mínimas:**
-  - [ ] (1) Kruskal [Anny]
+  - [x] (1) Kruskal [Anny]
   - [ ] (2) Prim [Davi]
   - [ ] (3) Chu-Liu/Edmonds [José]
 - **Caminho mais curto:**
