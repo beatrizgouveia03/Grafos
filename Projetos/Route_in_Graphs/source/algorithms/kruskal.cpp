@@ -104,11 +104,11 @@ void Simulation::kruskal(void) {
     
     //Imprime as arestas selecionadas e o peso total da MST
     std::cout << "\nArvore Geradora Minima encontrada pelo algoritmo de Kruskal:\n";
-    std::cout << "Arestas da MST:\n";
+    std::cout << "Arestas da AGM:\n";
     for(const auto& edge : mst) {
         std::cout << graph.dictionary[edge.second.first] << " -- " 
                  << graph.dictionary[edge.second.second] << " : "
                  << edge.first << "\n";
     }
-    std::cout << "Peso total da MST: " << total_weight << "\n";
+    std::cout << "Peso total da AGM: " << total_weight << "\n";
 }
