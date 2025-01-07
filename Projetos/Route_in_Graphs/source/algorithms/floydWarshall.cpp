@@ -51,7 +51,7 @@ void Simulation::floydWarshall() {
     cout << "Digite o vertice inicial: ";
     cin >> start;
 
-    start -= 1; // Ajusta o índice para zero-based
+    start -= 1; 
 
     if (start < 0 || start >= n) {
         cout << "Erro: vértice inválido!" << endl;
@@ -65,7 +65,7 @@ void Simulation::floydWarshall() {
     for (int i = 0; i < n; ++i) {
         cout << (i + 1) << ": ";
         if (dist[start][i] == INF) {
-            cout << "INF" << endl;  // Não alcançável
+            cout << "INF" << endl;  // Infinito quando não alcançavel
         } else {
             cout << "Distancia: " << dist[start][i] << "/ Predecessor: " << dic[pred[start][i]] << endl;  
         }
