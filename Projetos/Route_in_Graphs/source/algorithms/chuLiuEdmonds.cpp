@@ -1,5 +1,4 @@
 #include "simulation.h"
-#include <cstdio>
 
 using namespace sml;
 
