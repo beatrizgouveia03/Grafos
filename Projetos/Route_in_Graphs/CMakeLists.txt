@@ -15,6 +15,7 @@ add_executable( Route_in_Graphs
                 source/algorithms/bellmanFord.cpp
                 source/algorithms/floydWarshall.cpp
                 source/algorithms/chuLiuEdmonds.cpp
-                source/algorithms/fordFulkerson.cpp )
+                source/algorithms/fordFulkerson.cpp 
+                source/algorithms/hierholzerPaths.cpp)
 
 set_property(TARGET Route_in_Graphs PROPERTY CXX_STANDARD 20)

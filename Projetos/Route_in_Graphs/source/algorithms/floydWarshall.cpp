@@ -9,7 +9,7 @@ using namespace sml;
  * @param g Grafo no qual serão calculadas as distâncias mínimas entre os vértices
  */
 void Simulation::floydWarshall() {
-    const int INF = std::numeric_limits<int>::max();  // Define o valor de infinito
+    const int INF = numeric_limits<int>::max();  // Define o valor de infinito
 
     int n = this->graph.n;  // Número de vértices no grafo
     vector<vector<int>> adj = this->graph.adj;  // Matriz de adjacência
@@ -20,7 +20,7 @@ void Simulation::floydWarshall() {
     // Inicializa as distâncias e predecessores
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            if (adj[i][j] != 0) {  
+            if (adj[i][j] != -1) {  
                 dist[i][j] = adj[i][j];
                 pred[i][j] = i;  
             }
