@@ -28,9 +28,9 @@ void Simulation::dijkstra(void) {
     }
     
     //Inicialização dos vetores auxiliares
-    std::vector<int> dist(graph.n, INF);      // Armazena a menor distância até cada vértice
-    std::vector<int> parent(graph.n, -1);     // Armazena o pai de cada vértice no caminho mais curto
-    std::vector<bool> visited(graph.n, false); // Marca os vértices já visitados
+    std::vector<int> dist(graph.n, INF);
+    std::vector<int> parent(graph.n, -1);
+    std::vector<bool> visited(graph.n, false);
     
     /**
      * Fila de prioridade que mantém os vértices ordenados pela menor distância
@@ -39,7 +39,7 @@ void Simulation::dijkstra(void) {
      * second: índice do vértice
      * greater<> garante que o topo será o vértice com menor distância
      */
-    std::priority_queue
+    std::priority_queue<
         std::pair<int, int>,
         std::vector<std::pair<int, int>>,
         std::greater<std::pair<int, int>>
@@ -58,9 +58,9 @@ void Simulation::dijkstra(void) {
         if(visited[u]) continue;
         visited[u] = true;
         
-        //Explora todos os vértices adjacentes ao atual
+        //Explora todos os vértices adjacentes ao atual 
         for(size_t v = 0; v < graph.n; v++) {
-            if(graph.adj[u][v] == -1) continue; // Ignora se não há aresta
+            if(graph.adj[u][v] == -1) continue;  // Ignora se não há aresta
             
             //Relaxamento: atualiza a distância se encontrou um caminho mais curto
             if(!visited[v] && dist[u] != INF && 
@@ -77,8 +77,9 @@ void Simulation::dijkstra(void) {
               << graph.dictionary[start] << ":\n\n";
          
     for(size_t i = 0; i < graph.n; i++) {
-        if(i == start) continue; // Pula o vértice inicial
+        if(i == start) continue;// Pula o vértice inicial
         
+
         //Imprime a distância até o vértice atual
         std::cout << "Distancia ate " << graph.dictionary[i] << ": ";
         if(dist[i] == INF) {
