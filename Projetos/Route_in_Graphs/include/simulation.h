@@ -51,15 +51,14 @@ using std::queue;
 #include <limits>
 using std::numeric_limits;
 
+#include <stack>
+using std::stack;
+
 #include <set>
 using std::set;
 
 #include <utility>
 using std::pair;
-
-#include <stack>
-using std::stack;
-
 
 namespace sml {
   /// Enum para representar o resultado da simulação
