@@ -110,7 +110,7 @@ void Simulation::hierholzerPaths (void){
                 if (aux[currVertex][i] >= 0) {
                     flag = true;
                     // Adicionar a aresta ao caminho em construção
-                    temp.push_back(i);
+                    currentPath.push(i);
                     // Remover a aresta do grafo
                     aux[currVertex][i] = -1;
                     // Atualizar os graus
@@ -120,6 +120,8 @@ void Simulation::hierholzerPaths (void){
                 }
             }
             if (!flag) {
+                temp.push_back(currVertex);
+                currentPath.pop();
                 break;
             }
         }
