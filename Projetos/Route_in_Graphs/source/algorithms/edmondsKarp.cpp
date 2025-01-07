@@ -9,23 +9,22 @@ using namespace sml;
  * máximo possível,se utilizando de uma busca em largura(bfs) 
  * para achar o menor caminho entre a origem e o destino.
  * 
- * @param g Grafo no qual será calculado o fluxo máximo
- * @return Um inteiro indicando o valor de fluxo máximo calculado
  */
-int Simulation::edmondsKarp (Graph g){
-    vector<int> parent(g.n);    //!< Lista auxiliar para recuperar o caminho achado pela BFS
-    int source = 0, sink = g.n - 1; //!< Índices do nó origem e do nó destino.
-    vector<vector<int>> residual = g.adj; //!< Matriz residual
+void Simulation::edmondsKarp (void){
+    vector<int> parent(this->graph.n);    //!< Lista auxiliar para recuperar o caminho achado pela BFS
+    int source = 0, sink = this->graph.n - 1; //!< Índices do nó origem e do nó destino.
+    vector<vector<int>> residual = this->graph.adj; //!< Matriz residual
 
     Graph aux;
-    aux.n = g.n;
-    aux.dictionary = g.dictionary;
+    aux.n = this->graph.n;
+    aux.dictionary = this->graph.dictionary;
 
     int maxFlow = 0, count = 0;
 
     //Enquanto houver caminho entre a origem e o destino
     while(bfs(parent, residual, source, sink)){
-        int pathFlow = INT_MAX;
+        const int INF = numeric_limits<int>::max();  // Define o valor de infinito
+        int pathFlow = INF;
         int s = sink;
 
         //Determina o gargalo desse caminho
@@ -50,7 +49,13 @@ int Simulation::edmondsKarp (Graph g){
         cout << "FLUXO MAXIMO DO CAMINHO: " << pathFlow << endl<< endl;
     }
 
-    return maxFlow;
+    cout << "====================================================" << endl;
+    cout << endl;
+    cout << "FLUXO MAXIMO DO GRAFO: " << maxFlow << endl;
+    cout << endl;
+    cout << "====================================================" << endl;
+
+    return;
 };
 
 /**!
@@ -68,7 +73,7 @@ int Simulation::edmondsKarp (Graph g){
  * @return Um booleano indicando se foi possível achar um caminho(TRUE) ou não(FALSE)
  */
 bool Simulation::bfs(vector<int> &parent, vector<vector<int>> residual, int src, int snk){
-    int n = residual.size();
+    size_t n = residual.size();
     vector<bool> visited(n, false); //!< Vetor que indica quais nós foram visitados
     queue<int> q;   //!< Fila de nós a serem visitados
     q.push(src);

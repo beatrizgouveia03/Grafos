@@ -40,9 +40,10 @@ void Simulation::showMenu(void){
   cout << "6. Floyd-Warshall" << endl;
   cout << "-- Grafos Eulerianos --" << endl;
   cout << "7. Hierholzer (Ciclos)" << endl;
+  cout << "8. Hierholzer (Caminhos)" << endl;
   cout << "-- Fluxo em redes --" << endl;
-  cout << "8. Ford-Fulkerson" << endl;
-  cout << "9. Edmonds-Karp" << endl;
+  cout << "9. Ford-Fulkerson" << endl;
+  cout << "10. Edmonds-Karp" << endl;
   cout << "0. Encerrar programa" << endl;
 }
 
@@ -81,31 +82,33 @@ void Simulation::run(void) {
         pause();
         break;
       case 5:
-        bellmanFord();
+        int initialVertex; 
+        cout << "Digite o vertice inicial: " << endl;
+        getline(cin, str);
+        initialVertex = stoi(str);
+        bellmanFord(initialVertex);
         pause();
         break;
       case 6: 
         floydWarshall();
         pause();
         break;
-      case7: 
+      case 7: 
         hierholzer();
         pause();
         break;
       case 8:
+        hierholzerPaths();
+        pause();
+        break;
+      case 9:
         fordFulkerson();
         pause();
         break;
-      case 9: 
-        { int maxFlow = edmondsKarp(this->graph);
-          cout << "====================================================" << endl;
-          cout << endl;
-          cout << "FLUXO MAXIMO DO GRAFO: " << maxFlow << endl;
-          cout << endl;
-          cout << "====================================================" << endl;
-          pause();
-          break;
-        }
+      case 10: 
+        edmondsKarp();
+        pause();
+        break;
       default:
         break;
     }
@@ -134,25 +137,27 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
   cout << "Inicializando a simulacao..." << endl;
 
   if (!file.is_open()) {
-    return usage("Erro: Nao foi possível abrir o arquivo");
+    return usage("Erro: Nao foi possivel abrir o arquivo");
   }
 
    // Leitura da entrada
   while (!file.eof()) {
+
+      cout << filename << endl;
    
       // Read the graph from the file
       string v1, v2, w;
       int numNodes;
 
       string line;
-      char trash, type;
+      char type;
 
       cout << "Reading number of nodes..." << endl;
 
       file >> type >> numNodes;
 
       map<int, string> dictionary;    //!< Lista que mantém o nome de cada vértice
-      vector<vector<int>> adj = vector<vector<int>>(numNodes, vector<int>(numNodes, 0)); //!< Matriz de adjacência
+      vector<vector<int>> adj = vector<vector<int>>(numNodes, vector<int>(numNodes, -1)); //!< Matriz de adjacência
 
 
       // Read the connections from the file
@@ -181,26 +186,26 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
 
         cout << "Reading connection " << v1 << " " << v2 << " weighting " << w << endl;
         
-        int x = -1, y = -1;
+        size_t x = INF, y = INF;
 
         //Update the dictionary
         for(auto i{0}; i<dictionary.size();++i){
           if(dictionary[i] == v1){
-            x = i;
+            x = size_t(i);
           }
-          else if(dictionary[i] == v2){
-            y = i;
+          if(dictionary[i] == v2){
+            y = size_t(i);
           }
         }
         
-        if(x == -1){
+        if(x == INF){
           x = dictionary.size();
-          dictionary[x] = v1;
+          dictionary[int(x)] = v1;
         }
         
-        if(y == -1){
+        if(y == INF){
           y = dictionary.size();
-          dictionary[y] = v2;
+          dictionary[int(y)] = v2;
         }
 
         if (dictionary.size() > numNodes) {
@@ -210,7 +215,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
     
         adj[x][y] = stoi(w);
 
-        (type == 'G') ? adj[y][x] = stoi(w) : 0;
+        (type == 'G') ? adj[y][x] = stoi(w) : -1;
 
         this->graph.adj = adj;
         this->graph.n = numNodes;

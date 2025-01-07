@@ -60,12 +60,6 @@ using std::set;
 #include <utility>
 using std::pair;
 
-#include <utility>
-using std::pair;
-
-#include <stack>
-using std::stack;
-
 namespace sml {
   /// Enum para representar o resultado da simulação
   enum simulation_result_e
@@ -107,12 +101,12 @@ namespace sml {
 
       cout << endl;
       cout << "====================================================" << endl;
-      cout << "                MATRIZ DE ADJACÊNCIA                " << endl;
+      cout << "                MATRIZ DE ADJACENCIA                " << endl;
       cout << "====================================================" << endl;
       cout << "  \\  ";
       
       for (int i{0}; i<numNodes; ++i) {
-        if(dic[i].length() == 1) cout << " ";
+        if(dic[i].length() == size_t(1)) cout << " ";
         cout << dic[i] <<"  ";
       }
       cout << endl;
@@ -127,7 +121,7 @@ namespace sml {
         if(dic[i].length() == 1) cout << " ";
         cout << dic[i] << "| ";
         for(int j{0}; j<numNodes; ++j){
-          if(adj[i][j] < 10) cout << "  ";
+          if(adj[i][j] < 10 && adj[i][j] >= 0) cout << "  ";
           else if(adj[i][j] < 100) cout << " ";
           cout << adj[i][j] << " ";
         }
@@ -162,15 +156,15 @@ namespace sml {
       void kruskal(void);
       void dijkstra(void);
       void hierholzer(void);
-      void bellmanFord(void);
-      int edmondsKarp(Graph g);
+      void edmondsKarp(void);
       void floydWarshall(void);
       void fordFulkerson(void);
       void chuLiuEdmonds(void);
+      void hierholzerPaths(void);
+      void bellmanFord(int inicio);
 
       //! Algoritmos auxiliares
       bool bfs(vector<int> &parent, vector<vector<int>> residual, int src, int snk);
-
 
   };
 } // namespace sml
