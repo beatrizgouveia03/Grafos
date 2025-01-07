@@ -2,6 +2,11 @@
 
 using namespace sml;
 
+/**!
+ * Esta função é uma implementação do algoritmo de Hierholzer
+ * para encontrar caminhos eulerianos em um grafo direcionado.
+ * 
+ */
 void Simulation::hierholzerPaths (void){
     int n = this->graph.n;                     //!< Número de vértices
     vector<vector<int>> aux = this->graph.adj; //!< Matriz auxilia
@@ -10,7 +15,7 @@ void Simulation::hierholzerPaths (void){
     // Calcular graus de entrada e saída
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            (aux[i][j] > 0) ? out[i] += aux[i][j], in[j] += aux[i][j] : 0;
+            (aux[i][j] > 0) ? out[i]++, in[j]++ : 0;
         }   
     }
     
@@ -36,7 +41,7 @@ void Simulation::hierholzerPaths (void){
     }
 
     for (int i = 1; i < n-1; i++) {
-        if (degrees[i] != 0) {
+        if (degrees[i]%2 != 0) {
             cout << "Nao ha caminho euleriano: grau de vértice interno impar." << endl;
             break;
         }
@@ -66,8 +71,6 @@ void Simulation::hierholzerPaths (void){
                 // Atualizar os graus
                 degrees[currVertex]--;
                 degrees[i]++;
-                // Atualizando o vértice atual
-                currVertex = i;
                 break;
             }
         }
@@ -113,8 +116,6 @@ void Simulation::hierholzerPaths (void){
                     // Atualizar os graus
                     degrees[currVertex]--;
                     degrees[i]++;
-                    // Atualizando o vértice atual
-                    currVertex = i;
                     break;
                 }
             }
