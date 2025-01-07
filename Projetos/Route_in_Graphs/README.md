@@ -27,7 +27,7 @@ O objetivo principal é fornecer uma ferramenta prática para visualizar, entend
   - [x] (5) Bellman-Ford [Alisson]
   - [x] (6) Floyd-Warshall [Davi]
 - **Grafos Eulerianos:**
-  - [ ] (7) Hierholzer (ciclos) [Alisson] (Em revisão)
+  - [x] (7) Hierholzer (ciclos) [Alisson]
   - [x] (8) Hierholzer (caminhos) [Beatriz]
 - **Fluxo em Redes:**
   - [ ] (9) Ford-Fulkerson [José] (Em revisão)
