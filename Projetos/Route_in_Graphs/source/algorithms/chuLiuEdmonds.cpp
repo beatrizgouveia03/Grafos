@@ -10,8 +10,8 @@ struct Edge {
 
 /* Busca ciclos no grafo `graph` de tamanho `n`,
  * Retorna um par onde o primeiro elemento indica se foram encontrados ciclos
- * e o segundo elemento é um vetor com todos os ciclos encontrados. 
-*/
+ * e o segundo elemento é um vetor com todos os ciclos encontrados.
+ */
 
 pair<bool, vector<int>> findCycle(vector<vector<int>> &graph, int n) {
   vector<bool> visited(n, false);
@@ -66,8 +66,8 @@ void Simulation::chuLiuEdmonds(void) {
   int root = 0; // Assume que o nó raiz sempre será 0
   vector<vector<int>> adj = this->graph.adj;
   vector<bool> visited(n, false);
-	vector<vector<int>> tmp(n, vector<int>(n));
-	vector<vector<int>> idx(n+1, vector<int>(n+1));
+  vector<vector<int>> tmp(n, vector<int>(n));
+  vector<vector<int>> idx(n + 1, vector<int>(n + 1));
   vector<Edge> s;
   Graph aux;
   aux.n = n;
@@ -119,49 +119,49 @@ void Simulation::chuLiuEdmonds(void) {
     vector<Edge> new_s;
     int k_id = -10;
 
-		// Passo 3:
+    // Passo 3:
     for (const Edge e : s) {
       if (inCycle[e.from] && inCycle[e.to]) {
         k.push_back(e);
       } else {
         new_s.push_back(e);
       }
-   //  for (const Edge &e : new_s) {
-			// 	printf("%d -> %d: %d", e.from, e.to, e.weight);
-			// }
+      //  for (const Edge &e : new_s) {
+      // 	printf("%d -> %d: %d", e.from, e.to, e.weight);
+      // }
 
-     //  for (int i = 0; i < n; i++) {
-     //    if (inCycle[i])
-     //      continue;
-     //    for (int v : cycle) {
-     //      if (adj[i][v] > 0) {
-     //        int w = adj[i][v];
-     //        new_s.push_back(Edge(i, k_id, w));
-     //      }
-					// idx[i][k_id] = v;
-     //    }
-     //  }
+      //  for (int i = 0; i < n; i++) {
+      //    if (inCycle[i])
+      //      continue;
+      //    for (int v : cycle) {
+      //      if (adj[i][v] > 0) {
+      //        int w = adj[i][v];
+      //        new_s.push_back(Edge(i, k_id, w));
+      //      }
+      // idx[i][k_id] = v;
+      //    }
+      //  }
       /* Passo 4:
        * Para cada pseudo-nó, selecione o arco de entrada que tem o menor custo
        * modificado; Substitua o arco que entra no mesmo nó real em S pelo novo
        * arco selecionado.
        */
 
-			// int min_w = INT_MAX;
-			// int min_idx = -1;
-			// Edge min_e = Edge(-1,-1,-1);
-			// for(auto e : new_s){
-			// 	if(e.to == k_id && e.weight < min_w){
-			// 		min_idx = idx[e.from][e.to];
-			// 		min_w = e.weight;
-			// 		min_e = e;
-			// 	}
-			// }
-   //  	vector<Edge> final_s;
-			//
-			// final_s = new_s;
-			// final_s.push_back(Edge(min_e.from, min_idx, min_w));
-			//
+      // int min_w = INT_MAX;
+      // int min_idx = -1;
+      // Edge min_e = Edge(-1,-1,-1);
+      // for(auto e : new_s){
+      // 	if(e.to == k_id && e.weight < min_w){
+      // 		min_idx = idx[e.from][e.to];
+      // 		min_w = e.weight;
+      // 		min_e = e;
+      // 	}
+      // }
+      //  	vector<Edge> final_s;
+      //
+      // final_s = new_s;
+      // final_s.push_back(Edge(min_e.from, min_idx, min_w));
+      //
       s = new_s;
     }
 
