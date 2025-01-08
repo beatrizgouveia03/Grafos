@@ -21,7 +21,7 @@ O objetivo principal é fornecer uma ferramenta prática para visualizar, entend
 - **Árvores Geradoras Mínimas:**
   - [x] (1) Kruskal [Anny]
   - [x] (2) Prim [Davi]
-  - [ ] (3) Chu-Liu/Edmonds [José]
+  - [x] (3) Chu-Liu/Edmonds [José]
 - **Caminho mais curto:**
   - [x] (4) Dijkstra [Anny]
   - [x] (5) Bellman-Ford [Alisson]
@@ -30,7 +30,7 @@ O objetivo principal é fornecer uma ferramenta prática para visualizar, entend
   - [x] (7) Hierholzer (ciclos) [Alisson]
   - [x] (8) Hierholzer (caminhos) [Beatriz]
 - **Fluxo em Redes:**
-  - [ ] (9) Ford-Fulkerson [José] (Em revisão)
+  - [x] (9) Ford-Fulkerson [José]
   - [x] (10) Edmonds-Karp [Beatriz]
 
 ## Utilização

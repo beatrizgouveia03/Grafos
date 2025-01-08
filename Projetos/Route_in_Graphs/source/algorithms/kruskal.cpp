@@ -15,7 +15,7 @@ static int parent[MAXN];
 static int rank_set[MAXN];
 
 /**
- * Função que inicializa as estruturas do Union-Find
+ * @brief Função que inicializa as estruturas do Union-Find
  * Cada elemento começa como seu próprio pai (conjuntos disjuntos)
  * e com rank 1 (tamanho inicial do conjunto)
  */
@@ -27,7 +27,7 @@ static void init(size_t n) {
 }
 
 /**
- * Função Find do Union-Find que encontra o representante (pai) de um conjunto
+ *  @brief Função Find do Union-Find que encontra o representante (pai) de um conjunto
  * Implementa a otimização de compressão de caminho, que faz todos os nós
  * do caminho apontarem diretamente para a raiz, melhorando performance futura
  */
@@ -48,7 +48,7 @@ static size_t find(size_t cur) {
 }
 
 /**
- * Função Union do Union-Find que une dois conjuntos
+ *  @brief Função Union do Union-Find que une dois conjuntos
  * Implementa a otimização union by rank, unindo sempre o conjunto menor ao maior
  * para manter a árvore balanceada
  */
@@ -64,7 +64,7 @@ static void join(size_t x, size_t y) {
 }
 
 /**
- * Implementação do algoritmo de Kruskal para encontrar a Árvore Geradora Mínima (MST)
+ *  @brief Implementação do algoritmo de Kruskal para encontrar a Árvore Geradora Mínima (MST)
  * O algoritmo ordena as arestas por peso e tenta adicionar cada uma à MST,
  * verificando se não forma ciclo usando Union-Find.
  * Uma MST é uma árvore que conecta todos os vértices do grafo usando o menor peso total possível

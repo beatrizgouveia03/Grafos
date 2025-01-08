@@ -4,7 +4,7 @@ using namespace sml;
 
 
 /**!
- * Esta função é uma implementação do algoritmo de Edmonds-Karp
+ *  @brief Esta função é uma implementação do algoritmo de Edmonds-Karp
  * de fluxo em redes. Dado um grafo, ele determina qual o fluxo 
  * máximo possível,se utilizando de uma busca em largura(bfs) 
  * para achar o menor caminho entre a origem e o destino.
@@ -59,7 +59,7 @@ void Simulation::edmondsKarp (void){
 };
 
 /**!
- * Função auxiliar do algoritmo de Edmonds-Karp.
+ *  @brief Função auxiliar do algoritmo de Edmonds-Karp.
  * Implementação do algoritmo de busca em largura usada para determinar
  * o menor caminho entre a origem e o destino de um grafo, através de 
  * sua matriz de adjacência, caso exista, e atualizar um vetor de nós-pais

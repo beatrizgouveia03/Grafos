@@ -8,7 +8,7 @@ using namespace sml;
 using namespace std;
 
 /**!
- * Esta função implementa o algoritmo de Prim para encontrar a Árvore Geradora Mínima (AGM) de um grafo.
+ *  @brief Esta função implementa o algoritmo de Prim para encontrar a Árvore Geradora Mínima (AGM) de um grafo.
  * O algoritmo começa em um vértice e vai adicionando as arestas de menor peso que conectam o conjunto Z 
  * de vértices já incluídos à árvore, ao conjunto V de vértices restantes.
  */

@@ -3,7 +3,7 @@
 using namespace sml;
 
 /**!
- * Função que implementa o algoritmo de Hierholzer para identificação de ciclos.
+ *  @brief Função que implementa o algoritmo de Hierholzer para identificação de ciclos.
  * Um ciclo eureliano é uma cadeia que inicia em um vértice "v", passa por todas as arestas do grafo
  * apenas 1 vez e finaliza em "v".
  * O algoritmo passa pelas arestas não exploradas de cada vértice e depois adiciona esse vértice(que teve as arestas exploradas)

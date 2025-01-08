@@ -5,7 +5,7 @@
 using namespace sml;
 
 /**
- * Implementação do algoritmo de Dijkstra para encontrar o caminho mais curto
+ * @brief Implementação do algoritmo de Dijkstra para encontrar o caminho mais curto
  * O algoritmo encontra a menor distância entre um vértice inicial e todos os outros vértices do grafo
  * Utiliza uma fila de prioridade para sempre processar o vértice mais próximo do inicial
  * e relaxa as arestas atualizando as distâncias quando encontra caminhos mais curtos

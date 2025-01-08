@@ -32,7 +32,7 @@ bool dfs(int n, vector<vector<int>> &residualG, int s, int t,
 }
 
 /*
- * Algoritmo de Ford-Fulkerson para encontrar caminho máximo (Utilizando DFS
+ *  @brief Algoritmo de Ford-Fulkerson para encontrar caminho máximo (Utilizando DFS
  * para encontrar caminhos)
  */
 void Simulation::fordFulkerson(void) {

@@ -3,7 +3,7 @@
 using namespace sml;
 
 /**!
- * Esta função é uma implementação do algoritmo de Hierholzer
+ *  @brief Esta função é uma implementação do algoritmo de Hierholzer
  * para encontrar caminhos eulerianos em um grafo direcionado.
  * 
  */

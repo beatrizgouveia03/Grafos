@@ -8,7 +8,7 @@
 using namespace sml;
 
 /**!
- * Esta função implementa o algoritmo de Floyd-Warshall para encontrar as distâncias mínimas entre todos os pares de vértices
+ *  @brief Esta função implementa o algoritmo de Floyd-Warshall para encontrar as distâncias mínimas entre todos os pares de vértices
  * de um grafo ponderado. O algoritmo atualiza a matriz de distâncias e a matriz de predecessores para reconstrução de caminhos.
  */
 void Simulation::floydWarshall() {
