@@ -115,7 +115,7 @@ O projeto utiliza o Doxygen para gerar a documentação. Para gerar a documenta�
 doxygen Doxyfile
 ```
 
-Isso criará uma pasta `docs` (ou outro diretório especificado no campo `OUTPUT_DIRECTORY` do arquivo Doxyfile) com os arquivos da documentação gerada. Você pode visualizar a documentação abrindo o arquivo [index.html](/docs/html/index.html), localizado dentro da subpasta `html`, em seu navegador web.
+Isso criará uma pasta `docs` (ou outro diretório especificado no campo `OUTPUT_DIRECTORY` do arquivo Doxyfile) com os arquivos da documentação gerada. Você pode visualizar a documentação abrindo o arquivo [index.html](/Projetos/Route_in_Graphs/docs/html/index.html), localizado dentro da subpasta `html`, em seu navegador web.
 
 ## Licença
 
