@@ -6,6 +6,11 @@ include_directories ( include )
 
 add_executable( Traveling_Salesman_Problem
                 source/main.cpp
-                source/simulation.cpp)
+                source/simulation.cpp
+                source/algorithms/grasp.cpp
+                source/algorithms/tspGreedy.cpp
+                source/algorithms/graspLocalSearch1.cpp
+                source/algorithms/graspLocalSearch2.cpp
+                source/algorithms/tspCheapestInsertion.cpp)
 
 set_property(TARGET  Traveling_Salesman_Problem PROPERTY CXX_STANDARD 20)
