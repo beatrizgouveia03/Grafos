@@ -32,7 +32,7 @@ void Simulation::showAlgMenu(void){
   cout << "              Menu de Algoritmos            " << endl;
   cout << "============================================" << endl;
   cout << "1. Algoritmo Guloso" << endl;
-  cout << "2. Inserção mais barata" << endl;
+  cout << "2. Insercao mais barata" << endl;
   cout << "3. GRASP + <Busca Local 1>" << endl;
   cout << "4. GRASP + <Busca Local 2>" << endl;
   cout << "0. Encerrar programa" << endl;
@@ -136,9 +136,6 @@ void Simulation::runProblem(int algorithm, int problem) {
     default:
       break;
   }
-  
-    
-
 }
 
 /**!
@@ -153,11 +150,12 @@ void Simulation::runProblem(int algorithm, int problem) {
 SimulationResult Simulation::initialize(int argc, char *argv[]) {
   // Inicializa a simulação
   // Processa os argumentos da linha de comando
-  if (argc <= 1) {
+  if (argc <= 2) {
     return usage("Erro: Nome do arquivo ausente");
   } 
   
   string filename = argv[1];
+  string filename2 = argv[2];
   ifstream file(filename);
 
   cout << "Inicializando a simulacao..." << endl;
@@ -166,39 +164,59 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
     return usage("Erro: Nao foi possivel abrir o arquivo");
   }
 
-   // Leitura da entrada
+   // Leitura das cidades (dicionário)
   while (!file.eof()) {
-
-      cout << filename << endl;
+    cout << filename << endl;
    
-      // Read the graph from the file
-      string line;
-      int numNodes; //!< Número de vértices
-      map<int, string> dictionary;    //!< Lista que mantém o nome de cada vértice
+    string line;
+    int numNodes; //!< Número de vértices
+    map<int, string> dictionary;    //!< Lista que mantém o nome de cada vértice
 
-      cout << "Lendo número de vértices..." << endl;
-      file >> numNodes;
+    cout << "Lendo numero de vertices..." << endl;
+    string numNodesStr;
+    getline(file, numNodesStr);
+    numNodes = stoi(numNodesStr);
+    cout << "Numero de vertices: " << numNodes << endl;
 
-      vector<vector<int>> adj = vector<vector<int>>(numNodes, vector<int>(numNodes, -1)); //!< Matriz de adjacência
+    cout << "Lendo nome dos vertices..." << endl;
+    for (int i = 0; i < numNodes; i++) {
+      string name;
+      getline(file, name);
+      dictionary[i] = name;
+      cout << "Nome do vertice " << i << ": " << name << endl;
+    }
 
-      cout << "Lendo nome dos vértices..." << endl;
-      for (int i = 0; i < numNodes; i++) {
-          string name;
-          file >> name;
-          dictionary[i] = name;
-      }
-
-      cout << "Lendo matriz de adjacência..." << endl;
-      for (int i = 0; i < numNodes; i++) {
-        for (int j = 0; j < numNodes; j++) {
-          file >> adj[i][j];
-        }
-      }
-
-      this->graph.adj = adj;
-      this->graph.n = numNodes;
-      this->graph.dictionary = dictionary;
+    this->graph.n = numNodes;
+    this->graph.dictionary = dictionary;
   }
+  file.close();
+
+  ifstream file2(filename2);
+  if (!file2.is_open()) {
+    return usage("Erro: Nao foi possivel abrir o arquivo");
+  }
+
+  // Leitura da entrada
+  while(!file2.eof()){
+    cout << filename2 << endl;
+
+    string line;
+    vector<vector<float>> adj = vector<vector<float>>(this->graph.n, vector<float>(this->graph.n, -1)); //!< Matriz de adjacência
+
+    
+    cout << "Lendo matriz de adjacencia..." << endl;
+    for (int i = 0; i < this->graph.n; i++) {
+      getline(file2, line);
+      istringstream iss(line);
+      for (int j = 0; j < this->graph.n; j++) {
+        iss >> adj[i][j];
+        cout << i << " " << j << " -> " << adj[i][j] << endl;
+      }
+    }
+
+    this->graph.adj = adj;
+  }
+
 
   cout << "Inicializacao concluida com sucesso" << endl;
   cout << this->graph << endl;
@@ -213,7 +231,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
  * @return Uma estrutura indicando que a leitura falhou e a mensagem de erro
  */
 SimulationResult Simulation::usage(string message){
-  string usage = ">>> Uso: Traveling_Salesman_Problem <arquivo_de_entrada>\n";
+  string usage = ">>> Uso: Traveling_Salesman_Problem <arquivo_dicionario> <arquivo_de_entrada>\n";
 
   if(message != "")
   {

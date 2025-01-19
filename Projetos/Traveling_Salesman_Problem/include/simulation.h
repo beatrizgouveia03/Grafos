@@ -81,7 +81,7 @@ namespace sml {
   struct Graph
   {
     int n;                          //!< Número de vértices
-    vector<vector<int>> adj;        //!< Matriz de adjacência
+    vector<vector<float>> adj;        //!< Matriz de adjacência
     map<int, string> dictionary;    //!< Lista que mantém o nome de cada vértice
 
 
@@ -89,7 +89,7 @@ namespace sml {
     {
       int numNodes = g.n;
       map<int, string> dic = g.dictionary;
-      vector<vector<int>> adj = g.adj;
+      vector<vector<float>> adj = g.adj;
 
       cout << endl;
       cout << "====================================================" << endl;
@@ -98,8 +98,7 @@ namespace sml {
       cout << "  \\  ";
       
       for (int i{0}; i<numNodes; ++i) {
-        if(dic[i].length() == size_t(1)) cout << " ";
-        cout << dic[i] <<"  ";
+        cout << i+1 <<"  ";
       }
       cout << endl;
 
@@ -110,11 +109,8 @@ namespace sml {
       cout << endl;
 
       for(int i{0}; i<numNodes; ++i){
-        if(dic[i].length() == 1) cout << " ";
-        cout << dic[i] << "| ";
+        cout << i+1 << "| ";
         for(int j{0}; j<numNodes; ++j){
-          if(adj[i][j] < 10 && adj[i][j] >= 0) cout << "  ";
-          else if(adj[i][j] < 100) cout << " ";
           cout << adj[i][j] << " ";
         }
         cout << endl;
