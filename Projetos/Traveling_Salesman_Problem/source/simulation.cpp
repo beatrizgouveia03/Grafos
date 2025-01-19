@@ -21,29 +21,19 @@ void Simulation::pause(void){
 }
 
 /**! 
- * Essa função exibe o menu principal da simulação no terminal.
+ * Essa função exibe o menu dos algoritmos da simulação no terminal.
  * 
- * O menu principal serve como ponto de partida para o usuário
+ * Esse menu serve como ponto de partida para o usuário
  * interagir com as funcionalidades da simulação.
  */
-void Simulation::showMenu(void){
+void Simulation::showAlgMenu(void){
   cout << "============================================" << endl;
-  cout << "                Menu Principal              " << endl;
+  cout << "              Menu de Algoritmos            " << endl;
   cout << "============================================" << endl;
-  cout << "-- Arvores Geradoras Minimas --" << endl;
-  cout << "1. Kruskal" << endl;
-  cout << "2. Prim" << endl;
-  cout << "3. Chu-Liu/Edmonds" << endl;
-  cout << "-- Caminho mais curto --" << endl;
-  cout << "4. Dijkstra" << endl;
-  cout << "5. Bellman-Ford" << endl;
-  cout << "6. Floyd-Warshall" << endl;
-  cout << "-- Grafos Eulerianos --" << endl;
-  cout << "7. Hierholzer (Ciclos)" << endl;
-  cout << "8. Hierholzer (Caminhos)" << endl;
-  cout << "-- Fluxo em redes --" << endl;
-  cout << "9. Ford-Fulkerson" << endl;
-  cout << "10. Edmonds-Karp" << endl;
+  cout << "1. Algoritmo Guloso" << endl;
+  cout << "2. Inserção mais barata" << endl;
+  cout << "3. GRASP + <Busca Local 1>" << endl;
+  cout << "4. GRASP + <Busca Local 2>" << endl;
   cout << "0. Encerrar programa" << endl;
 }
 
@@ -64,49 +54,18 @@ void Simulation::run(void) {
 
     switch (opt) {
       case 0:
+        pause();
         break;
       case 1:
-        kruskal();
         pause();
         break;
       case 2:
-        prim();
         pause();
         break;
       case 3:
-        chuLiuEdmonds();
         pause();
         break;
       case 4:
-        dijkstra();
-        pause();
-        break;
-      case 5:
-        int initialVertex; 
-        cout << "Digite o vertice inicial: " << endl;
-        getline(cin, str);
-        initialVertex = stoi(str);
-        bellmanFord(initialVertex);
-        pause();
-        break;
-      case 6: 
-        floydWarshall();
-        pause();
-        break;
-      case 7: 
-        hierholzer();
-        pause();
-        break;
-      case 8:
-        hierholzerPaths();
-        pause();
-        break;
-      case 9:
-        fordFulkerson();
-        pause();
-        break;
-      case 10: 
-        edmondsKarp();
         pause();
         break;
       default:
@@ -146,82 +105,31 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
       cout << filename << endl;
    
       // Read the graph from the file
-      string v1, v2, w;
-      int numNodes;
-
       string line;
-      char type;
-
-      cout << "Reading number of nodes..." << endl;
-
-      file >> type >> numNodes;
-
+      int numNodes; //!< Número de vértices
       map<int, string> dictionary;    //!< Lista que mantém o nome de cada vértice
       vector<vector<int>> adj = vector<vector<int>>(numNodes, vector<int>(numNodes, -1)); //!< Matriz de adjacência
 
+      cout << "Lendo número de vértices..." << endl;
+      file >> numNodes;
 
-      // Read the connections from the file
-      while (getline(file, line)) {
-        if (line == string())
-          continue;
-
-        istringstream ss(line);
-        getline(ss, v1, ' ');
-        getline(ss, v2, ' ');
-        getline(ss, w);
-
-        if(dictionary.empty()){
-          if(v1 == "s"){
-            dictionary[0] = "s";
-            for(int i{1}; i<numNodes-1; ++i){
-              dictionary[i] = string(1, 'a' + (i-1));
-            }
-            dictionary[numNodes-1] = "t";
-          } else {
-            for(int i{0}; i<numNodes; ++i){
-              dictionary[i] = to_string(i+1);
-            }
-          }
-        }
-
-        cout << "Reading connection " << v1 << " " << v2 << " weighting " << w << endl;
-        
-        size_t x = INF, y = INF;
-
-        //Update the dictionary
-        for(auto i{0}; i<dictionary.size();++i){
-          if(dictionary[i] == v1){
-            x = size_t(i);
-          }
-          if(dictionary[i] == v2){
-            y = size_t(i);
-          }
-        }
-        
-        if(x == INF){
-          x = dictionary.size();
-          dictionary[int(x)] = v1;
-        }
-        
-        if(y == INF){
-          y = dictionary.size();
-          dictionary[int(y)] = v2;
-        }
-
-        if (dictionary.size() > numNodes) {
-          return usage("Error: Node out-of-index");
-        }
-
-    
-        adj[x][y] = stoi(w);
-
-        (type == 'G') ? adj[y][x] = stoi(w) : -1;
-
-        this->graph.adj = adj;
-        this->graph.n = numNodes;
-        this->graph.dictionary = dictionary;
-        this->graph.type = (type == 'G')? DIRECTED : UNDIRECTED;
+      cout << "Lendo nome dos vértices..." << endl;
+      for (int i = 0; i < numNodes; i++) {
+          string name;
+          file >> name;
+          dictionary[i] = name;
       }
+
+      cout << "Lendo matriz de adjacência..." << endl;
+      for (int i = 0; i < numNodes; i++) {
+        for (int j = 0; j < numNodes; j++) {
+          file >> adj[i][j];
+        }
+      }
+
+      this->graph.adj = adj;
+      this->graph.n = numNodes;
+      this->graph.dictionary = dictionary;
   }
 
   cout << "Inicializacao concluida com sucesso" << endl;
@@ -237,7 +145,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
  * @return Uma estrutura indicando que a leitura falhou e a mensagem de erro
  */
 SimulationResult Simulation::usage(string message){
-  string usage = ">>> Uso: Route_in_Graphs <arquivo_de_entrada>\n";
+  string usage = ">>> Uso: Traveling_Salesman_Problem <arquivo_de_entrada>\n";
 
   if(message != "")
   {

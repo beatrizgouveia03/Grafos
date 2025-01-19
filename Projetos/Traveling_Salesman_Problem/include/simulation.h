@@ -77,18 +77,10 @@ namespace sml {
     SimulationResult(string msg, simulation_result_e state): msg(msg), type(state){};
   };
 
-  /// Enum para representar o tipo de grafo
-  enum graph_type_e
-  {
-    DIRECTED = 0,  //!< Grafo direcionado
-    UNDIRECTED     //!< Grafo não direcionado
-  };
-
   /// Estrutura para representar um grafo
   struct Graph
   {
     int n;                          //!< Número de vértices
-    graph_type_e type;              //!< Tipo do grafo
     vector<vector<int>> adj;        //!< Matriz de adjacência
     map<int, string> dictionary;    //!< Lista que mantém o nome de cada vértice
 
@@ -148,24 +140,16 @@ namespace sml {
     //=== Métodos auxiliares
     private:
       void pause(void);
-      void showMenu(void);
+      void showAlgMenu(void);
+      void runProblem(int problem, int algorithm);
       SimulationResult usage(string = "");
       
-      //! Algoritmos de rotas em redes
-      void prim(void);
-      void kruskal(void);
-      void dijkstra(void);
-      void hierholzer(void);
-      void edmondsKarp(void);
-      void floydWarshall(void);
-      void fordFulkerson(void);
-      void chuLiuEdmonds(void);
-      void hierholzerPaths(void);
-      void bellmanFord(int inicio);
-
-      //! Algoritmos auxiliares
-      bool bfs(vector<int> &parent, vector<vector<int>> residual, int src, int snk);
-
+      //! Algoritmos do problema do caixeiro viajante
+      void tspBruteForce(void); //!< Força bruta [Algoritmo Guloso]
+      void tspCheapestInsertion(void); //!< Inserção mais barata [Algoritmo Guloso]
+      void grasp(void); //!< GRASP [Meta-heurística]
+      void graspLocalSearch1(void); //!< Busca Local 1 [Meta-heurística]
+      void graspLocalSearch2(void); //!< Busca Local 2 [Meta-heurística]
   };
 } // namespace sml
 
