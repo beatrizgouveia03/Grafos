@@ -2,6 +2,6 @@
 
 using namespace sml;
 
-void Simulation::tspBruteForce(void) {
+void Simulation::tspGreedy(int numCities) {
   cout << "Algoritmo Guloso" << endl;
 }

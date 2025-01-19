@@ -140,16 +140,17 @@ namespace sml {
     //=== Métodos auxiliares
     private:
       void pause(void);
-      void showAlgMenu(void);
+      void  showAlgMenu(void); //!< Mostra o menu de algoritmos
+      void  showProbMenu(void);  //!< Mostra o menu de problemas
       void runProblem(int problem, int algorithm);
       SimulationResult usage(string = "");
       
       //! Algoritmos do problema do caixeiro viajante
-      void tspBruteForce(void); //!< Força bruta [Algoritmo Guloso]
-      void tspCheapestInsertion(void); //!< Inserção mais barata [Algoritmo Guloso]
-      void grasp(void); //!< GRASP [Meta-heurística]
-      void graspLocalSearch1(void); //!< Busca Local 1 [Meta-heurística]
-      void graspLocalSearch2(void); //!< Busca Local 2 [Meta-heurística]
+      void tspGreedy(int numCities);//!< Algoritmo Guloso
+      void tspCheapestInsertion(int numCities); //!< Inserção mais barata 
+      void grasp(int numCities, int localSearch); //!< GRASP
+      void graspLocalSearch1(void); //!< Busca Local 1 
+      void graspLocalSearch2(void); //!< Busca Local 2 
   };
 } // namespace sml
 
