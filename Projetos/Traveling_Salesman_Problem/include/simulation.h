@@ -36,6 +36,7 @@ using std::queue;
 
 #include <vector>
 using std::vector;
+using std::reverse;
 
 #include <climits>
 
@@ -151,8 +152,11 @@ namespace sml {
       pair<double, vector<int>> tspGreedy(int numCities);//!< Algoritmo Guloso
       pair<double, vector<int>> tspCheapestInsertion(int numCities); //!< Inserção mais barata 
       pair<double, vector<int>> grasp(int numCities, int localSearch); //!< GRASP
-      vector<int> linKernighan(void); //!< Busca Local 1 (Lin-Keringhan Heuristic)
+      vector<int> swapLocalSearch(const vector<int>& tour, const vector<vector<float>>& distMatrix); //!< Busca Local 1 (Swap)
       vector<int> graspLocalSearch2(void); //!< Busca Local 2 
+
+      //! Funções auxiliares
+      float calculateTourCost(const vector<int>& tour, const vector<vector<float>>& distMatrix);
   };
 } // namespace sml
 
