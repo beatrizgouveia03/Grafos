@@ -14,6 +14,7 @@ using std::to_string;
 
 #include <fstream>
 using std::ifstream;
+using std::ofstream;
 
 #include <sstream>
 using std::istringstream;
@@ -147,11 +148,11 @@ namespace sml {
       SimulationResult usage(string = "");
       
       //! Algoritmos do problema do caixeiro viajante
-      void tspGreedy(int numCities);//!< Algoritmo Guloso
-      void tspCheapestInsertion(int numCities); //!< Inserção mais barata 
-      void grasp(int numCities, int localSearch); //!< GRASP
-      void graspLocalSearch1(void); //!< Busca Local 1 
-      void graspLocalSearch2(void); //!< Busca Local 2 
+      pair<double, vector<int>> tspGreedy(int numCities);//!< Algoritmo Guloso
+      pair<double, vector<int>> tspCheapestInsertion(int numCities); //!< Inserção mais barata 
+      pair<double, vector<int>> grasp(int numCities, int localSearch); //!< GRASP
+      vector<int> linKernighan(void); //!< Busca Local 1 (Lin-Keringhan Heuristic)
+      vector<int> graspLocalSearch2(void); //!< Busca Local 2 
   };
 } // namespace sml
 

@@ -33,7 +33,7 @@ void Simulation::showAlgMenu(void){
   cout << "============================================" << endl;
   cout << "1. Algoritmo Guloso" << endl;
   cout << "2. Insercao mais barata" << endl;
-  cout << "3. GRASP + <Busca Local 1>" << endl;
+  cout << "3. GRASP + Lin-Kernighan" << endl;
   cout << "4. GRASP + <Busca Local 2>" << endl;
   cout << "0. Encerrar programa" << endl;
 }
@@ -49,12 +49,12 @@ void Simulation::showProbMenu(void){
   cout << "============================================" << endl;
   cout << "              Menu de Problemas            " << endl;
   cout << "============================================" << endl;
-  cout << "1. Problema 1" << endl;
-  cout << "2. Problema 2" << endl;
-  cout << "3. Problema 3" << endl;
-  cout << "4. Problema 4" << endl;
-  cout << "5. Problema 5" << endl;
-  cout << "6. Problema 6" << endl;
+  cout << "1. Problema 1 - 48 cidades " << endl;
+  cout << "2. Problema 2 - 36 cidades " << endl;
+  cout << "3. Problema 3 - 24 cidades " << endl;
+  cout << "4. Problema 4 - 12 cidades " << endl;
+  cout << "5. Problema 5 - 7 cidades " << endl;
+  cout << "6. Problema 6 - 6 cidades " << endl;
   cout << "0. Retornar ao menu de algoritmos" << endl;
 }
 
@@ -96,60 +96,94 @@ void Simulation::run(void) {
  */
 void Simulation::runProblem(int algorithm, int problem) {
   int numCities = 0;
-  int nuSimulations = 1;
 
   switch(problem){
     case 1:
-      numCities = 5;
+      numCities = 48;
       break;
     case 2:
-      numCities = 10;
+      numCities = 36;
       break;
     case 3:
-      numCities = 15;
+      numCities = 24;
       break;
     case 4:
-      numCities = 20;
+      numCities = 12;
       break;
     case 5:
-      numCities = 25;
+      numCities = 7;
       break;
     case 6:
-      numCities = 30;
+      numCities = 6;
       break;
     default:
-      numCities = 5;
       break;
   }
 
   auto start = high_resolution_clock::now();
+  pair<double, vector<int>> bestTour;
+
+  ofstream file("output.txt");
+  if(!file.is_open()){
+    cout << "Erro ao abrir o arquivo de saida" << endl;
+    return;
+  }
+
+  file << "Cidades: " << numCities << endl;
+  file << "Iteração | Tempo | Custo | Solução " << endl;
 
   if(algorithm == 1){
-    auto start = high_resolution_clock::now();
-    tspGreedy(numCities);
-    auto end = high_resolution_clock::now();
-    auto duration = duration_cast<seconds>(end - start);
-    cout << "Tempo de execucao: " << duration.count() << "s" << endl;
+    file << '1 |' ;
+
+    auto start = high_resolution_clock::now(); //Começa a contagem do tempo 
+
+    bestTour = tspGreedy(numCities);
+
+    auto end = high_resolution_clock::now();  //Termina a contagem do tempo
+    auto duration = duration_cast<seconds>(end - start); //Calcula a diferença entre o tempo de início e o tempo de término
+
+    file << duration.count() << "s | " << bestTour.first << " | "; //Adiciona o tempo de execução, o custo e a solução ao arquivo de saída
+    for(int i = 0; i < numCities; i++){
+      file << bestTour.second[i] << " ";
+    }
   } 
   
   else if(algorithm == 2){
-    auto start = high_resolution_clock::now();
-    tspCheapestInsertion(numCities);
-    auto end = high_resolution_clock::now();
-    auto duration = duration_cast<seconds>(end - start);
-    cout << "Tempo de execucao: " << duration.count() << "s" << endl;
+    file << '1 |' ;
+
+    auto start = high_resolution_clock::now(); //Começa a contagem do tempo
+
+    bestTour = tspCheapestInsertion(numCities);
+
+    auto end = high_resolution_clock::now();  //Termina a contagem do tempo
+    auto duration = duration_cast<seconds>(end - start);  //Calcula a diferença entre o tempo de início e o tempo de término
+    
+    
+    file << duration.count() << "s | " << bestTour.first << " | "; //Adiciona o tempo de execução, o custo e a solução ao arquivo de saída
+    for(int i = 0; i < numCities; i++){
+      file << bestTour.second[i] << " ";
+    }
   } 
   
   else if(algorithm == 3){
     int64_t sum = 0;
 
     for(int i=0; i<30; ++i){
-      auto start = high_resolution_clock::now();
-      grasp(numCities, 1);
-      auto end = high_resolution_clock::now();
-      auto duration = duration_cast<seconds>(end - start);
+      file << i+1 << " | "; //Adiciona o número da iteração ao arquivo de saída
+
+      auto start = high_resolution_clock::now();  //Começa a contagem do tempo
+
+      bestTour = grasp(numCities, 1);
+
+      auto end = high_resolution_clock::now();  //Termina a contagem do tempo
+      auto duration = duration_cast<seconds>(end - start);  //Calcula a diferença entre o tempo de início e o tempo de término
+
       sum += duration.count();
-      cout << "Tempo de execucao: " << duration.count() << "s" << endl;
+      
+      file << duration.count() << "s | " << bestTour.first << " | "; //Adiciona o tempo de execução, o custo e a solução ao arquivo de saída
+      for(int i = 0; i < numCities; i++){
+        file << bestTour.second[i] << " ";
+      };
     }
 
     cout << "Tempo medio de execucao: " << sum/30 << "s" << endl;
@@ -159,16 +193,27 @@ void Simulation::runProblem(int algorithm, int problem) {
     int64_t sum = 0;
 
     for(int i=0; i<30; ++i){
-      auto start = high_resolution_clock::now();
-      grasp(numCities, 2);
-      auto end = high_resolution_clock::now();
-      auto duration = duration_cast<seconds>(end - start);
-      sum += duration.count();
-      cout << "Tempo de execucao: " << duration.count() << "s" << endl;
+      file << i+1 << " | "; //Adiciona o número da iteração ao arquivo de saída
+
+      auto start = high_resolution_clock::now();  //Começa a contagem do tempo
+
+      bestTour = grasp(numCities, 2);
+
+      auto end = high_resolution_clock::now();   //Termina a contagem do tempo
+      auto duration = duration_cast<seconds>(end - start);  //Calcula a diferença entre o tempo de início e o tempo de término
+      
+      sum += duration.count(); 
+      
+      file << duration.count() << "s | " << bestTour.first << " | "; //Adiciona o tempo de execução, o custo e a solução ao arquivo de saída
+      for(int i = 0; i < numCities; i++){
+        file << bestTour.second[i] << " ";
+      };
     }
     
     cout << "Tempo medio de execucao: " << sum/30 << "s" << endl;
   }
+
+  file.close();
 }
 
 /**!

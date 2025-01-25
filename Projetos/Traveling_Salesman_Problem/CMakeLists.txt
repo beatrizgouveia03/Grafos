@@ -9,7 +9,7 @@ add_executable( Traveling_Salesman_Problem
                 source/simulation.cpp
                 source/algorithms/grasp.cpp
                 source/algorithms/tspGreedy.cpp
-                source/algorithms/graspLocalSearch1.cpp
+                source/algorithms/linKernighan.cpp
                 source/algorithms/graspLocalSearch2.cpp
                 source/algorithms/tspCheapestInsertion.cpp)
 

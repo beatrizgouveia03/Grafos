@@ -1,0 +1,2 @@
+Cidades: 48
+Iteração | Tempo | Custo | Solução 

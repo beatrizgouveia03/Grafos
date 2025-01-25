@@ -2,6 +2,7 @@
 
 using namespace sml;
 
-void Simulation::graspLocalSearch2(void) {
+vector<int> Simulation::graspLocalSearch2(void) {
   cout << "GRASP + Busca Local 2" << endl;
+  return vector<int>();
 }
