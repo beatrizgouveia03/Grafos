@@ -12,7 +12,9 @@ vector<int> Simulation::swapLocalSearch(const vector<int>& tour, const vector<ve
     for (int i = 0; i < tour.size() - 1; i++) {
       for (int j = i + 1; j < tour.size(); j++) {
         vector<int> newTour = currTour;
-        reverse(newTour[i], newTour[j]);
+        int aux = newTour[i];
+        newTour[i] = newTour[j];
+        newTour[j] = aux;
         float newCost = calculateTourCost(newTour, distMatrix);
         if (newCost < currCost) {
           currTour = newTour;

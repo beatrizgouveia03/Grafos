@@ -89,13 +89,10 @@ namespace sml {
   {
     int n;                          //!< Número de vértices
     vector<vector<float>> adj;        //!< Matriz de adjacência
-    map<int, string> dictionary;    //!< Lista que mantém o nome de cada vértice
-
 
     friend ostream &operator<<(ostream &cout, const Graph g)
     {
       int numNodes = g.n;
-      map<int, string> dic = g.dictionary;
       vector<vector<float>> adj = g.adj;
 
       cout << endl;
