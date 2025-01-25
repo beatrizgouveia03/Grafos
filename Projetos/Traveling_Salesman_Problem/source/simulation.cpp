@@ -69,14 +69,14 @@ void Simulation::run(void) {
 
   while(true){
     showAlgMenu();
-    cout << "Digite a opção escolhida: " << endl;
+    cout << "Digite a opcao escolhida: " << endl;
     getline(cin, str);
     algOption = stoi(str);
 
     if(algOption == 0) break;
 
     showProbMenu();
-    cout << "Digite a opção escolhida: " << endl;
+    cout << "Digite a opcao escolhida: " << endl;
     getline(cin, str);
     probOption = stoi(str);
 
@@ -96,6 +96,8 @@ void Simulation::run(void) {
  */
 void Simulation::runProblem(int algorithm, int problem) {
   int numCities = 0;
+  int nuSimulations = 1;
+
   switch(problem){
     case 1:
       numCities = 5;
@@ -120,21 +122,52 @@ void Simulation::runProblem(int algorithm, int problem) {
       break;
   }
 
-  switch(algorithm){
-    case 1:
-      tspGreedy(numCities);
-      break;
-    case 2:
-      tspCheapestInsertion(numCities);
-      break;
-    case 3:
-      grasp(numCities, 1); // Busca Local 1
-      break;
-    case 4:
-      grasp(numCities, 2); // Busca Local 2
-      break;
-    default:
-      break;
+  auto start = high_resolution_clock::now();
+
+  if(algorithm == 1){
+    auto start = high_resolution_clock::now();
+    tspGreedy(numCities);
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<seconds>(end - start);
+    cout << "Tempo de execucao: " << duration.count() << "s" << endl;
+  } 
+  
+  else if(algorithm == 2){
+    auto start = high_resolution_clock::now();
+    tspCheapestInsertion(numCities);
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<seconds>(end - start);
+    cout << "Tempo de execucao: " << duration.count() << "s" << endl;
+  } 
+  
+  else if(algorithm == 3){
+    int64_t sum = 0;
+
+    for(int i=0; i<30; ++i){
+      auto start = high_resolution_clock::now();
+      grasp(numCities, 1);
+      auto end = high_resolution_clock::now();
+      auto duration = duration_cast<seconds>(end - start);
+      sum += duration.count();
+      cout << "Tempo de execucao: " << duration.count() << "s" << endl;
+    }
+
+    cout << "Tempo medio de execucao: " << sum/30 << "s" << endl;
+  } 
+  
+  else if(algorithm == 4){ 
+    int64_t sum = 0;
+
+    for(int i=0; i<30; ++i){
+      auto start = high_resolution_clock::now();
+      grasp(numCities, 2);
+      auto end = high_resolution_clock::now();
+      auto duration = duration_cast<seconds>(end - start);
+      sum += duration.count();
+      cout << "Tempo de execucao: " << duration.count() << "s" << endl;
+    }
+    
+    cout << "Tempo medio de execucao: " << sum/30 << "s" << endl;
   }
 }
 

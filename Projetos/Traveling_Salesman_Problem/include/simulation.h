@@ -60,6 +60,11 @@ using std::set;
 #include <utility>
 using std::pair;
 
+#include <chrono>
+using std::chrono::duration_cast;
+using std::chrono::seconds;
+using std::chrono::high_resolution_clock;
+
 namespace sml {
   /// Enum para representar o resultado da simulação
   enum simulation_result_e
