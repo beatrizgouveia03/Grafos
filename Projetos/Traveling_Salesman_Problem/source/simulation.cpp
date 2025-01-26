@@ -34,7 +34,7 @@ void Simulation::showAlgMenu(void){
   cout << "1. Algoritmo Guloso" << endl;
   cout << "2. Insercao mais barata" << endl;
   cout << "3. GRASP + Lin-Kernighan" << endl;
-  cout << "4. GRASP + <Busca Local 2>" << endl;
+  cout << "4. GRASP + Reversão de Subcaminho"<< endl;
   cout << "0. Encerrar programa" << endl;
 }
 

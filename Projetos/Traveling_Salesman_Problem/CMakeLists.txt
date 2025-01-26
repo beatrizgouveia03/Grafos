@@ -10,7 +10,7 @@ add_executable( Traveling_Salesman_Problem
                 source/algorithms/grasp.cpp
                 source/algorithms/tspGreedy.cpp
                 source/algorithms/swapLocalSearch.cpp
-                source/algorithms/graspLocalSearch2.cpp
+								source/algorithms/subpathReversion.cpp
                 source/algorithms/tspCheapestInsertion.cpp)
 
 set_property(TARGET  Traveling_Salesman_Problem PROPERTY CXX_STANDARD 20)

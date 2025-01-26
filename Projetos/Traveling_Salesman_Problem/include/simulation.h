@@ -27,6 +27,7 @@ using std::endl;
 
 #include <algorithm>
 using std::min;
+using std::reverse;
 
 #include <map>
 using std::map;
@@ -150,7 +151,7 @@ namespace sml {
       pair<double, vector<int>> tspCheapestInsertion(int numCities); //!< Inserção mais barata 
       pair<double, vector<int>> grasp(int numCities, int localSearch); //!< GRASP
       vector<int> swapLocalSearch(const vector<int>& tour, const vector<vector<float>>& distMatrix); //!< Busca Local 1 (Swap)
-      vector<int> graspLocalSearch2(void); //!< Busca Local 2 
+      vector<int> subpathReversion(const vector<int>& tour, const vector<vector<float>>& distMatrix); //!< Busca Local 2 (Reversão de Subcaminho)
 
       //! Funções auxiliares
       float calculateTourCost(const vector<int>& tour, const vector<vector<float>>& distMatrix);

@@ -10,7 +10,7 @@ pair<double, vector<int>> Simulation::grasp(int numCities, int localSearch) {
     cout << "GRASP + Busca Local 1" << endl;
     swapLocalSearch(tour, distMatrix);
   } else {
-    graspLocalSearch2();
+    subpathReversion(tour, distMatrix);
     cout << "GRASP + Busca Local 2" << endl;
   }
 
