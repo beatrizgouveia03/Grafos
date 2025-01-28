@@ -1,14 +1,15 @@
-# Simulador de Rotas em Grafos
+# Problema do Caixeiro Viajante
 
 ## Índice
 
 1. [Introdução](#introdução)
 2. [Algoritmos](#algoritmos)
-3. [Utilização](#utilização)
-4. [Métodos de Compilação](#métodos-de-compilação)
-5. [Contribuindo](#contribuindo)
-6. [Documentação](#documentação)
-7. [Licença](#licença)
+3. [Cenários](#cenarios)
+4. [Utilização](#utilização)
+5. [Métodos de Compilação](#métodos-de-compilação)
+6. [Contribuindo](#contribuindo)
+7. [Documentação](#documentação)
+8. [Licença](#licença)
 
 ## Introdução
 
@@ -51,6 +52,7 @@ As entradas para os algoritmos foram construídas com base em duas métricas pri
 
 1.*Distância*
 A distância entre as cidades, medida em quilômetros, foi utilizada como uma métrica de custo para avaliar a eficiência das rotas.
+
 2.*Tempo*
 O tempo necessário para se deslocar entre as cidades foi usado como outra métrica para medir a qualidade dos tours.
 
