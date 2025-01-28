@@ -47,7 +47,7 @@ Os cenários considerados incluem os seguintes tamanhos de instâncias:
 - 36 cidades
 - 48 cidades
 
-*Entradas dos Cenários*
+#Entradas dos Cenários#
 As entradas para os algoritmos foram construídas com base em duas métricas principais que representam as características reais das cidades:
 
 1.*Distância*
