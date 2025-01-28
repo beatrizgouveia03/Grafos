@@ -50,10 +50,12 @@ Os cenários considerados incluem os seguintes tamanhos de instâncias:
 ## Entradas dos Cenários
 As entradas para os algoritmos foram construídas com base em duas métricas principais que representam as características reais das cidades:
 
-1.*Distância*
+1.Distância
+
 A distância entre as cidades, medida em quilômetros, foi utilizada como uma métrica de custo para avaliar a eficiência das rotas.
 
-2.*Tempo*
+2.Tempo
+
 O tempo necessário para se deslocar entre as cidades foi usado como outra métrica para medir a qualidade dos tours.
 
 ## Utilização
