@@ -12,26 +12,47 @@
 
 ## Introdução
 
-O Simulador de Rotas em Grafos é um projeto desenvolvido para demonstrar o funcionamento de diversos algoritmos clássicos em grafos e digrafos ponderados. 
-O objetivo principal é fornecer uma ferramenta prática para visualizar, entender e aplicar conceitos fundamentais de teoria dos grafos, sendo eles a construção de árvores geradoras mínimas, o cálculo de caminhos mínimos, a análise de grafos Eulerianos e a resolução de problemas de fluxo em redes.
+O problema do caixeiro viajante (Traveling Salesman Problem - TSP) é um dos problemas clássicos de otimização combinatória. Ele consiste em encontrar o menor caminho possível que permita a um vendedor visitar todas as cidades de um conjunto exatamente uma vez e retornar à cidade de origem. Apesar de sua formulação simples, o TSP é um problema NP-difícil, o que significa que sua resolução exata para grandes instâncias requer um esforço computacional significativo.
 
+O objetivo deste projeto é explorar diferentes algoritmos para resolver o TSP, avaliando seus desempenhos em diferentes cenários.
 
 ## Algoritmos
 
-- **Árvores Geradoras Mínimas:**
-  - [x] (1) Kruskal [Anny]
-  - [x] (2) Prim [Davi]
-  - [x] (3) Chu-Liu/Edmonds [José]
-- **Caminho mais curto:**
-  - [x] (4) Dijkstra [Anny]
-  - [x] (5) Bellman-Ford [Alisson]
-  - [x] (6) Floyd-Warshall [Davi]
-- **Grafos Eulerianos:**
-  - [x] (7) Hierholzer (ciclos) [Alisson]
-  - [x] (8) Hierholzer (caminhos) [Beatriz]
-- **Fluxo em Redes:**
-  - [x] (9) Ford-Fulkerson [José]
-  - [x] (10) Edmonds-Karp [Beatriz]
+Algoritmos Implementados
+Neste projeto, foram implementados quatro algoritmos diferentes para resolver o problema do caixeiro viajante (Traveling Salesman Problem - TSP), cada um com abordagens específicas para encontrar soluções otimizadas:
+
+*Guloso*
+
+- Um algoritmo simples que constrói o tour escolhendo a aresta mais barata disponível em cada passo, até que todas as cidades sejam visitadas.
+
+*Inserção Mais Barata*
+- Insere cidades no tour de forma incremental, sempre escolhendo a posição que resulta no menor custo adicional.
+
+*GRASP com Troca de Vizinhança*
+- Um método baseado em busca local onde uma solução inicial é construída de forma aleatória e, em seguida, é refinada por meio de trocas entre pares de cidades.
+
+*GRASP com Reversão de Sub-Caminho*
+- Similar ao GRASP anterior, mas o refinamento é feito invertendo subcaminhos do tour, explorando uma vizinhança diferente.
+Esses algoritmos permitem comparar diferentes abordagens e analisar o impacto das estratégias de otimização sobre o custo total do tour.
+
+## Cenários
+Para testar os algoritmos implementados, foram utilizados diferentes cenários baseados em um conjunto de cidades do estado do Rio Grande do Norte. Esses cenários foram projetados para avaliar o desempenho dos algoritmos em instâncias de diferentes tamanhos, variando de pequenos problemas a situações mais complexas.
+
+Os cenários considerados incluem os seguintes tamanhos de instâncias:
+- 6 cidades
+- 7 cidades
+- 12 cidades
+- 24 cidades
+- 36 cidades
+- 48 cidades
+
+*Entradas dos Cenários*
+As entradas para os algoritmos foram construídas com base em duas métricas principais que representam as características reais das cidades:
+
+1.*Distância*
+A distância entre as cidades, medida em quilômetros, foi utilizada como uma métrica de custo para avaliar a eficiência das rotas.
+2.*Tempo*
+O tempo necessário para se deslocar entre as cidades foi usado como outra métrica para medir a qualidade dos tours.
 
 ## Utilização
 
@@ -46,7 +67,7 @@ Para utilizar este projeto, siga os passos abaixo:
 2. Navegue até o diretório deste projeto: 
 
    ```shell
-   cd Grafos/Projetos/Route_in_Graphs/
+   cd Grafos/Projetos/Traveling_Salesman_Problem/
    ```
 
 3. Compile o projeto de acordo com o método de sua escolha (veja [Métodos de Compilação](#métodos-de-compilação) para mais detalhes).
@@ -62,7 +83,7 @@ Este projeto utiliza o CMake como sistema de build, permitindo uma compilação 
 2. Navegue até o diretório do projeto:
 
    ```shell
-   cd Grafos/Projetos/Route_in_Graphs/
+   cd Grafos/Projetos/Traveling_Salesman_Problem/
    ```
 
 3. Crie um diretório de build e gere um Makefile Unix baseado no script encontrado no nível atual:
@@ -115,7 +136,7 @@ O projeto utiliza o Doxygen para gerar a documentação. Para gerar a documenta�
 doxygen Doxyfile
 ```
 
-Isso criará uma pasta `docs` (ou outro diretório especificado no campo `OUTPUT_DIRECTORY` do arquivo Doxyfile) com os arquivos da documentação gerada. Você pode visualizar a documentação abrindo o arquivo [index.html](/Projetos/Route_in_Graphs/docs/html/index.html), localizado dentro da subpasta `html`, em seu navegador web.
+Isso criará uma pasta `docs` (ou outro diretório especificado no campo `OUTPUT_DIRECTORY` do arquivo Doxyfile) com os arquivos da documentação gerada. Você pode visualizar a documentação abrindo o arquivo [index.html](/Projetos/Traveling_Salesman_Problem/docs/html/index.html), localizado dentro da subpasta `html`, em seu navegador web.
 
 ## Licença
 
