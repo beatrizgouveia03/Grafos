@@ -5,7 +5,7 @@ using namespace sml;
 pair<double, vector<int>> Simulation::tspCheapestInsertion(int numCities) {
     cout << "Algoritmo da Insercao Mais Barata" << endl;
 
-    const vector<vector<float>> distMatrix = this->graph.adj;
+    const vector<vector<double>> distMatrix = this->graph.adj;
     vector<bool> visitedCities(numCities, false);
     vector<int> finalPath;
 
