@@ -24,7 +24,7 @@ vector<int> Simulation::subpathReversion(const vector<int>& tour, const vector<v
 		for(int i = 0; i < tour.size() - 1; i++){
 			for(int j = i + 2; j < tour.size(); j++){
 				vector<int> newTour = currTour;
-				reverse(newTour.begin() + i, newTour.end() + j);
+				reverse(newTour.begin() + i, newTour.begin() + j + 1);
 				double newCost = calculateTourCost(newTour, distMatrix);
 				if(newCost < currCost){
 					currTour = newTour;
