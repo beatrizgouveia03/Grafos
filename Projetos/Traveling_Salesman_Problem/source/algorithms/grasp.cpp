@@ -14,7 +14,6 @@ using namespace sml;
  * Parâmetros ajustáveis, como o número de iterações e o tamanho da RCL, permitem
  * controlar o equilíbrio entre exploração e intensificação no espaço de soluções.
  */
-
 pair<double, vector<int>> Simulation::grasp(int numCities, int localSearch) {
     //Obtém a matriz de distâncias do grafo
     const vector<vector<float>> distMatrix = this->graph.adj;
@@ -69,10 +68,10 @@ pair<double, vector<int>> Simulation::grasp(int numCities, int localSearch) {
         //Fase 2: Melhoria da solução usando busca local
         vector<int> improvedTour = tour;
         if (localSearch == 1) {
-            //Aplica busca local por troca (swap)
+            cout << "GRASP + Troca de vizinhança" << endl;
             swapLocalSearch(improvedTour, distMatrix);
         } else {
-            //Aplica busca local por reversão de subcaminho
+            cout << "GRASP + Reversão de Sub-caminho" << endl;
             subpathReversion(improvedTour, distMatrix);
         }
         

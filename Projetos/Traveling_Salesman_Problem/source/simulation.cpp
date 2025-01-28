@@ -33,7 +33,7 @@ void Simulation::showAlgMenu(void){
   cout << "============================================" << endl;
   cout << "1. Algoritmo Guloso" << endl;
   cout << "2. Insercao mais barata" << endl;
-  cout << "3. GRASP + Lin-Kernighan" << endl;
+  cout << "3. GRASP + Troca (Swap)" << endl;
   cout << "4. GRASP + Reversão de Subcaminho"<< endl;
   cout << "0. Encerrar programa" << endl;
 }
@@ -82,7 +82,7 @@ void Simulation::run(void) {
 
     if(probOption == 0) continue;
 
-    runProblem(probOption, algOption);
+    runProblem(algOption, probOption);
     pause();
   }
 }
@@ -133,7 +133,7 @@ void Simulation::runProblem(int algorithm, int problem) {
   file << "Iteração | Tempo | Custo | Solução " << endl;
 
   if(algorithm == 1){
-    file << '1 |' ;
+    file << "1 |" ;
 
     auto start = high_resolution_clock::now(); //Começa a contagem do tempo 
 
@@ -149,7 +149,7 @@ void Simulation::runProblem(int algorithm, int problem) {
   } 
   
   else if(algorithm == 2){
-    file << '1 |' ;
+    file << "1 |";
 
     auto start = high_resolution_clock::now(); //Começa a contagem do tempo
 
@@ -254,7 +254,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
     this->graph.n = numNodes;
 
     string line;
-    vector<vector<float>> adj = vector<vector<float>>(this->graph.n, vector<float>(this->graph.n, -1)); //!< Matriz de adjacência
+    vector<vector<double>> adj = vector<vector<double>>(this->graph.n, vector<double>(this->graph.n, -1)); //!< Matriz de adjacência
 
 
     cout << "Lendo matriz de adjacencia..." << endl;
