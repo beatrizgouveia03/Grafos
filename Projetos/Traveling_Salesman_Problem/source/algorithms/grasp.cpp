@@ -1,199 +1,99 @@
 #include "simulation.h"
-#include <random>
-#include <algorithm>
-#include <iostream>
-#include <iomanip>
 using namespace sml;
-using namespace std; 
 
-//Função para imprimir o resultado final do algoritmo GRASP
-//Recebe o melhor tour encontrado e seu custo
-//Imprime a sequência de cidades e o custo total formatado
-void printGRASPResult(const vector<int>& tour, double cost) {
-    cout << "\nMelhor tour encontrado:" << endl;
-    cout << "Sequência de cidades: ";
-    //Imprime cada cidade do tour com setas entre elas
-    for (size_t i = 0; i < tour.size(); i++) {
-        cout << tour[i];
-        if (i < tour.size() - 1) cout << " -> ";
-    }
-    //Adiciona retorno à cidade inicial para completar o ciclo
-    cout << " -> " << tour[0] << endl;
-    //Imprime o custo total com 2 casas decimais
-    cout << "Custo total do tour: " << fixed << setprecision(2) << cost << endl;
-}
+/**
+ * Implementação do algoritmo GRASP (Greedy Randomized Adaptive Search Procedure)
+ * para a resolução do problema do caixeiro-viajante (TSP - Traveling Salesman Problem).
+ * Este código utiliza uma combinação de heurísticas de construção gulosa randomizada
+ * e busca local para encontrar soluções de boa qualidade de forma eficiente.
+ * 
+ * - A fase de construção inicializa uma solução utilizando aleatoriedade controlada.
+ * - A fase de busca local melhora a solução encontrada por meio de otimizações adicionais.
+ * - A melhor solução ao longo de múltiplas iterações é armazenada e retornada.
+ * 
+ * Parâmetros ajustáveis, como o número de iterações e o tamanho da RCL, permitem
+ * controlar o equilíbrio entre exploração e intensificação no espaço de soluções.
+ */
 
-//Função para calcular o custo total de um tour
-//Recebe o vetor com a ordem das cidades e a matriz de distâncias
-//Retorna a soma das distâncias entre cidades consecutivas, incluindo o retorno à primeira cidade
-double calculateTourCost(const vector<int>& tour, const vector<vector<float>>& distMatrix) {
-    double cost = 0;
-    //Soma as distâncias entre cada par de cidades consecutivas
-    for (size_t i = 0; i < tour.size() - 1; i++) {
-        cost += distMatrix[tour[i]][tour[i + 1]];
-    }
-    //Adiciona o custo de retorno à cidade inicial
-    cost += distMatrix[tour.back()][tour[0]];
-    return cost;
-}
-
-//Implementação da primeira estratégia de busca local: troca de pares de cidades
-//Tenta melhorar a solução trocando pares de cidades de posição
-//Continua até não encontrar mais melhorias
-void swapLocalSearch(vector<int>& tour, const vector<vector<float>>& distMatrix) {
-    bool improved = true;
-    //Loop principal: continua enquanto houver melhorias
-    while (improved) {
-        improved = false;
-        double bestCost = calculateTourCost(tour, distMatrix);
-        
-        //Testa todas as possíveis trocas de pares de cidades
-        for (size_t i = 0; i < tour.size() - 1; i++) {
-            for (size_t j = i + 1; j < tour.size(); j++) {
-                //Realiza a troca temporária
-                std::swap(tour[i], tour[j]);
-                double newCost = calculateTourCost(tour, distMatrix);
-                
-                //Se a troca melhorou o custo, mantém a mudança
-                if (newCost < bestCost) {
-                    bestCost = newCost;
-                    improved = true;
-                } else {
-                    //Se não melhorou, desfaz a troca
-                    std::swap(tour[i], tour[j]);
-                }
-            }
-        }
-    }
-}
-
-//Implementação da segunda estratégia de busca local: reversão de subcaminhos
-//Tenta melhorar a solução revertendo a ordem de segmentos do caminho
-//Continua até não encontrar mais melhorias
-void subpathReversion(vector<int>& tour, const vector<vector<float>>& distMatrix) {
-    bool improved = true;
-    //Loop principal: continua enquanto houver melhorias
-    while (improved) {
-        improved = false;
-        double bestCost = calculateTourCost(tour, distMatrix);
-        
-        //Testa todas as possíveis reversões de subcaminhos
-        for (size_t i = 0; i < tour.size() - 1; i++) {
-            for (size_t j = i + 2; j < tour.size(); j++) {
-                //Reverte o subcaminho temporariamente
-                std::reverse(tour.begin() + i, tour.begin() + j + 1);
-                double newCost = calculateTourCost(tour, distMatrix);
-                
-                //Se a reversão melhorou o custo, mantém a mudança
-                if (newCost < bestCost) {
-                    bestCost = newCost;
-                    improved = true;
-                } else {
-                    //Se não melhorou, desfaz a reversão
-                    std::reverse(tour.begin() + i, tour.begin() + j + 1);
-                }
-            }
-        }
-    }
-}
-
-//Função que constrói uma solução inicial de forma gulosa randomizada
-//Usa o parâmetro alpha para controlar o equilíbrio entre aleatoriedade e gulodice
-//alpha = 0 -> totalmente guloso, alpha = 1 -> totalmente aleatório
-vector<int> constructGreedyRandomizedSolution(const vector<vector<float>>& distMatrix, float alpha) {
-    int n = distMatrix.size();
-    vector<int> solution;
-    vector<bool> visited(n, false);
-    
-    //Configuração do gerador de números aleatórios
-    std::random_device rd;  //Fonte de entropia para seed
-    std::mt19937 gen(rd()); //Gerador Mersenne Twister
-    std::uniform_int_distribution<> dis(0, n - 1); //Distribuição uniforme
-    
-    //Escolhe a primeira cidade aleatoriamente
-    int currentCity = dis(gen);
-    solution.push_back(currentCity);
-    visited[currentCity] = true;
-    
-    //Constrói o resto do caminho uma cidade por vez
-    while (solution.size() < n) {
-        //Lista de candidatos (cidades não visitadas) com suas distâncias
-        vector<pair<int, float>> candidates;
-        for (int i = 0; i < n; i++) {
-            if (!visited[i]) {
-                candidates.push_back({i, distMatrix[currentCity][i]});
-            }
-        }
-        
-        //Ordena candidatos por distância (do mais próximo ao mais distante)
-        sort(candidates.begin(), candidates.end(), 
-             [](const pair<int, float>& a, const pair<int, float>& b) {
-                 return a.second < b.second;
-             });
-        
-        //Calcula o tamanho da Lista Restrita de Candidatos (RCL)
-        //RCL contém as alpha% melhores cidades candidatas
-        int rclSize = std::max(1, int(alpha * candidates.size()));
-        std::uniform_int_distribution<> rclDis(0, rclSize - 1);
-        int selectedIdx = rclDis(gen);
-        
-        //Seleciona próxima cidade aleatoriamente da RCL
-        currentCity = candidates[selectedIdx].first;
-        solution.push_back(currentCity);
-        visited[currentCity] = true;
-    }
-    
-    return solution;
-}
-
-//Função principal do algoritmo GRASP
-//Combina construção gulosa randomizada com busca local
-//Executa várias iterações e retorna o melhor resultado encontrado
 pair<double, vector<int>> Simulation::grasp(int numCities, int localSearch) {
     //Obtém a matriz de distâncias do grafo
     const vector<vector<float>> distMatrix = this->graph.adj;
     
-    //Parâmetros do GRASP
-    float alpha = 0.3;  //Controla o nível de aleatoriedade (0 = guloso, 1 = aleatório)
-    int maxIterations = 100;  //Número de iterações do algoritmo
-    
     //Variáveis para armazenar a melhor solução encontrada
-    vector<int> bestTour;
-    double bestCost = numeric_limits<double>::infinity();
+    vector<int> bestTour;  //Armazena o melhor caminho encontrado
+    double bestCost = numeric_limits<double>::infinity();  //Inicializa com infinito para garantir primeira atualização
     
-    //Imprime informações iniciais
-    cout << "\nExecutando GRASP..." << endl;
-    cout << "Número de iterações: " << maxIterations << endl;
-    cout << "Parâmetro alpha: " << alpha << endl;
-    cout << "Método de busca local: " << (localSearch == 1 ? "Troca de pares" : "Reversão de subcaminho") << endl;
+    //Parâmetros do algoritmo GRASP
+    int maxIterations = 100;  //Número de vezes que o algoritmo será executado
+    int rcl_size = 3;        //Tamanho da Lista Restrita de Candidatos (RCL) - controla o nível de aleatoriedade
     
-    //Loop principal do GRASP
-    for (int i = 0; i < maxIterations; i++) {
-        //Mostra progresso a cada 10 iterações
-        if (i % 10 == 0) {
-            cout << "Iteração " << i << " de " << maxIterations << endl;
+    //Loop principal do GRASP - cada iteração gera uma solução diferente
+    for (int iter = 0; iter < maxIterations; iter++) {
+        //Fase 1: Construção da solução inicial usando método guloso randomizado
+        vector<int> tour(numCities, -1);        //Vetor que armazenará o caminho atual (-1 indica posição vazia)
+        vector<bool> visited(numCities, false);  //Controle de cidades já visitadas
+        
+        //Seleciona a primeira cidade aleatoriamente
+        int currentCity = rand() % numCities;
+        tour[0] = currentCity;
+        visited[currentCity] = true;
+        
+        //Constrói o resto do caminho cidade por cidade
+        for (int i = 1; i < numCities; i++) {
+            //Vector para armazenar candidatos possíveis e suas distâncias
+            vector<pair<float, int>> candidates;
+            
+            //Para cada cidade não visitada, calcula sua distância da cidade atual
+            for (int j = 0; j < numCities; j++) {
+                if (!visited[j]) {
+                    //Armazena par {distância, índice_cidade}
+                    candidates.push_back({distMatrix[currentCity][j], j});
+                }
+            }
+            
+            //Ordena candidatos pela distância (primeiro elemento do par)
+            sort(candidates.begin(), candidates.end());
+            
+            //Define tamanho atual da RCL (mínimo entre rcl_size e número de candidatos disponíveis)
+            int rcl_current_size = min(rcl_size, (int)candidates.size());
+            
+            //Seleciona aleatoriamente uma cidade dentre as melhores (RCL)
+            int random_index = rand() % rcl_current_size;
+            currentCity = candidates[random_index].second;
+            
+            //Adiciona cidade escolhida ao tour e marca como visitada
+            tour[i] = currentCity;
+            visited[currentCity] = true;
         }
         
-        //Fase de construção: gera uma solução inicial
-        vector<int> currentTour = constructGreedyRandomizedSolution(distMatrix, alpha);
-        
-        //Fase de busca local: tenta melhorar a solução
+        //Fase 2: Melhoria da solução usando busca local
+        vector<int> improvedTour = tour;
         if (localSearch == 1) {
-            swapLocalSearch(currentTour, distMatrix);  //Método 1: troca de pares
+            //Aplica busca local por troca (swap)
+            swapLocalSearch(improvedTour, distMatrix);
         } else {
-            subpathReversion(currentTour, distMatrix); //Método 2: reversão de subcaminhos
+            //Aplica busca local por reversão de subcaminho
+            subpathReversion(improvedTour, distMatrix);
         }
         
-        //Verifica se encontrou uma solução melhor
-        double currentCost = calculateTourCost(currentTour, distMatrix);
+        //Fase 3: Avaliação da solução melhorada
+        //Calcula o custo total do caminho (soma das distâncias)
+        double currentCost = 0;
+        //Soma distâncias entre cidades consecutivas
+        for (int i = 0; i < numCities - 1; i++) {
+            currentCost += distMatrix[improvedTour[i]][improvedTour[i + 1]];
+        }
+        //Adiciona distância de retorno à cidade inicial (fecha o ciclo)
+        currentCost += distMatrix[improvedTour[numCities - 1]][improvedTour[0]];
+        
+        //Fase 4: Atualização da melhor solução
+        //Se encontrou um caminho melhor, atualiza a melhor solução
         if (currentCost < bestCost) {
             bestCost = currentCost;
-            bestTour = currentTour;
-            cout << "Nova melhor solução encontrada na iteração " << i << " com custo: " << currentCost << endl;
+            bestTour = improvedTour;
         }
     }
     
-    //Imprime o resultado final e retorna
-    printGRASPResult(bestTour, bestCost);
+    //Retorna par contendo o custo do melhor caminho e o caminho em si
     return make_pair(bestCost, bestTour);
 }
