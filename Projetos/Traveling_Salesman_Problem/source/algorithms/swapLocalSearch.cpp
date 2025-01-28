@@ -16,9 +16,9 @@ using namespace sml;
  * 
  * @return Um vetor de inteiros representando o tour otimizado após a busca local.
  */
-vector<int> Simulation::swapLocalSearch(const vector<int>& tour, const vector<vector<float>>& distMatrix) {
+vector<int> Simulation::swapLocalSearch(const vector<int>& tour, const vector<vector<double>>& distMatrix) {
   vector<int> currTour = tour;
-  float currCost = calculateTourCost(currTour, distMatrix);
+  double currCost = calculateTourCost(currTour, distMatrix);
   
   bool improved = true;
   while (improved) {
@@ -29,7 +29,7 @@ vector<int> Simulation::swapLocalSearch(const vector<int>& tour, const vector<ve
         int aux = newTour[i];
         newTour[i] = newTour[j];
         newTour[j] = aux;
-        float newCost = calculateTourCost(newTour, distMatrix);
+        double newCost = calculateTourCost(newTour, distMatrix);
         if (newCost < currCost) {
           currTour = newTour;
           currCost = newCost;
@@ -53,10 +53,10 @@ vector<int> Simulation::swapLocalSearch(const vector<int>& tour, const vector<ve
  * @param distMatrix A matriz de distâncias que representa os pesos entre as cidades.
  *                   distMatrix[i][j] fornece a distância entre a cidade i e a cidade j.
  * 
- * @return Um valor float representando o custo total do tour.
+ * @return Um valor double representando o custo total do tour.
  */
-float Simulation::calculateTourCost(const vector<int>& tour, const vector<vector<float>>& distMatrix) {
-  float cost = 0;
+double Simulation::calculateTourCost(const vector<int>& tour, const vector<vector<double>>& distMatrix) {
+  double cost = 0;
   for (int i = 0; i < tour.size() - 1; i++) cost += distMatrix[tour[i]][tour[i + 1]];
   cost += distMatrix[tour[tour.size() - 1]][tour[0]];
   return cost;

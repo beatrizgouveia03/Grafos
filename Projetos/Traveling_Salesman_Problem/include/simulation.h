@@ -89,12 +89,12 @@ namespace sml {
   struct Graph
   {
     int n;                          //!< Número de vértices
-    vector<vector<float>> adj;        //!< Matriz de adjacência
+    vector<vector<double>> adj;     //!< Matriz de adjacência
 
     friend ostream &operator<<(ostream &cout, const Graph g)
     {
       int numNodes = g.n;
-      vector<vector<float>> adj = g.adj;
+      vector<vector<double>> adj = g.adj;
 
       cout << endl;
       cout << "====================================================" << endl;
@@ -150,11 +150,11 @@ namespace sml {
       pair<double, vector<int>> tspGreedy(int numCities);//!< Algoritmo Guloso
       pair<double, vector<int>> tspCheapestInsertion(int numCities); //!< Inserção mais barata 
       pair<double, vector<int>> grasp(int numCities, int localSearch); //!< GRASP
-      vector<int> swapLocalSearch(const vector<int>& tour, const vector<vector<float>>& distMatrix); //!< Busca Local 1 (Swap)
-      vector<int> subpathReversion(const vector<int>& tour, const vector<vector<float>>& distMatrix); //!< Busca Local 2 (Reversão de Subcaminho)
+      vector<int> swapLocalSearch(const vector<int>& tour, const vector<vector<double>>& distMatrix); //!< Busca Local 1 (Swap)
+      vector<int> subpathReversion(const vector<int>& tour, const vector<vector<double>>& distMatrix); //!< Busca Local 2 (Reversão de Subcaminho)
 
       //! Funções auxiliares
-      float calculateTourCost(const vector<int>& tour, const vector<vector<float>>& distMatrix);
+      double calculateTourCost(const vector<int>& tour, const vector<vector<double>>& distMatrix);
   };
 } // namespace sml
 

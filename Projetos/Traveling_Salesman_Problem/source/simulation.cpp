@@ -133,7 +133,7 @@ void Simulation::runProblem(int algorithm, int problem) {
   file << "Iteração | Tempo | Custo | Solução " << endl;
 
   if(algorithm == 1){
-    file << '1 |' ;
+    file << "1 |" ;
 
     auto start = high_resolution_clock::now(); //Começa a contagem do tempo 
 
@@ -254,7 +254,7 @@ SimulationResult Simulation::initialize(int argc, char *argv[]) {
     this->graph.n = numNodes;
 
     string line;
-    vector<vector<float>> adj = vector<vector<float>>(this->graph.n, vector<float>(this->graph.n, -1)); //!< Matriz de adjacência
+    vector<vector<double>> adj = vector<vector<double>>(this->graph.n, vector<double>(this->graph.n, -1)); //!< Matriz de adjacência
 
 
     cout << "Lendo matriz de adjacencia..." << endl;

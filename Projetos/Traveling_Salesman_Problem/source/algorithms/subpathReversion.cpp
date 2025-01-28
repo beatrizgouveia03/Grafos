@@ -2,9 +2,9 @@
 
 using namespace sml;
 
-vector<int> Simulation::subpathReversion(const vector<int>& tour, const vector<vector<float>>& distMatrix) {
+vector<int> Simulation::subpathReversion(const vector<int>& tour, const vector<vector<double>>& distMatrix) {
 	vector<int> currTour = tour;
-  float currCost = calculateTourCost(currTour, distMatrix);
+	double currCost = calculateTourCost(currTour, distMatrix);
 
 	bool improved = true;
 	while(improved){
@@ -13,7 +13,7 @@ vector<int> Simulation::subpathReversion(const vector<int>& tour, const vector<v
 			for(int j = i; j < tour.size(); j++){
 				vector<int> newTour = currTour;
 				reverse(newTour.begin() + i, newTour.end() + j);
-				float newCost = calculateTourCost(newTour, distMatrix);
+				double newCost = calculateTourCost(newTour, distMatrix);
 				if(newCost < currCost){
 					currTour = newTour;
 					currCost = newCost;

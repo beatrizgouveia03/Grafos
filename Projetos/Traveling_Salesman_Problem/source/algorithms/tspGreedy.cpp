@@ -17,7 +17,7 @@ pair<double, vector<int>> Simulation::tspGreedy(int numCities)
 {
   cout << "Algoritmo Guloso" << endl;
 
-  const vector<vector<float>> distMatrix = this->graph.adj;
+  const vector<vector<double>> distMatrix = this->graph.adj;
   vector<bool> visitedCities(numCities, false);
   vector<int> finalPath;
   double cost = 0;
