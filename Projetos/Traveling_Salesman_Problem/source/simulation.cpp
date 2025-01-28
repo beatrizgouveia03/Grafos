@@ -82,7 +82,7 @@ void Simulation::run(void) {
 
     if(probOption == 0) continue;
 
-    runProblem(probOption, algOption);
+    runProblem(algOption, probOption);
     pause();
   }
 }
