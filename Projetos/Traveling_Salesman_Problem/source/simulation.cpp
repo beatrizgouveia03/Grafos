@@ -149,7 +149,7 @@ void Simulation::runProblem(int algorithm, int problem) {
   } 
   
   else if(algorithm == 2){
-    file << '1 |' ;
+    file << "1 |";
 
     auto start = high_resolution_clock::now(); //Começa a contagem do tempo
 
