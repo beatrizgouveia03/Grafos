@@ -13,6 +13,19 @@ bool isAHamiltonianCycle(const vector<bool> &visited)
   return true;
 }
 
+/**
+ * @brief Algoritmo do vizinho mais próximo, chamado carinhosamente de algoritmo guloso.
+ * 
+ * Esta função escolhe um vértice inicial(0 nesse caso)
+ * Encontra o vértice mais próximo ao último vértice no caminho
+ * Insere o vértice encontrado no caminho
+ * Verifica se foi formado um ciclo hamiltoniano(todas os vértices visitados). Caso sim, o algoritmo sai do loop e finaliza.
+ *
+ * @param numCities O número total de cidades a ser testado.
+ * 
+ * @return Um par de um valor double que representa a distância percorrida
+ * e um vetor de inteiros representando o caminho encontrado.
+ */
 pair<double, vector<int>> Simulation::tspGreedy(int numCities)
 {
   cout << "Algoritmo Guloso" << endl;
