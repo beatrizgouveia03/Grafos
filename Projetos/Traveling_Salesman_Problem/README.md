@@ -4,7 +4,7 @@
 
 1. [Introdução](#introdução)
 2. [Algoritmos](#algoritmos)
-3. [Cenários](#cenarios)
+3. [Cenários](#cenários)
 4. [Utilização](#utilização)
 5. [Métodos de Compilação](#métodos-de-compilação)
 6. [Contribuindo](#contribuindo)
