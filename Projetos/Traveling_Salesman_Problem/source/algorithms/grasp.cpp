@@ -1,6 +1,18 @@
 #include "simulation.h"
 using namespace sml;
 
+
+/**
+ * Implementa o algoritmo GRASP para encontrar uma solução aproximada para o problema do caixeiro-viajante (TSP).
+ * O método consiste em múltiplas iterações, onde cada iteração passa pelas seguintes fases:
+ * 
+ * 1. Construção: Gera uma solução inicial de forma gulosa e randomizada usando uma Lista Restrita de Candidatos (RCL).
+ * 2. Busca Local: Melhora a solução gerada aplicando heurísticas de otimização local, como troca de cidades ou reversão de subcaminhos.
+ * 3. Avaliação: Calcula o custo da solução após a melhoria.
+ * 4. Atualização: Armazena a melhor solução encontrada ao longo das iterações.
+ * 
+ * No final, a melhor rota e seu custo são exibidos e retornados.
+ */
 pair<double, vector<int>> Simulation::grasp(int numCities, int localSearch) 
 {
     //obtem a matriz de distancias do grafo
